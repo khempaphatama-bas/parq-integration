@@ -76,9 +76,9 @@ flowchart LR
     Mobile --> Notify["OBK Notification Infrastructure"]
     CMS --> Notify
 
-    Mobile -. Phase 1.5 .-> OCR["TCCT OCR"]
-    OCR -. Phase 1.5 .-> FS
-    CMS -. Phase 1.5 Rate Config .-> FS
+    Mobile -.->|Phase 1.5| OCR["TCCT OCR"]
+    OCR -.->|Phase 1.5| FS
+    CMS -. |Phase 1.5 Rate Config| .-> FS
 
     Traffic["Traffic Monitoring Source"] --> Mobile
 ```
