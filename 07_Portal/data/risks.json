@@ -16,14 +16,14 @@
     },
     {
       "id": "R-002",
-      "risk": "Proposal PDF is missing from repository.",
-      "severity": "Medium",
-      "impact": "Source traceability gap for proposal-derived assumptions.",
-      "mitigation": "Upload/link approved proposal or accept existing review as sufficient reference.",
-      "owner": "PARQ / Libra",
-      "status": "Open",
+      "risk": "Resolved: Proposal PDF source is now available in repository.",
+      "severity": "Resolved",
+      "impact": "Previous source traceability gap is closed by PARQ-SOT-005.",
+      "mitigation": "Keep proposal indexed and linked to downstream artifacts.",
+      "owner": "Libra / Bas",
+      "status": "Superseded / Resolved",
       "relatedSystem": "Source Artifact",
-      "relatedArtifact": "../MASTER_INDEX.md",
+      "relatedArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "relatedUserFlowId": "Not specified"
     },
     {

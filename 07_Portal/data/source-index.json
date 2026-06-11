@@ -158,23 +158,23 @@
       "id": "PARQ-SYS-002",
       "name": "BMS Member API Reference",
       "area": "Source of Truth",
-      "owner": "TBD",
+      "owner": "ob-bms service",
       "status": "Current",
       "type": "BMS source reference",
       "source": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/api-members-by-account-id.md",
       "downstream": "Simon, Quinn",
-      "notes": "BMS GET /members/by-account-id source reference."
+      "notes": "BMS GET /members/by-account-id source reference. Platform/service ownership confirmed as ob-bms service; named human contact still required for SIT/UAT escalation."
     },
     {
       "id": "PARQ-SYS-003",
       "name": "Add Identity Flow with BMS CheckMember",
       "area": "Source of Truth",
-      "owner": "TBD",
+      "owner": "OBK Backend / OB_IAM_SDK / IAM Service; BMS owned by ob-bms service",
       "status": "Current",
       "type": "BMS/IAM flow reference",
       "source": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/add_identity_flow.md",
       "downstream": "Simon, Quinn, Molly",
-      "notes": "Confirms current BMS usage in identity flow."
+      "notes": "Confirms current BMS usage in identity flow. IAM orchestration ownership and BMS service ownership are confirmed at platform/service level; named human contacts still required."
     },
     {
       "id": "PARQ-QA-001",

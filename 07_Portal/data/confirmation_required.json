@@ -95,7 +95,7 @@
     {
       "id": "CONF-DISC-001",
       "area": "Discovery",
-      "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "sourceArtifact": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
       "sourceFile": "01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
       "sectionName": "PARQ User Flow Google Sheet source",
       "reason": "Discovery page should open the approved Google Sheet / Google Drive source instead of forcing an XLSX download, but no approved Google link is present in repository files.",

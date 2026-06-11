@@ -710,8 +710,8 @@
     {
       "id": "BLK-LIB-001",
       "type": "Blocker",
-      "title": "Missing proposal source prevents full source traceability",
-      "owner": "PARQ / Libra",
+      "title": "Resolved: proposal source is registered and no longer blocks traceability.",
+      "owner": "Libra",
       "status": "Superseded",
       "priority": "Medium",
       "sourceArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",

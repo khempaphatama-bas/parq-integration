@@ -10,6 +10,8 @@ Input files:
 - `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`
 - `01_Source_of_Truth/API_and_System_References/00_2025_Document/User Flow_20260608.pdf`
 - `01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png`
+- `01_Source_of_Truth/Domain_References/Parking_Feature/Knowledge Transfer Document - Parking.docx`
+- `01_Source_of_Truth/Domain_References/Parking_Feature/Parking - [Mobile] Parking Ticket.pdf`
 - `03_Architecture/PARQ_User_Flow_Integration_Architecture.md`
 - `03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md`
 - `03_Architecture/PARQ_Technical_Dependency_Control_Pack.md`
@@ -431,7 +433,76 @@ Open UX/business questions:
 - Pending card design and quick action placement.
 - WebView URLs/content owner.
 
-### 2.5 My QR / Turnstile Access
+### 2.5 Multi-Tower Support
+
+User goal: choose the correct building/tower context when the same user has access to multiple workplace buildings.
+
+Entry point: Workplace persona card, tower selector, or retained last-selected tower.
+
+```mermaid
+flowchart TD
+    A["User opens app with Workplace persona"] --> B{"Multiple authorized buildings/towers?"}
+    B -- "No" --> C["Use single authorized building/tower"]
+    B -- "Yes" --> D{"Last selected tower saved?"}
+    D -- "Yes" --> E["Preselect last selected tower"]
+    D -- "No" --> F["Show tower selector"]
+    E --> G["Display selected tower context"]
+    F --> H["User manually selects tower"]
+    H --> G
+    G --> I["Refresh visible workplace actions"]
+    G --> J["Use selected tower for elevator access"]
+    J --> K{"User changes tower during hardware journey?"}
+    K -- "Yes" --> L["Block tower change until journey ends"]
+    K -- "No" --> M["Continue with selected tower permissions"]
+    B --> N["Remark: current Phase 1 options are One Bangkok towers and The PARQ; future Fraser property buildings may add more locations"]
+```
+
+UX screen/state candidates:
+- Tower selector
+- Saved tower state
+- Selected tower label on Workplace persona
+- Tower-change blocked state during elevator/access journey
+- Future property scaling remark for UX/content notes
+
+Open UX/business questions:
+- Final label set for One Bangkok towers and The PARQ.
+- UX copy when saved tower is no longer authorized.
+- Whether future Fraser property scaling should be shown in UI copy now or only kept in product notes.
+
+### 2.6 [CMS] Multi-Property User Management
+
+User goal: admin/support can identify a user's active personas and workplace metadata without editing persona data in Phase 1.
+
+Entry point: CMS > User Management.
+
+```mermaid
+flowchart TD
+    A["Admin opens CMS User Management"] --> B["Search or open user list"]
+    B --> C["Open user detail"]
+    C --> D["View account profile"]
+    D --> E["View active personas"]
+    E --> F["View company, property, tower, and status metadata"]
+    F --> G{"Workplace persona active?"}
+    G -- "Yes" --> H["Show Workplace metadata as view-only"]
+    G -- "No" --> I["No Workplace metadata shown or Workplace removed after offboarding"]
+    H --> J["Admin uses information for support"]
+    I --> J
+    J --> K["No persona metadata editing in Phase 1"]
+```
+
+UX screen/state candidates:
+- CMS User Management list
+- User detail
+- Persona metadata section
+- Company/property/tower/status metadata
+- View-only state
+- No Workplace persona state after FS/Fineday offboarding
+
+Open UX/business questions:
+- Which filters are required in CMS for Phase 1 or later: property, persona, company, status, tower.
+- Whether all admins can view cross-property user details in production remains acceptable after security review.
+
+### 2.7 My QR / Turnstile Access
 
 User goal: use account QR as identity for physical access.
 
@@ -461,7 +532,7 @@ Open UX/business questions:
 - QR validity and refresh behavior.
 - Turnstile outage/fallback process.
 
-### 2.6 Elevator Access
+### 2.8 Elevator Access
 
 User goal: call elevator to an authorized floor.
 
@@ -493,7 +564,7 @@ Open UX/business questions:
 - Exact elevator UX and whether destination selection is required.
 - FS response codes and hardware test schedule.
 
-### 2.7 Parking Availability
+### 2.9 Parking Availability
 
 User goal: check parking capacity before deciding where to park.
 
@@ -501,19 +572,25 @@ Entry point: Parking Availability quick action or Parking Ticket shortcut.
 
 ```mermaid
 flowchart TD
-    A["Open Parking Availability"] --> B["Detect property/location"]
-    B --> C{"Availability data available?"}
-    C -- "No" --> E1["Show unavailable or stale state"]
-    C -- "Yes" --> D["Show last updated, total spots, floor tabs"]
-    D --> E["User selects floor"]
-    E --> F{"Guest user?"}
-    F -- "Yes" --> G["Hide Parking Ticket button"]
-    F -- "No" --> H["Allow Parking Ticket shortcut"]
-    D --> I{"Floor temporarily closed or limited?"}
-    I -- "Yes" --> J["Show temporary close or guidance state"]
+    A["Open Parking Availability"] --> B["Show location selection"]
+    B --> B1{"Selected location"}
+    B1 -- "One Bangkok" --> C["Check One Bangkok availability data"]
+    B1 -- "The PARQ" --> C2["Check The PARQ availability data"]
+    C --> D{"Availability data available?"}
+    C2 --> D
+    D -- "No" --> E1["Show unavailable or stale state"]
+    D -- "Yes" --> F["Show last updated, total spots, floor tabs for selected location"]
+    F --> G["User selects floor"]
+    G --> H{"Guest user?"}
+    H -- "Yes" --> I["Hide Parking Ticket button"]
+    H -- "No" --> J["Allow Parking Ticket shortcut"]
+    F --> K{"Floor temporarily closed or limited?"}
+    K -- "Yes" --> L["Show temporary close or guidance state"]
+    B --> M["Remark: Phase 1 options are One Bangkok and The PARQ; future Fraser property buildings may add more locations"]
 ```
 
 UX screen/state candidates:
+- Parking location selection
 - Parking Availability
 - Floor tabs
 - Last updated/stale state
@@ -522,8 +599,9 @@ UX screen/state candidates:
 
 Open UX/business questions:
 - PARQ floor labels, default tab, refresh interval, and weekday guidance.
+- Future scaling behavior when additional Fraser property buildings are added.
 
-### 2.8 Parking Ticket and Payment
+### 2.10 Parking Ticket and Payment
 
 User goal: view/import ticket, understand fee, pay if needed, and receive receipt.
 
@@ -534,31 +612,43 @@ flowchart TD
     A["Open Parking Ticket"] --> B{"Active digital ticket found?"}
     B -- "No" --> C["Scan/import physical ticket or use QR at gate where supported"]
     C --> D{"Ticket detected and valid?"}
-    D -- "No" --> E1["Invalid/expired/used/already imported state"]
-    D -- "Yes" --> E["Confirm and save ticket"]
-    B -- "Yes" --> F["Show ticket details and fee"]
-    E --> F
-    F --> G{"Total fee > 0?"}
-    G -- "No" --> H["Show free/paid status"]
-    G -- "Yes" --> I["Select PromptPay QR payment"]
-    I --> J{"Argento payment result"}
-    J -- "Success" --> K["Show payment success and receipt"]
-    J -- "Failure or expired" --> L["Show payment failed or retry"]
-    F --> M["Availability and Traffic shortcuts"]
-    F --> N["Phase 1 redemption: concierge-assisted"]
+    D -- "No" --> E1["Show scan error and retry"]
+    E1 --> E2["If retry still fails, contact concierge/support"]
+    D -- "Yes" --> E{"Ticket property detected?"}
+    E -- "One Bangkok" --> F["Route to existing One Bangkok parking flow"]
+    E -- "The PARQ" --> G["Apply The PARQ parking flow and rate"]
+    E -- "Cannot detect" --> E1
+    B -- "Yes" --> H{"Ticket property"}
+    H -- "One Bangkok" --> F
+    H -- "The PARQ" --> G
+    G --> I["Show The PARQ ticket details and fee"]
+    I --> J{"Total fee > 0?"}
+    J -- "No" --> K["Show free/paid status"]
+    J -- "Yes" --> L["Select PromptPay QR payment"]
+    L --> M{"Argento payment result"}
+    M -- "Success" --> N["Show payment success and receipt"]
+    M -- "Failure or expired" --> O["Show payment failed or retry"]
+    I --> P["Availability and Traffic shortcuts"]
+    I --> Q["Phase 1 redemption: concierge-assisted"]
+    G --> R["Do not show unsupported One Bangkok-only capabilities such as VIP Parking"]
 ```
 
 UX screen/state candidates:
 - Parking Ticket
 - Import Physical Ticket
 - Confirm Parking Ticket
-- Invalid QR
+- Scan error and retry
+- Concierge/support fallback
+- Ticket property detection
+- One Bangkok as-is route
+- The PARQ ticket detail and fee
 - Payment Method
 - QR Payment
 - Payment Success
 - Payment Failed
 - Receipt
 - Concierge redemption message
+- Unsupported capability hidden state, such as VIP Parking for The PARQ
 
 Open UX/business questions:
 - PARQ rate table/source.
@@ -566,8 +656,9 @@ Open UX/business questions:
 - My QR gate behavior.
 - Concierge handoff message.
 - Payment reconciliation fallback.
+- Exact UI treatment when One Bangkok-only parking capabilities are hidden for The PARQ.
 
-### 2.9 Visitor Pass Creation and Usage
+### 2.11 Visitor Pass Creation and Usage
 
 User goal: host creates a visitor pass and visitor uses it according to FS authorization.
 
@@ -605,25 +696,24 @@ Open UX/business questions:
 - Reactivation window.
 - Floor-specific access.
 
-### 2.10 Notification Receiving
+### 2.12 Notification Receiving
 
-User goal: receive relevant OBK notifications for PARQ audience.
+User goal: migrated PARQ user receives basic One Bangkok app notifications through the existing OBK mechanism.
 
 Entry point: Push notification or OBK notification center.
 
 ```mermaid
 flowchart TD
-    A["Notification event or campaign"] --> B["Select PARQ audience"]
-    B --> C{"User eligible?"}
-    C -- "No" --> D["No notification"]
-    C -- "Yes" --> E{"Push permission/device token available?"}
-    E -- "Yes" --> F["Send push notification"]
-    E -- "No" --> G["Follow existing OBK notification center behavior"]
-    F --> H{"Deep link available?"}
-    H -- "Yes" --> I["Open target page"]
-    H -- "No" --> J["Open notification center or app"]
-    C --> K{"User offboarded from Workplace?"}
-    K -- "Yes" --> L["No Workplace-targeted notification\nRetail notification may continue"]
+    A["Existing OBK notification event"] --> B{"User has device token and permission?"}
+    B -- "No" --> C["Follow existing OBK notification center behavior"]
+    B -- "Yes" --> D["Send basic OBK push notification"]
+    D --> E{"Notification type"}
+    E -- "Login / account / system" --> F["Open relevant OBK app state"]
+    E -- "Marketing" --> G["Open existing OBK marketing/deep link behavior"]
+    E -- "The PARQ building-specific CMS campaign" --> H["Not included in Phase 1"]
+    H --> I["User continues to use existing The PARQ app for building news"]
+    D --> J{"User offboarded from Workplace?"}
+    J -- "Yes" --> K["Workplace-specific targeting does not apply\nbasic or marketing notification may continue by existing rules"]
 ```
 
 UX screen/state candidates:
@@ -631,14 +721,14 @@ UX screen/state candidates:
 - Notification center item
 - Deep link target
 - Permission off state
+- Out-of-scope PARQ building news state for product notes
 
 Open UX/business questions:
-- PARQ audience source.
-- In-app inbox requirement.
-- Campaign owner.
-- Final notification types.
+- Confirm exact basic notification categories for migrated PARQ users.
+- Confirm marketing opt-in/consent behavior for migrated PARQ users.
+- Confirm how to message that The PARQ building news remains in the existing The PARQ app during early phase, if needed.
 
-### 2.11 Account Lifecycle: Offboarding, Delete, Hard Delete, Reactivation
+### 2.13 Account Lifecycle: Offboarding, Delete, Hard Delete, Reactivation
 
 User goal: keep the right persona state after company offboarding, delete an account when requested, and reactivate within the allowed period.
 
@@ -705,16 +795,16 @@ Open UX/business questions:
 | New user onboarding | 1.3 | UF-003 | New PARQ workplace user | OTP, consent, BZB Retail creation, FS pending Workplace |
 | Retail account matching / conflict | 1.2 | UF-002 | User with existing Retail/BZB account | BZB match, BZB conflict, Auto-merge acknowledgement |
 | Workplace persona activation | 2.1 | UF-005 | PARQ workplace user | FS type detection, WebView availability, pending state |
-| Multi-tower context support | 2.2 | UF-006 | Multi-property workplace user | FS tower/floor data, saved tower validity, hardware lock |
-| CMS user support visibility | 2.3 | UF-007 | CMS/admin/support user | CMS view-only metadata, FS/BZB sync state |
+| Multi-tower context support | 2.2 | UF-006 | Multi-building workplace user | FS tower/floor data, saved tower validity, manual tower selection, hardware journey lock |
+| CMS multi-property user management | 2.3 | UF-007 | CMS/admin/support user | CMS view-only metadata, FS/BZB sync state |
 | Profile management | 3.1 | UF-008 | PARQ workplace user | FS company/tower/floor data, property contact fallback |
 | My QR / turnstile access | 4.1 and 8.2 | UF-009 and UF-016 | PARQ workplace user | QR generation, FS access denial, turnstile timeout |
 | Elevator access | 8.1 | UF-015 | Authorized PARQ workplace user | FS floor authorization, elevator timeout |
-| Parking availability | 5.1 | UF-010 | Parking user | FS availability, stale data, guest hidden ticket action |
+| Parking availability | 5.1 | UF-010 | Parking user | User-selected location, FS availability, stale data, guest hidden ticket action |
 | Traffic monitoring | 5.2 | UF-011 | Parking user | Traffic content source, wrong-property fallback |
-| Parking ticket and payment | 5.3 | UF-012 | Parking user | FS ticket lookup, Argento payment failure, receipt |
+| Parking ticket and payment | 5.3 | UF-012 | Parking user | Ticket property detection, One Bangkok as-is route, The PARQ rate, Argento payment failure, receipt |
 | Visitor pass creation and usage | 6.1 | UF-013 | Visitor host and visitor | FS visitor authorization, pass validity, access denial |
-| Notification receiving | 7.1 | UF-014 | PARQ workplace user | Audience segmentation, permission off, deep link |
+| Notification receiving | 7.1 | UF-014 | Migrated PARQ user | Existing OBK notification mechanism, basic/login/marketing notifications, no The PARQ CMS campaign in Phase 1 |
 | Account lifecycle: company offboarding, delete, hard delete, reactivation | 1.4 | UF-004 | Retail + Workplace user | FS/Fineday offboarding, Suspens status, daily hard-delete job, SSO/BZB cleanup |
 
 ## 4. Consolidated Screen-State Needs
@@ -728,14 +818,20 @@ Open UX/business questions:
 | BZB conflict / support state | Retail matching | User cannot continue affected journey | Conflict copy and support route |
 | Consent at sign-up start | New onboarding | Legal/compliance acceptance and user trust | Final consent wording/version |
 | Smart redirect message | Sign-in and onboarding | Prevent duplicate account creation | Copy is working-confirmed but should be placed in UI spec |
+| Tower selector / selected tower state | Multi-tower | User may have access to multiple buildings and must choose correct context for elevator/access | Labels, saved-tower invalidation, and hardware journey lock copy |
+| CMS view-only persona metadata | CMS user management | Admin/support needs visibility without accidentally editing source metadata | Filter set and production access governance |
 | Missing floor/contact concierge | Profile | Prevent broken profile data from becoming support confusion | Property contact mapping and copy |
 | QR unavailable / access denied | My QR, turnstile, parking gate | QR display does not guarantee access | QR validity and denial copy |
 | Elevator timeout/retry | Elevator | Hardware failure is user-visible and time-sensitive | Timeout, retry, support fallback |
-| Parking unavailable/stale | Parking availability | User needs trust in capacity data | Freshness threshold and stale display |
+| Parking location selector | Parking availability | User may be at The PARQ but still want to view One Bangkok availability | Phase 1 locations are One Bangkok and The PARQ; future Fraser properties may scale here |
+| Parking unavailable/stale | Parking availability | User needs trust in capacity data for selected location | Freshness threshold and stale display |
+| Ticket property detection | Parking payment | Ticket must route to One Bangkok as-is flow or The PARQ-specific rate/capability flow | Error/retry and concierge/support fallback |
 | Parking payment failed/expired | Parking payment | Money flow must be reassuring and recoverable | Payment reconciliation and retry language |
 | Concierge-assisted redemption | Parking payment | Avoid Phase 1 vs Phase 1.5 confusion | Exact handoff message |
+| Unsupported parking capability hidden | Parking payment | The PARQ flow should not show unsupported One Bangkok-only functions such as VIP Parking | Final hidden/disabled treatment |
 | Visitor pass denied/expired/deleted | Visitor | Host and visitor need clear next step | Pass delivery and status copy |
 | Notification permission off | Notification | User may not receive push | Existing OBK behavior confirmation |
+| The PARQ CMS notification out of scope | Notification | Building-specific news/campaigns should not be promised in Phase 1 | Message in product notes or support material |
 | Company offboarding / Workplace removal | Account lifecycle | User may keep account but lose Workplace persona after FS/Fineday offboarding | FS sync timing and fallback copy |
 | Account delete / Suspens state | Account lifecycle | User must understand deletion request and temporary suspended state | Confirm exact status naming and user-facing copy |
 | Account reactivation | Account lifecycle | User can recover only within the allowed window | Confirm over-30-days timing wording |
@@ -752,17 +848,22 @@ These questions are intentionally separated from confirmed flows.
 | Retail merge | What is the final Auto-merge acknowledgement copy/design? | User cannot deny merge, so wording matters. |
 | Registration | What is the final consent wording/version? | Legal/compliance and UAT are blocked. |
 | Workplace home | What is the final pending Workplace card state and quick action placement? | UX cannot finalize home behavior. |
-| WebView | What are final Traffic, Map, and Promotion URLs/content owners? | Feature routes may point to wrong content. |
+| WebView | What are final Traffic, Map, and Promotion URLs/content owners? | Feature routes may point to wrong content; Phase 1 treats them as webview quick actions. |
 | Multi-tower | What happens when saved tower is no longer authorized? | User may see stale context. |
+| Multi-tower | What are final labels for One Bangkok towers and The PARQ, and what copy appears when tower switching is blocked during an active hardware journey? | UX needs clear context before elevator/access journeys. |
 | CMS | Are property/persona/company/status/tower filters in Phase 1? | CMS scope may expand. |
 | Profile | What is final missing-floor error copy and property contact mapping? | User support routing is unclear. |
 | QR | Is QR stable account identity or dynamic signed QR with refresh? | Security and UX behavior are blocked. |
-| Parking availability | What are PARQ floor labels, default tab, refresh interval, and weekday guidance? | UI and test expected results are unclear. |
+| Parking availability | What are PARQ floor labels, default tab after user selects The PARQ, refresh interval, and weekday guidance? | UI and test expected results are unclear. |
+| Parking availability | How should the selector scale when future Fraser property buildings are added? | Phase 1 only needs One Bangkok and The PARQ, but UX should not block future scale. |
 | Traffic | What is the PARQ traffic source and entrance/exit label set? | Wrong-property traffic is possible. |
 | Parking payment | What are PARQ rate source, park/floor mapping, and payment reconciliation rules? | Incorrect fee/payment state risk. |
 | Parking gate | Does My QR at PARQ parking gate create/import ticket automatically? | Entry-to-ticket journey is unclear. |
+| Parking ticket | What exact UI should appear when ticket property cannot be detected after scan retry and the user must contact concierge/support? | Error state and support handoff need consistent copy. |
+| Parking ticket | Which One Bangkok-only functions should be hidden for The PARQ besides VIP Parking? | Avoid showing unsupported actions. |
 | Visitor pass | What visitor fields, pass delivery method, reactivation window, and floor-specific access rules apply? | Form and pass status states are blocked. |
-| Notification | What are PARQ audience source, inbox requirement, campaign owner, and notification types? | Wrong audience risk. |
+| Notification | What exact basic/login/system and marketing notification categories apply to migrated PARQ users through the existing OBK mechanism? | Scope must not imply The PARQ CMS campaign management in Phase 1. |
+| Notification | Is any user-facing message needed to explain that The PARQ building news remains in the existing The PARQ app during the early phase? | Support and communication alignment may be needed. |
 | Elevator | What is exact elevator UX, floor selection rule, response code set, and hardware UAT schedule? | Hardware path cannot be finalized. |
 | Turnstile | What is QR timeout/fallback behavior and access log requirement? | Security and site operations need alignment. |
 | Lifecycle | What exact system status value and user-facing wording should be used for `Suspens`? | Implementation, UX copy, and UAT expected results need the same term. |
@@ -791,6 +892,8 @@ Input files:
 - `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`
 - `01_Source_of_Truth/API_and_System_References/00_2025_Document/User Flow_20260608.pdf`
 - `01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png`
+- `01_Source_of_Truth/Domain_References/Parking_Feature/Knowledge Transfer Document - Parking.docx`
+- `01_Source_of_Truth/Domain_References/Parking_Feature/Parking - [Mobile] Parking Ticket.pdf`
 - `03_Architecture/PARQ_User_Flow_Integration_Architecture.md`
 - `03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md`
 - `03_Architecture/PARQ_Technical_Dependency_Control_Pack.md`

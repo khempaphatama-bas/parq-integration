@@ -4,14 +4,14 @@
   "items": [
     {
       "id": "OQ-CLAR-001",
-      "question": "Where is [Proposal] The PARQ integration.pdf, or who can provide the approved source file/link?",
-      "owner": "TBD",
-      "status": "Open",
-      "theme": "Source traceability",
-      "source": "../MASTER_INDEX.md",
+      "question": "Resolved: [Proposal] The PARQ integration.pdf is available locally and registered as PARQ-SOT-005.",
+      "owner": "Bas / Libra",
+      "status": "Resolved",
+      "theme": "Source traceability resolved",
+      "source": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "downstream": "Libra, PARQ, Simon",
       "relatedSystem": "Source Artifact",
-      "relatedArtifact": "../MASTER_INDEX.md",
+      "relatedArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "relatedUserFlowId": "Not specified"
     },
     {
@@ -169,6 +169,66 @@
       "relatedSystem": "Argento / FS / OBK Backend",
       "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlowId": "UF-012"
+    },
+    {
+      "id": "OQ-PARK-001",
+      "question": "What exact The PARQ parking rate source, park/floor mapping, and payment reconciliation rules should be used?",
+      "owner": "Parking / FS / Argento owners TBD",
+      "status": "Open",
+      "theme": "Parking",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, Simon, Quinn",
+      "relatedSystem": "Parking / FS / Argento",
+      "relatedArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "relatedUserFlowId": "UF-012"
+    },
+    {
+      "id": "OQ-PARK-002",
+      "question": "Which One Bangkok-only parking capabilities should be hidden for The PARQ besides VIP Parking?",
+      "owner": "Product / Parking owner TBD",
+      "status": "Open",
+      "theme": "Parking",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, UX/UI, Quinn",
+      "relatedSystem": "Parking",
+      "relatedArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "relatedUserFlowId": "UF-012"
+    },
+    {
+      "id": "OQ-PARK-003",
+      "question": "What exact error and support copy should appear when scanned ticket property cannot be detected after retry?",
+      "owner": "Product / Support owner TBD",
+      "status": "Open",
+      "theme": "Parking",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, UX/UI, Quinn",
+      "relatedSystem": "Parking / Support",
+      "relatedArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "relatedUserFlowId": "UF-012"
+    },
+    {
+      "id": "OQ-NOTIF-001",
+      "question": "What exact basic/login/system and marketing notification categories apply to migrated PARQ users under the existing OBK mechanism?",
+      "owner": "Product / Notification owner TBD",
+      "status": "Open",
+      "theme": "Notification",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, Quinn",
+      "relatedSystem": "Notification Infrastructure",
+      "relatedArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "relatedUserFlowId": "UF-014"
+    },
+    {
+      "id": "OQ-TOWER-001",
+      "question": "What are final display labels for One Bangkok towers and The PARQ, and what copy appears when tower switching is blocked during an active hardware journey?",
+      "owner": "Product / UX owner TBD",
+      "status": "Open",
+      "theme": "Multi-tower",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, UX/UI, Quinn",
+      "relatedSystem": "FS / Mobile App",
+      "relatedArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "relatedUserFlowId": "UF-006"
     }
   ]
 }
