@@ -78,7 +78,7 @@ flowchart LR
 
     Mobile -.->|Phase 1.5| OCR["TCCT OCR"]
     OCR -.->|Phase 1.5| FS
-    CMS -. |Phase 1.5 Rate Config| .-> FS
+    CMS -.->|Phase 1.5 Rate Config| FS
 
     Traffic["Traffic Monitoring Source"] --> Mobile
 ```
