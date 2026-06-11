@@ -293,16 +293,16 @@ sequenceDiagram
         SSO-->>IAM: Token + Public SSO ID
         IAM->>IAM: Resolve Account ID + persona
         IAM->>BMS: Non-blocking member check / Workplace refresh
-        alt BMS unavailable or timeout
-            BMS-->>IAM: No refresh result
-            IAM->>IAM: Continue login; use existing Workplace permission if detectable
-        else Member found and eligible
-            BMS-->>IAM: Member data / fs identity candidate
-            IAM->>IAM: Create/update fs external identity and persona if allowed
-        else No member or rare bound-to-other-account
-            BMS-->>IAM: No member / conflict-like state
-            IAM->>IAM: Continue login; mark support/audit path if conflict-like
-        end
+        alt BMS unavailable
+        BMS-->>IAM: No refresh result
+        IAM->>IAM: Continue login
+    else Member found
+        BMS-->>IAM: Member data returned
+        IAM->>IAM: Create or update FS identity
+    else No member
+        BMS-->>IAM: No member result
+        IAM->>IAM: Continue login
+    end
         IAM->>FS: Resolve fs external identity metadata
         alt FS metadata missing
             FS-->>IAM: No workplace entitlement
