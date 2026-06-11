@@ -14,28 +14,41 @@ Input files:
 
 Output file path: `07_Portal/`
 
-Status: Current / Updated with confirmation items
+Status: Current Working Baseline / Portal v2 implemented with confirmation items
 
 Downstream consumer: Product Team, Business Team, Vendor Team, Management, PARQ Orchestrator, Bas for confirmation items
 
 ## Purpose
 
-This folder contains a static stakeholder-friendly portal for PARQ Integration. It summarizes existing repository artifacts and links back to source markdown or source files. It does not create new requirements, architecture decisions, user stories, or QA scenarios.
+This folder contains the static Project Hub for PARQ Integration. It summarizes existing repository artifacts and links back to source markdown or source files. It does not create new requirements, architecture decisions, user stories, or QA scenarios.
+
+The portal is the working layer. Repository files remain the storage layer and source of truth.
+
+## Portal v2 Navigation
+
+| Top Navigation | Purpose | Data Source |
+|---|---|---|
+| `index.html` | Home / Project Command Center | `data/project-hub.json`, `data/project-controls.json` |
+| `project.html` | Project overview, timeline gate, source index, and controls entry | `data/project-hub.json`, `data/deliverables.json` |
+| `discovery.html` | Discovery and design entry point | `data/deliverables.json`, `data/project-controls.json` |
+| `architecture.html` | Architecture baseline and technical entry point | `data/deliverables.json` |
+| `delivery.html` | Delivery readiness and next-owner handoff view | `data/project-hub.json`, `data/project-controls.json` |
+| `qa.html` | QA inputs, SIT/UAT blockers, and readiness view | `data/deliverables.json`, `data/project-controls.json` |
+| `work-by-role.html` | Filtered entry points for Designer, Developer, QA, and Product Team | `data/role-access.json` |
 
 ## Pages
 
 | Page | Purpose | Data Source |
 |---|---|---|
-| `index.html` | Portal entry and status overview | `data/project-status.json` |
-| `dashboard.html` | KPI cards, highlights, and area status | `data/project-status.json` |
-| `deliverables.html` | Deliverables tracker | `data/deliverables.json` |
-| `architecture.html` | Architecture artifact summary with user-flow links | `data/deliverables.json` |
-| `architecture-diagrams.html` | Detected Mermaid diagrams grouped by diagram type | `data/diagrams.json` |
-| `open-questions.html` | Open questions tracker | `data/open-questions.json` |
-| `risks.html` | Risk register | `data/risks.json` |
-| `dependencies.html` | Dependency tracker | `data/dependencies.json` |
-| `confirmation-required.html` | Items requiring Bas confirmation | `data/confirmation_required.json` |
-| `source-index.html` | Source index by area and artifact | `data/source-index.json` |
+| `project-controls.html` | Unified Risk / Blocker / Dependency / Open Question / Confirmation Required view | `data/project-controls.json` |
+| `architecture-diagrams.html` | Diagram context and Mermaid rendering grouped by diagram type | `data/diagrams.json` |
+| `dashboard.html` | Preserved legacy dashboard view | `data/project-status.json` |
+| `deliverables.html` | Preserved legacy deliverables tracker | `data/deliverables.json` |
+| `open-questions.html` | Preserved legacy open-question tracker | `data/open-questions.json` |
+| `risks.html` | Preserved legacy risk register | `data/risks.json` |
+| `dependencies.html` | Preserved legacy dependency tracker | `data/dependencies.json` |
+| `confirmation-required.html` | Preserved legacy confirmation tracker | `data/confirmation_required.json` |
+| `source-index.html` | Preserved legacy source index | `data/source-index.json` |
 
 ## Shared Assets
 

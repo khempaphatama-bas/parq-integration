@@ -1,0 +1,201 @@
+{
+  "lastUpdated": "2026-06-11",
+  "sourceArtifact": "../MASTER_INDEX.md",
+  "project": {
+    "title": "PARQ Integration to One Bangkok Application",
+    "overview": "A repository-backed project hub for the PARQ integration workstream. It organizes source-of-truth documents, discovery notes, architecture artifacts, delivery references, QA inputs, open decisions, and stakeholder navigation.",
+    "businessContext": "PARQ integration work connects PARQ-related user flows, identity, workplace, visitor, parking, notification, and supporting systems into the One Bangkok application context. The portal summarizes existing repository artifacts only; it does not approve or create requirements.",
+    "why": "The hub exists so Product, Design, Development, QA, vendors, and management can quickly understand current status, blockers, next actions, and role-relevant source artifacts without reading every markdown file first.",
+    "currentPhase": "Architecture Definition and Dependency Confirmation",
+    "nextPhase": "Backlog / Test Planning Preparation",
+    "currentGate": "Named ownership, data/API dependency controls, and remaining BMS technical controls need confirmation before the next owner can finalize downstream work.",
+    "readiness": "Current Working Baseline",
+    "statusNote": "BMS Option B non-blocking login refresh is recorded. Owner, source, endpoint, environment, and confirmation gaps remain visible."
+  },
+  "readinessCards": [
+    {
+      "label": "Source of Truth",
+      "status": "Current Working Baseline",
+      "detail": "Core source and reference artifacts are filed; proposal source and named owners remain open.",
+      "href": "project.html#source"
+    },
+    {
+      "label": "Discovery",
+      "status": "Draft",
+      "detail": "Discovery and UX stakeholder flow references exist with open decisions.",
+      "href": "discovery.html"
+    },
+    {
+      "label": "Architecture",
+      "status": "Current Working Baseline",
+      "detail": "Architecture artifacts are available; dependency controls still need named owners and technical decisions.",
+      "href": "architecture.html"
+    },
+    {
+      "label": "Delivery",
+      "status": "Needs Decision",
+      "detail": "Delivery structure exists; no standalone delivery artifact is confirmed as current release baseline.",
+      "href": "delivery.html"
+    },
+    {
+      "label": "QA",
+      "status": "Blocked",
+      "detail": "QA planning remains blocked by dependency and environment readiness inputs.",
+      "href": "qa.html"
+    }
+  ],
+  "nextActions": [
+    {
+      "id": "NA-001",
+      "title": "Confirm named artifact and folder owners",
+      "owner": "Project leads / Libra",
+      "status": "Needs Decision",
+      "sourceArtifact": "../MASTER_INDEX.md",
+      "relatedOpenQuestion": "OQ-OWN-001",
+      "href": "project-controls.html?type=Open%20Question"
+    },
+    {
+      "id": "NA-002",
+      "title": "Resolve or formally accept missing PARQ proposal source",
+      "owner": "PARQ / Libra",
+      "status": "Needs Decision",
+      "sourceArtifact": "../MASTER_INDEX.md",
+      "relatedOpenQuestion": "OQ-CLAR-001",
+      "href": "project-controls.html?type=Open%20Question"
+    },
+    {
+      "id": "NA-003",
+      "title": "Confirm BMS endpoint, timeout, cache, support, PII, and audit controls",
+      "owner": "Simon / IAM / BMS / PARQ",
+      "status": "Needs Decision",
+      "sourceArtifact": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
+      "relatedOpenQuestion": "OQ-BMS-001, OQ-BMS-002, OQ-BMS-003, OQ-BMS-004",
+      "href": "project-controls.html?system=BMS"
+    },
+    {
+      "id": "NA-004",
+      "title": "Provide SIT/UAT/PVT environment readiness inputs",
+      "owner": "PARQ / Quinn / vendors",
+      "status": "Blocked",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedOpenQuestion": "OQ-ENV-001",
+      "href": "project-controls.html?system=Environment%20Readiness"
+    }
+  ],
+  "keyDocuments": [
+    {
+      "id": "PARQ-SOT-001",
+      "name": "PARQ Phase 1 User Flow Index",
+      "area": "Source of Truth",
+      "owner": "TBD",
+      "status": "Current",
+      "type": "User-flow index",
+      "source": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "downstream": "Architecture, QA, Product",
+      "notes": "Primary feature and user-flow source."
+    },
+    {
+      "id": "PARQ-SOT-002",
+      "name": "PARQ Clarification Decision Log",
+      "area": "Source of Truth",
+      "owner": "Libra",
+      "status": "BMS Decision Recorded / Open Questions",
+      "type": "Decision log",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "All agents",
+      "notes": "Records BMS Option B; proposal and owner questions remain open."
+    },
+    {
+      "id": "PARQ-ARCH-001",
+      "name": "PARQ User Flow Integration Architecture",
+      "area": "Architecture",
+      "owner": "TBD",
+      "status": "Current",
+      "type": "Integration mapping",
+      "source": "../03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
+      "downstream": "Simon, Quinn, Molly, PARQ",
+      "notes": "Maps flows, systems, dependencies, and failure cases.",
+      "relatedUserFlowId": "UF-001 to UF-022"
+    },
+    {
+      "id": "PARQ-ARCH-005",
+      "name": "PARQ Technical Dependency Control Pack",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Open Questions",
+      "type": "Dependency control",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Quinn, PARQ, Libra",
+      "notes": "Vendor/API ownership, PII, error baseline, environment readiness.",
+      "relatedUserFlowId": "UF-001 to UF-018"
+    },
+    {
+      "id": "PARQ-ARCH-006",
+      "name": "PARQ Visual Architecture and Flow Pack",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Open Questions",
+      "type": "Visual architecture",
+      "source": "../03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
+      "downstream": "Business, Vendor, Management, Quinn",
+      "notes": "Visual context, boundaries, dependencies, sequence views, risks.",
+      "relatedUserFlowId": "UF-001 to UF-018"
+    },
+    {
+      "id": "PARQ-ARCH-007",
+      "name": "PARQ BMS Identity Flow Impact Assessment",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Option B Non-Blocking Decision Recorded",
+      "type": "Impact assessment",
+      "source": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
+      "downstream": "PARQ, Molly, Quinn, Libra",
+      "notes": "BMS login decision recorded; technical control questions remain.",
+      "relatedUserFlowId": "UF-001"
+    },
+    {
+      "id": "PARQ-UX-001",
+      "name": "PARQ UX Stakeholder User Flow Pack",
+      "area": "Discovery",
+      "owner": "Molly",
+      "status": "Draft / Open Questions",
+      "type": "UX flow pack",
+      "source": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "downstream": "UX/UI, Business, Stakeholders",
+      "notes": "Journey-first stakeholder flow artifact."
+    },
+    {
+      "id": "PARQ-PORTAL-001",
+      "name": "PARQ Stakeholder Web Portal",
+      "area": "Delivery",
+      "owner": "Libra",
+      "status": "Current / Updated",
+      "type": "Static stakeholder portal",
+      "source": "../07_Portal/index.html",
+      "downstream": "Product, Business, Vendor, Management, PARQ",
+      "notes": "Data-driven static HTML/CSS/JSON portal with cross-links, diagram index, confirmation tracker, and source index."
+    }
+  ],
+  "roleQuickAccess": [
+    {
+      "role": "Designer",
+      "summary": "Start with user flows, business-rule sources, and open UX questions.",
+      "href": "work-by-role.html#designer"
+    },
+    {
+      "role": "Developer",
+      "summary": "Start with API inventory, sequence diagrams, data ownership, and dependency controls.",
+      "href": "work-by-role.html#developer"
+    },
+    {
+      "role": "QA",
+      "summary": "Start with user-story sources, acceptance criteria sources, SIT/UAT blockers, and environment dependencies.",
+      "href": "work-by-role.html#qa"
+    },
+    {
+      "role": "Product Team",
+      "summary": "Start with overview, risks, dependencies, open questions, and deliverables.",
+      "href": "work-by-role.html#product-team"
+    }
+  ]
+}

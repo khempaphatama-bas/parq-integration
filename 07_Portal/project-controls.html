@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARQ Project Controls</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar"><h1>Project Controls</h1><p>Unified controls for risks, blockers, dependencies, open questions, and confirmations.</p></header>
+  <nav class="nav"></nav>
+  <main>
+    <section class="page-meta">
+      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+    </section>
+    <div class="control-bar" id="filters"></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Type</th><th>Title</th><th>Owner</th><th>Status</th><th>Priority</th><th>Related User Flow</th><th>Related System</th><th>Related Open Question</th><th>Source Artifact</th><th>Next Action</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="footer">Project controls are filtered views of repository risks, dependencies, open questions, confirmations, and task-board blockers.</div>
+  </main>
+  <script src="assets/app.js"></script>
+  <script>
+    const types = ['All', 'Risk', 'Blocker', 'Dependency', 'Open Question', 'Confirmation Required'];
+    function activeType() {
+      return new URLSearchParams(window.location.search).get('type') || 'All';
+    }
+    function activeSystem() {
+      return new URLSearchParams(window.location.search).get('system') || '';
+    }
+    Portal.loadJson('data/project-controls.json').then(data => {
+      Portal.applyMeta(data);
+      const type = activeType();
+      const system = activeSystem();
+      document.getElementById('filters').innerHTML = types.map(t => `<a class="filter-pill ${t === type ? 'active' : ''}" href="project-controls.html${t === 'All' ? '' : `?type=${encodeURIComponent(t)}`}">${t}</a>`).join('');
+      let rows = data.items;
+      if (type !== 'All') rows = rows.filter(item => item.type === type);
+      if (system) rows = rows.filter(item => String(item.relatedSystem || '').toLowerCase().includes(system.toLowerCase()));
+      document.getElementById('rows').innerHTML = rows.map(item => `<tr><td>${item.id}</td><td>${item.type}</td><td>${Portal.escapeHtml(item.title)}<br><span class="small">${Portal.escapeHtml(item.detail)}</span></td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.priority)}</td><td>${Portal.escapeHtml(item.relatedUserFlow)}</td><td>${Portal.escapeHtml(item.relatedSystem)}</td><td>${Portal.escapeHtml(item.relatedOpenQuestion)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td><td>${Portal.escapeHtml(item.action)}</td></tr>`).join('');
+    });
+  </script>
+</body>
+</html>

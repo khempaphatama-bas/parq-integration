@@ -11,7 +11,13 @@
       "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/add_identity_flow.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "graph TD\n    A[\"User enters email/phone number\"] --> B[\"Call GET:/identity/validate\"]\n    B --> C[\"IAM service receives request\"]\n    C --> D[\"IAM calls SSO POST /user/exists\"]\n    D --> E_CHECK{Identity<br/>Exists<br/>in SSO?}\n    E_CHECK -->|Yes| E1[\"Return: result = true<br/>Identity already in use\"]\n    E_CHECK -->|No| F[\"Return: result = false<br/>Identity available\"]\n\n    F --> G[\"Frontend: Show OTP screen\"]\n    G --> H[\"User enters OTP\"]\n    H --> I[\"Call POST:/identity with mode='create'\"]\n\n    I --> J[\"IAM verifies OTP\"]\n    J --> K_CHECK{OTP<br/>Valid?}\n    K_CHECK -->|No| K1[\"Error: Invalid OTP\"]\n    K_CHECK -->|Yes| L[\"IAM calls SSO POST /user/{ssoId}/identity<br/>with mode='create'\"]\n\n    L --> M_CHECK{SSO Create<br/>Identity<br/>Success?}\n    M_CHECK -->|No| M1[\"Error: SSO creation failed\"]\n    M_CHECK -->|Yes| N[\"Update IAM identities<br/>Sync with SSO data<br/>Call checkMember for new identities\"]\n\n    E1 --> END[\"End: Identity in use\"]\n    K1 --> ERROR[\"Return Error\"]\n    M1 --> ERROR"
+      "mermaid": "graph TD\n    A[\"User enters email/phone number\"] --> B[\"Call GET:/identity/validate\"]\n    B --> C[\"IAM service receives request\"]\n    C --> D[\"IAM calls SSO POST /user/exists\"]\n    D --> E_CHECK{Identity<br/>Exists<br/>in SSO?}\n    E_CHECK -->|Yes| E1[\"Return: result = true<br/>Identity already in use\"]\n    E_CHECK -->|No| F[\"Return: result = false<br/>Identity available\"]\n\n    F --> G[\"Frontend: Show OTP screen\"]\n    G --> H[\"User enters OTP\"]\n    H --> I[\"Call POST:/identity with mode='create'\"]\n\n    I --> J[\"IAM verifies OTP\"]\n    J --> K_CHECK{OTP<br/>Valid?}\n    K_CHECK -->|No| K1[\"Error: Invalid OTP\"]\n    K_CHECK -->|Yes| L[\"IAM calls SSO POST /user/{ssoId}/identity<br/>with mode='create'\"]\n\n    L --> M_CHECK{SSO Create<br/>Identity<br/>Success?}\n    M_CHECK -->|No| M1[\"Error: SSO creation failed\"]\n    M_CHECK -->|Yes| N[\"Update IAM identities<br/>Sync with SSO data<br/>Call checkMember for new identities\"]\n\n    E1 --> END[\"End: Identity in use\"]\n    K1 --> ERROR[\"Return Error\"]\n    M1 --> ERROR",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-002",
@@ -22,7 +28,13 @@
       "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/add_identity_flow.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "graph TD\n    A[\"For each new identity\"] --> B[\"Call BMS getMember<br/>with identifier\"]\n    B --> C_CHECK{Member<br/>Found<br/>in BMS?}\n    C_CHECK -->|No| C1[\"Skip: No member found\"]\n    C_CHECK -->|Yes| D_CHECK{Member<br/>Already Bound<br/>to Account?}\n    D_CHECK -->|Yes and Different Account| D1[\"Skip: Member bound to another account\"]\n    D_CHECK -->|No or Same Account| E[\"Create external identity<br/>Type: 'fs'<br/>UID: member.uid<br/>Meta: member.metadata\"]\n\n    E --> F[\"Update default persona\"]\n    F --> G[\"Clear external identity cache\"]\n    G --> H[\"Send event<br/>ob-iam.external_identity.created\"]\n\n    C1 --> END[\"Continue to next identity\"]\n    D1 --> END\n    H --> END"
+      "mermaid": "graph TD\n    A[\"For each new identity\"] --> B[\"Call BMS getMember<br/>with identifier\"]\n    B --> C_CHECK{Member<br/>Found<br/>in BMS?}\n    C_CHECK -->|No| C1[\"Skip: No member found\"]\n    C_CHECK -->|Yes| D_CHECK{Member<br/>Already Bound<br/>to Account?}\n    D_CHECK -->|Yes and Different Account| D1[\"Skip: Member bound to another account\"]\n    D_CHECK -->|No or Same Account| E[\"Create external identity<br/>Type: 'fs'<br/>UID: member.uid<br/>Meta: member.metadata\"]\n\n    E --> F[\"Update default persona\"]\n    F --> G[\"Clear external identity cache\"]\n    G --> H[\"Send event<br/>ob-iam.external_identity.created\"]\n\n    C1 --> END[\"Continue to next identity\"]\n    D1 --> END\n    H --> END",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-003",
@@ -33,7 +45,13 @@
       "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/add_identity_flow.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "%%{init: {'themeVariables': { 'noteBkgColor': '#FFF4CC', 'noteBorderColor': '#D9B44A', 'noteTextColor': '#333333' }}}%%\nsequenceDiagram\n    autonumber\n    participant U as User\n    participant F as Frontend\n    participant I as IAM Service\n    participant S as SSO Service\n    participant B as BMS Service\n    participant E as Event Bus\n\n    U->>F: Enter email/phone number\n    F->>I: GET /identity/validate\n    I->>S: POST /user/exists\n    S-->>I: Response (exists: true/false)\n    I-->>F: Response (result: true/false)\n    F->>U: Show OTP screen (if available)\n    U->>F: Enter OTP\n    F->>I: POST /identity (mode='create', OTP data)\n    Note over I: [createIdentity] start add new identity: {identity} to accountId: {accountId}\n    I->>I: Verify OTP\n    Note over I: [createIdentity] check otp where id: {otpId} and idenfifier: {identifier} verify otp: {result}\n    I->>S: POST /user/{ssoId}/identity (mode='create')\n    S-->>I: Identity created response\n    I->>I: Update local identities\n    Note over I: [createIdentity] successfullay adding identity: {identity} to accountId: {accountId}\n    Note over I: [createIdentity] created kafka event: {eventName}\n    I->>B: Call checkMember for new identities\n    Note over I: [createIdentity] start check member for identity: {identifier} and accountId: {accountId}\n    Note over I: [checkMember] Start check member from bms with identifier: {identifier}, accountId: {accountId}\n    B-->>I: Member data (if found)\n    Note over I: [checkMember] Get member response: {response}\n    I->>I: Create external identity (if applicable)\n    Note over I: start create external identity for fs (external identity service)\n    I->>I: Update persona and cache\n    Note over I: Update default persona after create external identity\n    I->>E: Send external_identity.created event\n    Note over I: Connect X, update user identity to connect x\n    I-->>F: Success response\n    F-->>U: Identity added successfully"
+      "mermaid": "%%{init: {'themeVariables': { 'noteBkgColor': '#FFF4CC', 'noteBorderColor': '#D9B44A', 'noteTextColor': '#333333' }}}%%\nsequenceDiagram\n    autonumber\n    participant U as User\n    participant F as Frontend\n    participant I as IAM Service\n    participant S as SSO Service\n    participant B as BMS Service\n    participant E as Event Bus\n\n    U->>F: Enter email/phone number\n    F->>I: GET /identity/validate\n    I->>S: POST /user/exists\n    S-->>I: Response (exists: true/false)\n    I-->>F: Response (result: true/false)\n    F->>U: Show OTP screen (if available)\n    U->>F: Enter OTP\n    F->>I: POST /identity (mode='create', OTP data)\n    Note over I: [createIdentity] start add new identity: {identity} to accountId: {accountId}\n    I->>I: Verify OTP\n    Note over I: [createIdentity] check otp where id: {otpId} and idenfifier: {identifier} verify otp: {result}\n    I->>S: POST /user/{ssoId}/identity (mode='create')\n    S-->>I: Identity created response\n    I->>I: Update local identities\n    Note over I: [createIdentity] successfullay adding identity: {identity} to accountId: {accountId}\n    Note over I: [createIdentity] created kafka event: {eventName}\n    I->>B: Call checkMember for new identities\n    Note over I: [createIdentity] start check member for identity: {identifier} and accountId: {accountId}\n    Note over I: [checkMember] Start check member from bms with identifier: {identifier}, accountId: {accountId}\n    B-->>I: Member data (if found)\n    Note over I: [checkMember] Get member response: {response}\n    I->>I: Create external identity (if applicable)\n    Note over I: start create external identity for fs (external identity service)\n    I->>I: Update persona and cache\n    Note over I: Update default persona after create external identity\n    I->>E: Send external_identity.created event\n    Note over I: Connect X, update user identity to connect x\n    I-->>F: Success response\n    F-->>U: Identity added successfully",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, F, I, S, B, E",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-004",
@@ -44,7 +62,13 @@
       "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/api-members-by-account-id.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "graph TD\n    A[\"Client sends GET request<br/>/members/by-account-id\"] -->|with x-access-token<br/>x-account-id| B[\"Request reaches controller\"]\n    B --> C{\"x-account-id<br/>header present?\"}\n    C -->|No| D[\"Throw CustomError<br/>BMS_MEMB_001\"]\n    C -->|Yes| E[\"Call MemberService.findAll<br/>with account ID\"]\n    E --> F[\"Query database<br/>for members\"]\n    F --> G{\"Members<br/>found?\"}\n    G -->|Yes| H[\"Serialize member data<br/>memberIndexInterface\"]\n    G -->|No| I[\"Return empty array\"]\n    H --> J[\"Return HTTP 200<br/>with WrappedResponse\"]\n    I --> J\n    D --> K[\"Return HTTP 400<br/>error response\"]\n    J --> L[\"Client receives response\"]\n    K --> L"
+      "mermaid": "graph TD\n    A[\"Client sends GET request<br/>/members/by-account-id\"] -->|with x-access-token<br/>x-account-id| B[\"Request reaches controller\"]\n    B --> C{\"x-account-id<br/>header present?\"}\n    C -->|No| D[\"Throw CustomError<br/>BMS_MEMB_001\"]\n    C -->|Yes| E[\"Call MemberService.findAll<br/>with account ID\"]\n    E --> F[\"Query database<br/>for members\"]\n    F --> G{\"Members<br/>found?\"}\n    G -->|Yes| H[\"Serialize member data<br/>memberIndexInterface\"]\n    G -->|No| I[\"Return empty array\"]\n    H --> J[\"Return HTTP 200<br/>with WrappedResponse\"]\n    I --> J\n    D --> K[\"Return HTTP 400<br/>error response\"]\n    J --> L[\"Client receives response\"]\n    K --> L",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-005",
@@ -55,7 +79,13 @@
       "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/api-members-by-account-id.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "%%{init: {'themeVariables': {\n  'noteBkgColor': '#FFF4CC',\n  'noteBorderColor': '#D9B44A',\n  'noteTextColor': '#333333'\n}}}%%\nsequenceDiagram\n    autonumber\n    actor Client\n    participant Controller as MembersController\n    participant Service as MemberService\n    participant DB as Prisma Database\n\n    Client->>Controller: GET /members/by-account-id<br/>Headers: x-access-token, x-account-id\n\n    activate Controller\n    Note over Controller: Validate x-account-id<br/>header is present\n\n    alt x-account-id is missing or empty\n        Controller-->>Client: HTTP 400 Error<br/>BMS_MEMB_001: account-id not found\n    else x-account-id is valid\n        Controller->>Service: findAll(xAccountId)\n\n        activate Service\n        Note over Service: Prepare database query<br/>filter by account ID\n\n        Service->>DB: Query Member records<br/>WHERE account_id = xAccountId\n\n        activate DB\n        Note over DB: Fetch all members<br/>for the account\n        DB-->>Service: Return memberData[]\n        deactivate DB\n\n        Note over Service: Serialize response<br/>to memberIndexInterface[]<br/>Include tenant info<br/>Add derived fields\n\n        Service-->>Controller: memberIndexInterface[]\n        deactivate Service\n\n        Note over Controller: Wrap response in<br/>WrappedResponse<T><br/>Set HTTP status 200\n\n        Controller-->>Client: HTTP 200 Success<br/>{<br/>  \"data\": memberIndexInterface[]<br/>}\n    end\n\n    deactivate Controller"
+      "mermaid": "%%{init: {'themeVariables': {\n  'noteBkgColor': '#FFF4CC',\n  'noteBorderColor': '#D9B44A',\n  'noteTextColor': '#333333'\n}}}%%\nsequenceDiagram\n    autonumber\n    actor Client\n    participant Controller as MembersController\n    participant Service as MemberService\n    participant DB as Prisma Database\n\n    Client->>Controller: GET /members/by-account-id<br/>Headers: x-access-token, x-account-id\n\n    activate Controller\n    Note over Controller: Validate x-account-id<br/>header is present\n\n    alt x-account-id is missing or empty\n        Controller-->>Client: HTTP 400 Error<br/>BMS_MEMB_001: account-id not found\n    else x-account-id is valid\n        Controller->>Service: findAll(xAccountId)\n\n        activate Service\n        Note over Service: Prepare database query<br/>filter by account ID\n\n        Service->>DB: Query Member records<br/>WHERE account_id = xAccountId\n\n        activate DB\n        Note over DB: Fetch all members<br/>for the account\n        DB-->>Service: Return memberData[]\n        deactivate DB\n\n        Note over Service: Serialize response<br/>to memberIndexInterface[]<br/>Include tenant info<br/>Add derived fields\n\n        Service-->>Controller: memberIndexInterface[]\n        deactivate Service\n\n        Note over Controller: Wrap response in<br/>WrappedResponse<T><br/>Set HTTP status 200\n\n        Controller-->>Client: HTTP 200 Success<br/>{<br/>  \"data\": memberIndexInterface[]<br/>}\n    end\n\n    deactivate Controller",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Controller, Service, DB, Client",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-006",
@@ -66,7 +96,13 @@
       "sourceFile": "02_Discovery/PARQ_Integration_Architecture_Review.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> Mobile[\"One Bangkok Mobile App\"]\n    Admin[\"Operations / CMS Admin\"] --> CMS[\"OBK CMS\"]\n    Concierge[\"Concierge / Parking Ops\"] --> CMS\n\n    Mobile --> SSO[\"SSO\"]\n    SSO --> IAM[\"IAM / Identity & Persona Service\"]\n    Mobile --> IAM\n\n    IAM <--> FS[\"FS Platform\\nAuthorization, Parking, Visitor, Access\"]\n    IAM <--> BZB[\"Buzzee Bee / BZB CRM\\nRetail Identity & Privileges\"]\n    CMS <--> IAM\n    CMS <--> FS\n\n    Mobile <--> FS\n    Mobile <--> Argento[\"Argento\\nPromptPay Payment Gateway\"]\n    Argento --> Backend[\"OBK Backend / Payment Callback Handler\"]\n    Backend <--> FS\n    Backend <--> IAM\n\n    FS <--> Turnstile[\"Turnstile Access\"]\n    FS <--> Elevator[\"Elevator System\"]\n\n    Mobile --> Notify[\"OBK Notification Infrastructure\"]\n    CMS --> Notify\n\n    Mobile -. Phase 1.5 .-> OCR[\"TCCT OCR\"]\n    OCR -. Phase 1.5 .-> FS\n    CMS -. Phase 1.5 Rate Config .-> FS\n\n    Traffic[\"Traffic Monitoring Source\"] --> Mobile"
+      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> Mobile[\"One Bangkok Mobile App\"]\n    Admin[\"Operations / CMS Admin\"] --> CMS[\"OBK CMS\"]\n    Concierge[\"Concierge / Parking Ops\"] --> CMS\n\n    Mobile --> SSO[\"SSO\"]\n    SSO --> IAM[\"IAM / Identity & Persona Service\"]\n    Mobile --> IAM\n\n    IAM <--> FS[\"FS Platform\\nAuthorization, Parking, Visitor, Access\"]\n    IAM <--> BZB[\"Buzzee Bee / BZB CRM\\nRetail Identity & Privileges\"]\n    CMS <--> IAM\n    CMS <--> FS\n\n    Mobile <--> FS\n    Mobile <--> Argento[\"Argento\\nPromptPay Payment Gateway\"]\n    Argento --> Backend[\"OBK Backend / Payment Callback Handler\"]\n    Backend <--> FS\n    Backend <--> IAM\n\n    FS <--> Turnstile[\"Turnstile Access\"]\n    FS <--> Elevator[\"Elevator System\"]\n\n    Mobile --> Notify[\"OBK Notification Infrastructure\"]\n    CMS --> Notify\n\n    Mobile -. Phase 1.5 .-> OCR[\"TCCT OCR\"]\n    OCR -. Phase 1.5 .-> FS\n    CMS -. Phase 1.5 Rate Config .-> FS\n\n    Traffic[\"Traffic Monitoring Source\"] --> Mobile",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-007",
@@ -77,7 +113,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    IDX[\"User Flow Index\\nFeature ID + User Flow ID\"] --> UX[\"UX Stakeholder\\nUser Flow Pack\"]\n    ARCH[\"Integration Architecture\\nUX-impacting dependencies\"] --> UX\n    VIS[\"Visual Architecture Pack\\ncontext + dependency views\"] --> UX\n    CTRL[\"Technical Dependency\\nControl Pack\"] --> UX\n    CLAR[\"Clarification Decision Log\\nsource gaps + open questions\"] --> UX\n    UX --> DESIGN[\"UX/UI Designers\\nscreen states + journeys\"]\n    UX --> STAKE[\"Stakeholders\\nscope + decisions\"]\n    UX --> LIBRA[\"Libra\\nindex after completion\"]"
+      "mermaid": "flowchart LR\n    IDX[\"User Flow Index\\nFeature ID + User Flow ID\"] --> UX[\"UX Stakeholder\\nUser Flow Pack\"]\n    ARCH[\"Integration Architecture\\nUX-impacting dependencies\"] --> UX\n    VIS[\"Visual Architecture Pack\\ncontext + dependency views\"] --> UX\n    CTRL[\"Technical Dependency\\nControl Pack\"] --> UX\n    CLAR[\"Clarification Decision Log\\nsource gaps + open questions\"] --> UX\n    UX --> DESIGN[\"UX/UI Designers\\nscreen states + journeys\"]\n    UX --> STAKE[\"Stakeholders\\nscope + decisions\"]\n    UX --> LIBRA[\"Libra\\nindex after completion\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-008",
@@ -88,7 +130,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title Existing PARQ Workplace User Journey\n    section Start\n      Open One Bangkok App: 3: User\n      Sign in with phone or email: 3: User\n    section Identity and Persona\n      SSO login succeeds: 4: User\n      BMS member refresh runs without blocking entry: 3: App\n      FS type is checked: 3: App\n      Workplace persona appears when FS type is detected: 4: User\n    section Use PARQ\n      Swipe to Workplace home: 4: User\n      Open Parking, QR, Elevator, Visitor Pass: 4: User\n    section Fallback\n      BMS unavailable but app entry continues: 3: User\n      FS or previous Workplace permission not detected yet means Workplace home is not shown: 2: User\n      Existing PARQ user without Retail activates Retail later: 3: User"
+      "mermaid": "journey\n    title Existing PARQ Workplace User Journey\n    section Start\n      Open One Bangkok App: 3: User\n      Sign in with phone or email: 3: User\n    section Identity and Persona\n      SSO login succeeds: 4: User\n      BMS member refresh runs without blocking entry: 3: App\n      FS type is checked: 3: App\n      Workplace persona appears when FS type is detected: 4: User\n    section Use PARQ\n      Swipe to Workplace home: 4: User\n      Open Parking, QR, Elevator, Visitor Pass: 4: User\n    section Fallback\n      BMS unavailable but app entry continues: 3: User\n      FS or previous Workplace permission not detected yet means Workplace home is not shown: 2: User\n      Existing PARQ user without Retail activates Retail later: 3: User",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-009",
@@ -99,7 +147,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title New PARQ Workplace User Journey\n    section Register\n      Start at phone gate: 3: User\n      Give consent at sign-up start: 3: User\n      Verify SMS OTP: 4: User\n      Verify email OTP: 4: User\n    section Account Creation\n      Set password: 4: User\n      See general account success: 4: User\n      Retail profile is created: 4: System\n    section Workplace\n      FS type is detected now or later: 3: App\n      Workplace persona appears after FS detection: 4: User\n    section Fallback\n      Existing phone or email redirects to login: 3: User"
+      "mermaid": "journey\n    title New PARQ Workplace User Journey\n    section Register\n      Start at phone gate: 3: User\n      Give consent at sign-up start: 3: User\n      Verify SMS OTP: 4: User\n      Verify email OTP: 4: User\n    section Account Creation\n      Set password: 4: User\n      See general account success: 4: User\n      Retail profile is created: 4: System\n    section Workplace\n      FS type is detected now or later: 3: App\n      Workplace persona appears after FS detection: 4: User\n    section Fallback\n      Existing phone or email redirects to login: 3: User",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-010",
@@ -110,7 +164,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title Existing Retail / BZB Account Journey\n    section Login\n      Login with phone: 4: User\n      App checks BZB by phone first: 3: App\n    section Match\n      Retail account is found: 4: App\n      Auto-merge acknowledgement appears: 3: User\n      User acknowledges merge: 4: User\n    section Result\n      Retail and Workplace personas are combined: 4: User\n    section Fallback\n      BZB conflict requires manual operational consolidation: 1: Support"
+      "mermaid": "journey\n    title Existing Retail / BZB Account Journey\n    section Login\n      Login with phone: 4: User\n      App checks BZB by phone first: 3: App\n    section Match\n      Retail account is found: 4: App\n      Auto-merge acknowledgement appears: 3: User\n      User acknowledges merge: 4: User\n    section Result\n      Retail and Workplace personas are combined: 4: User\n    section Fallback\n      BZB conflict requires manual operational consolidation: 1: Support",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "BZB / Buzzee Bee",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-011",
@@ -121,7 +181,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title Visitor Host Journey\n    section Create\n      Open Visitor Access: 4: Host\n      Enter visitor and visit details: 3: Host\n      Create visitor pass: 4: Host\n    section Manage\n      View pass status: 4: Host\n      Delete pass: 3: Host\n      Reactivate pass if allowed: 3: Host\n    section Fallback\n      FS rejects pass or service unavailable: 1: Host\n      Host is offboarded and loses Workplace access: 1: Host"
+      "mermaid": "journey\n    title Visitor Host Journey\n    section Create\n      Open Visitor Access: 4: Host\n      Enter visitor and visit details: 3: Host\n      Create visitor pass: 4: Host\n    section Manage\n      View pass status: 4: Host\n      Delete pass: 3: Host\n      Reactivate pass if allowed: 3: Host\n    section Fallback\n      FS rejects pass or service unavailable: 1: Host\n      Host is offboarded and loses Workplace access: 1: Host",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-012",
@@ -132,7 +198,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title Visitor Journey\n    section Receive\n      Receive visitor pass or token: 3: Visitor\n      Arrive at property: 3: Visitor\n    section Access\n      Present pass at access point: 4: Visitor\n      FS validates pass: 3: System\n      Access is granted: 4: Visitor\n    section Fallback\n      Pass expired or deleted: 1: Visitor\n      Hardware or FS unavailable: 1: Visitor"
+      "mermaid": "journey\n    title Visitor Journey\n    section Receive\n      Receive visitor pass or token: 3: Visitor\n      Arrive at property: 3: Visitor\n    section Access\n      Present pass at access point: 4: Visitor\n      FS validates pass: 3: System\n      Access is granted: 4: Visitor\n    section Fallback\n      Pass expired or deleted: 1: Visitor\n      Hardware or FS unavailable: 1: Visitor",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-013",
@@ -143,7 +215,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title Parking User Journey\n    section Plan\n      Open Parking Availability: 4: User\n      Review PARQ floors and spots: 4: User\n      Check Traffic Monitoring: 3: User\n    section Ticket\n      Open Parking Ticket: 4: User\n      View active ticket or import ticket: 3: User\n      Review fee and terms: 3: User\n    section Payment\n      Select PromptPay QR payment: 3: User\n      Payment succeeds: 4: User\n      Receipt is available: 4: User\n    section Fallback\n      No ticket or invalid QR: 2: User\n      Argento payment failure: 1: User\n      Concierge-assisted redemption for Phase 1: 3: User"
+      "mermaid": "journey\n    title Parking User Journey\n    section Plan\n      Open Parking Availability: 4: User\n      Review PARQ floors and spots: 4: User\n      Check Traffic Monitoring: 3: User\n    section Ticket\n      Open Parking Ticket: 4: User\n      View active ticket or import ticket: 3: User\n      Review fee and terms: 3: User\n    section Payment\n      Select PromptPay QR payment: 3: User\n      Payment succeeds: 4: User\n      Receipt is available: 4: User\n    section Fallback\n      No ticket or invalid QR: 2: User\n      Argento payment failure: 1: User\n      Concierge-assisted redemption for Phase 1: 3: User",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-014",
@@ -154,7 +232,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "journey\n    title CMS / Admin / Support User Journey\n    section Search\n      Open CMS User Management: 4: Admin\n      Search for user: 4: Admin\n    section Review\n      Open User Detail: 4: Admin\n      See active personas: 4: Admin\n      See company and tower metadata: 4: Admin\n    section Fallback\n      Metadata missing or stale: 2: Admin\n      Workplace persona disappeared after Fineday offboarding: 3: Admin"
+      "mermaid": "journey\n    title CMS / Admin / Support User Journey\n    section Search\n      Open CMS User Management: 4: Admin\n      Search for user: 4: Admin\n    section Review\n      Open User Detail: 4: Admin\n      See active personas: 4: Admin\n      See company and tower metadata: 4: Admin\n    section Fallback\n      Metadata missing or stale: 2: Admin\n      Workplace persona disappeared after Fineday offboarding: 3: Admin",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "CMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-015",
@@ -165,7 +249,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"User opens Login\"] --> B[\"Enter phone or email\"]\n    B --> C{\"SSO login succeeds?\"}\n    C -- \"No\" --> E1[\"Show login failure\\nPassword or OTP retry\"]\n    C -- \"Yes\" --> D[\"Enter OBK session\"]\n    D --> BMS{\"BMS refresh succeeds?\"}\n    BMS -- \"No / timeout\" --> BMSF[\"Continue app entry\\nuse existing Workplace permission if detectable\"]\n    BMS -- \"Yes\" --> BMSU[\"Refresh Workplace member state\"]\n    BMSF --> F{\"FS type or previous Workplace permission detected?\"}\n    BMSU --> F\n    F -- \"No\" --> P[\"No Workplace home yet\\nshow Retail or general OBK state\"]\n    F -- \"Yes\" --> G[\"Enable Workplace persona\"]\n    G --> H{\"Retail + Workplace?\"}\n    H -- \"Yes\" --> I[\"Retail home first\\nuser can swipe to Workplace\"]\n    H -- \"No\" --> J[\"Workplace home available\"]\n    B --> K{\"Existing phone/email entered in registration?\"}\n    K -- \"Yes\" --> L[\"Show: Found your account please log-in with your password or OTP\"]\n    L --> A"
+      "mermaid": "flowchart TD\n    A[\"User opens Login\"] --> B[\"Enter phone or email\"]\n    B --> C{\"SSO login succeeds?\"}\n    C -- \"No\" --> E1[\"Show login failure\\nPassword or OTP retry\"]\n    C -- \"Yes\" --> D[\"Enter OBK session\"]\n    D --> BMS{\"BMS refresh succeeds?\"}\n    BMS -- \"No / timeout\" --> BMSF[\"Continue app entry\\nuse existing Workplace permission if detectable\"]\n    BMS -- \"Yes\" --> BMSU[\"Refresh Workplace member state\"]\n    BMSF --> F{\"FS type or previous Workplace permission detected?\"}\n    BMSU --> F\n    F -- \"No\" --> P[\"No Workplace home yet\\nshow Retail or general OBK state\"]\n    F -- \"Yes\" --> G[\"Enable Workplace persona\"]\n    G --> H{\"Retail + Workplace?\"}\n    H -- \"Yes\" --> I[\"Retail home first\\nuser can swipe to Workplace\"]\n    H -- \"No\" --> J[\"Workplace home available\"]\n    B --> K{\"Existing phone/email entered in registration?\"}\n    K -- \"Yes\" --> L[\"Show: Found your account please log-in with your password or OTP\"]\n    L --> A",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-016",
@@ -176,7 +266,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Register\"] --> B[\"Consent at sign-up start\"]\n    B --> C[\"Enter phone\"]\n    C --> D{\"Phone already exists?\"}\n    D -- \"Yes\" --> R[\"Smart redirect to Login\"]\n    D -- \"No\" --> E[\"Verify SMS OTP\"]\n    E --> F[\"Enter email\"]\n    F --> G{\"Email already exists?\"}\n    G -- \"Yes\" --> R\n    G -- \"No\" --> H[\"Verify Email OTP\"]\n    H --> I[\"Set password\"]\n    I --> J{\"Account created?\"}\n    J -- \"No\" --> E1[\"Show account creation error\"]\n    J -- \"Yes\" --> K[\"Auto-create Retail profile\"]\n    K --> L[\"Show general success\"]\n    L --> M{\"FS type detected?\"}\n    M -- \"Yes\" --> N[\"Workplace persona appears\"]\n    M -- \"No\" --> O[\"Workplace appears later after FS detection\"]"
+      "mermaid": "flowchart TD\n    A[\"Register\"] --> B[\"Consent at sign-up start\"]\n    B --> C[\"Enter phone\"]\n    C --> D{\"Phone already exists?\"}\n    D -- \"Yes\" --> R[\"Smart redirect to Login\"]\n    D -- \"No\" --> E[\"Verify SMS OTP\"]\n    E --> F[\"Enter email\"]\n    F --> G{\"Email already exists?\"}\n    G -- \"Yes\" --> R\n    G -- \"No\" --> H[\"Verify Email OTP\"]\n    H --> I[\"Set password\"]\n    I --> J{\"Account created?\"}\n    J -- \"No\" --> E1[\"Show account creation error\"]\n    J -- \"Yes\" --> K[\"Auto-create Retail profile\"]\n    K --> L[\"Show general success\"]\n    L --> M{\"FS type detected?\"}\n    M -- \"Yes\" --> N[\"Workplace persona appears\"]\n    M -- \"No\" --> O[\"Workplace appears later after FS detection\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-017",
@@ -187,7 +283,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"User logs in with phone\"] --> B[\"Check BZB by phone first\"]\n    B --> C{\"BZB match found?\"}\n    C -- \"No\" --> D[\"Continue Workplace only\\nRetail activation later\"]\n    C -- \"Yes\" --> E[\"Check supporting identity if needed\"]\n    E --> F{\"Conflict?\"}\n    F -- \"Yes\" --> G[\"Stop merge path\\nManual operational consolidation\"]\n    F -- \"No\" --> H[\"Show Auto-merge acknowledgement\"]\n    H --> I[\"User acknowledges\"]\n    I --> J[\"Retail + Workplace personas combined\"]"
+      "mermaid": "flowchart TD\n    A[\"User logs in with phone\"] --> B[\"Check BZB by phone first\"]\n    B --> C{\"BZB match found?\"}\n    C -- \"No\" --> D[\"Continue Workplace only\\nRetail activation later\"]\n    C -- \"Yes\" --> E[\"Check supporting identity if needed\"]\n    E --> F{\"Conflict?\"}\n    F -- \"Yes\" --> G[\"Stop merge path\\nManual operational consolidation\"]\n    F -- \"No\" --> H[\"Show Auto-merge acknowledgement\"]\n    H --> I[\"User acknowledges\"]\n    I --> J[\"Retail + Workplace personas combined\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-018",
@@ -198,7 +300,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"User enters app\"] --> B{\"FS type detected?\"}\n    B -- \"No\" --> C[\"Do not show Workplace home\"]\n    B -- \"Yes\" --> D{\"Company and authorization available?\"}\n    D -- \"No\" --> E[\"Show Workplace pending information\"]\n    D -- \"Yes\" --> F[\"Show PARQ Workplace home\"]\n    F --> G[\"Traffic, Map, Promotion via WebView\"]\n    F --> H[\"Parking through OBK Parking UI with PARQ logic\"]\n    F --> I[\"QR, Elevator, Visitor Access as eligible\"]\n    F --> J{\"User has Retail too?\"}\n    J -- \"Yes\" --> K[\"Retail home remains first by As-Is behavior\"]\n    K --> L[\"User can set default persona in Settings\"]"
+      "mermaid": "flowchart TD\n    A[\"User enters app\"] --> B{\"FS type detected?\"}\n    B -- \"No\" --> C[\"Do not show Workplace home\"]\n    B -- \"Yes\" --> D{\"Company and authorization available?\"}\n    D -- \"No\" --> E[\"Show Workplace pending information\"]\n    D -- \"Yes\" --> F[\"Show PARQ Workplace home\"]\n    F --> G[\"Traffic, Map, Promotion via WebView\"]\n    F --> H[\"Parking through OBK Parking UI with PARQ logic\"]\n    F --> I[\"QR, Elevator, Visitor Access as eligible\"]\n    F --> J{\"User has Retail too?\"}\n    J -- \"Yes\" --> K[\"Retail home remains first by As-Is behavior\"]\n    K --> L[\"User can set default persona in Settings\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-019",
@@ -209,7 +317,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Open My QR\"] --> B{\"QR can be generated?\"}\n    B -- \"No\" --> E1[\"Show QR generation error\"]\n    B -- \"Yes\" --> C[\"Display account identity QR\"]\n    C --> D[\"User scans at turnstile\"]\n    D --> E{\"FS access validation result\"}\n    E -- \"Granted\" --> F[\"Turnstile opens\"]\n    E -- \"Denied\" --> G[\"Access denied\"]\n    E -- \"Timeout or hardware offline\" --> H[\"Show / follow site fallback process\"]\n    C --> I{\"Screenshot or reuse risk?\"}\n    I -- \"Not resolved\" --> Q[\"Open security decision\\nstable QR vs dynamic signed QR\"]"
+      "mermaid": "flowchart TD\n    A[\"Open My QR\"] --> B{\"QR can be generated?\"}\n    B -- \"No\" --> E1[\"Show QR generation error\"]\n    B -- \"Yes\" --> C[\"Display account identity QR\"]\n    C --> D[\"User scans at turnstile\"]\n    D --> E{\"FS access validation result\"}\n    E -- \"Granted\" --> F[\"Turnstile opens\"]\n    E -- \"Denied\" --> G[\"Access denied\"]\n    E -- \"Timeout or hardware offline\" --> H[\"Show / follow site fallback process\"]\n    C --> I{\"Screenshot or reuse risk?\"}\n    I -- \"Not resolved\" --> Q[\"Open security decision\\nstable QR vs dynamic signed QR\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Turnstile System",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-020",
@@ -220,7 +334,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Tap Elevator\"] --> B{\"FS floor list available?\"}\n    B -- \"No\" --> E1[\"Show elevator unavailable or retry\"]\n    B -- \"Yes\" --> C[\"Show authorized floors only\"]\n    C --> D{\"Destination selected or prefilled?\"}\n    D -- \"No\" --> E[\"User selects authorized floor\"]\n    D -- \"Yes\" --> F[\"Send elevator call\"]\n    E --> F\n    F --> G{\"FS elevator result\"}\n    G -- \"Success\" --> H[\"Show call success/status\"]\n    G -- \"Denied\" --> I[\"Show access denied\"]\n    G -- \"Timeout\" --> J[\"Show timeout/retry/support\"]"
+      "mermaid": "flowchart TD\n    A[\"Tap Elevator\"] --> B{\"FS floor list available?\"}\n    B -- \"No\" --> E1[\"Show elevator unavailable or retry\"]\n    B -- \"Yes\" --> C[\"Show authorized floors only\"]\n    C --> D{\"Destination selected or prefilled?\"}\n    D -- \"No\" --> E[\"User selects authorized floor\"]\n    D -- \"Yes\" --> F[\"Send elevator call\"]\n    E --> F\n    F --> G{\"FS elevator result\"}\n    G -- \"Success\" --> H[\"Show call success/status\"]\n    G -- \"Denied\" --> I[\"Show access denied\"]\n    G -- \"Timeout\" --> J[\"Show timeout/retry/support\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Elevator System",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-021",
@@ -231,7 +351,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Open Parking Availability\"] --> B[\"Detect property/location\"]\n    B --> C{\"Availability data available?\"}\n    C -- \"No\" --> E1[\"Show unavailable or stale state\"]\n    C -- \"Yes\" --> D[\"Show last updated, total spots, floor tabs\"]\n    D --> E[\"User selects floor\"]\n    E --> F{\"Guest user?\"}\n    F -- \"Yes\" --> G[\"Hide Parking Ticket button\"]\n    F -- \"No\" --> H[\"Allow Parking Ticket shortcut\"]\n    D --> I{\"Floor temporarily closed or limited?\"}\n    I -- \"Yes\" --> J[\"Show temporary close or guidance state\"]"
+      "mermaid": "flowchart TD\n    A[\"Open Parking Availability\"] --> B[\"Detect property/location\"]\n    B --> C{\"Availability data available?\"}\n    C -- \"No\" --> E1[\"Show unavailable or stale state\"]\n    C -- \"Yes\" --> D[\"Show last updated, total spots, floor tabs\"]\n    D --> E[\"User selects floor\"]\n    E --> F{\"Guest user?\"}\n    F -- \"Yes\" --> G[\"Hide Parking Ticket button\"]\n    F -- \"No\" --> H[\"Allow Parking Ticket shortcut\"]\n    D --> I{\"Floor temporarily closed or limited?\"}\n    I -- \"Yes\" --> J[\"Show temporary close or guidance state\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-022",
@@ -242,7 +368,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Open Parking Ticket\"] --> B{\"Active digital ticket found?\"}\n    B -- \"No\" --> C[\"Scan/import physical ticket or use QR at gate where supported\"]\n    C --> D{\"Ticket detected and valid?\"}\n    D -- \"No\" --> E1[\"Invalid/expired/used/already imported state\"]\n    D -- \"Yes\" --> E[\"Confirm and save ticket\"]\n    B -- \"Yes\" --> F[\"Show ticket details and fee\"]\n    E --> F\n    F --> G{\"Total fee > 0?\"}\n    G -- \"No\" --> H[\"Show free/paid status\"]\n    G -- \"Yes\" --> I[\"Select PromptPay QR payment\"]\n    I --> J{\"Argento payment result\"}\n    J -- \"Success\" --> K[\"Show payment success and receipt\"]\n    J -- \"Failure or expired\" --> L[\"Show payment failed or retry\"]\n    F --> M[\"Availability and Traffic shortcuts\"]\n    F --> N[\"Phase 1 redemption: concierge-assisted\"]"
+      "mermaid": "flowchart TD\n    A[\"Open Parking Ticket\"] --> B{\"Active digital ticket found?\"}\n    B -- \"No\" --> C[\"Scan/import physical ticket or use QR at gate where supported\"]\n    C --> D{\"Ticket detected and valid?\"}\n    D -- \"No\" --> E1[\"Invalid/expired/used/already imported state\"]\n    D -- \"Yes\" --> E[\"Confirm and save ticket\"]\n    B -- \"Yes\" --> F[\"Show ticket details and fee\"]\n    E --> F\n    F --> G{\"Total fee > 0?\"}\n    G -- \"No\" --> H[\"Show free/paid status\"]\n    G -- \"Yes\" --> I[\"Select PromptPay QR payment\"]\n    I --> J{\"Argento payment result\"}\n    J -- \"Success\" --> K[\"Show payment success and receipt\"]\n    J -- \"Failure or expired\" --> L[\"Show payment failed or retry\"]\n    F --> M[\"Availability and Traffic shortcuts\"]\n    F --> N[\"Phase 1 redemption: concierge-assisted\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-023",
@@ -253,7 +385,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Host opens Visitor Access\"] --> B{\"Host has Workplace authorization?\"}\n    B -- \"No\" --> E1[\"Hide or block Visitor Pass\"]\n    B -- \"Yes\" --> C[\"Enter visitor and visit details\"]\n    C --> D{\"FS creates pass?\"}\n    D -- \"No\" --> E[\"Show create failure or retry\"]\n    D -- \"Yes\" --> F[\"Show active visitor pass\"]\n    F --> G[\"Visitor receives or uses pass\"]\n    G --> H{\"FS validates pass at access point\"}\n    H -- \"Granted\" --> I[\"Visitor enters\"]\n    H -- \"Denied\" --> J[\"Access denied\"]\n    F --> K[\"Host can delete\"]\n    K --> L{\"Reactivate allowed?\"}\n    L -- \"Yes\" --> M[\"Host reactivates pass\"]\n    L -- \"No\" --> N[\"Stay deleted or expired\"]"
+      "mermaid": "flowchart TD\n    A[\"Host opens Visitor Access\"] --> B{\"Host has Workplace authorization?\"}\n    B -- \"No\" --> E1[\"Hide or block Visitor Pass\"]\n    B -- \"Yes\" --> C[\"Enter visitor and visit details\"]\n    C --> D{\"FS creates pass?\"}\n    D -- \"No\" --> E[\"Show create failure or retry\"]\n    D -- \"Yes\" --> F[\"Show active visitor pass\"]\n    F --> G[\"Visitor receives or uses pass\"]\n    G --> H{\"FS validates pass at access point\"}\n    H -- \"Granted\" --> I[\"Visitor enters\"]\n    H -- \"Denied\" --> J[\"Access denied\"]\n    F --> K[\"Host can delete\"]\n    K --> L{\"Reactivate allowed?\"}\n    L -- \"Yes\" --> M[\"Host reactivates pass\"]\n    L -- \"No\" --> N[\"Stay deleted or expired\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-024",
@@ -264,7 +402,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Notification event or campaign\"] --> B[\"Select PARQ audience\"]\n    B --> C{\"User eligible?\"}\n    C -- \"No\" --> D[\"No notification\"]\n    C -- \"Yes\" --> E{\"Push permission/device token available?\"}\n    E -- \"Yes\" --> F[\"Send push notification\"]\n    E -- \"No\" --> G[\"Follow existing OBK notification center behavior\"]\n    F --> H{\"Deep link available?\"}\n    H -- \"Yes\" --> I[\"Open target page\"]\n    H -- \"No\" --> J[\"Open notification center or app\"]\n    C --> K{\"User offboarded from Workplace?\"}\n    K -- \"Yes\" --> L[\"No Workplace-targeted notification\\nRetail notification may continue\"]"
+      "mermaid": "flowchart TD\n    A[\"Notification event or campaign\"] --> B[\"Select PARQ audience\"]\n    B --> C{\"User eligible?\"}\n    C -- \"No\" --> D[\"No notification\"]\n    C -- \"Yes\" --> E{\"Push permission/device token available?\"}\n    E -- \"Yes\" --> F[\"Send push notification\"]\n    E -- \"No\" --> G[\"Follow existing OBK notification center behavior\"]\n    F --> H{\"Deep link available?\"}\n    H -- \"Yes\" --> I[\"Open target page\"]\n    H -- \"No\" --> J[\"Open notification center or app\"]\n    C --> K{\"User offboarded from Workplace?\"}\n    K -- \"Yes\" --> L[\"No Workplace-targeted notification\\nRetail notification may continue\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Notification Infrastructure",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-025",
@@ -275,7 +419,13 @@
       "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TD\n    A[\"Account lifecycle event\"] --> B{\"User deletes SSO account?\"}\n    B -- \"Yes\" --> C[\"Show delete confirmation\"]\n    C --> D[\"Soft delete 30 days\"]\n    D --> E{\"Reactivated before Day 31?\"}\n    E -- \"Yes\" --> F[\"Restore eligible account/personas\"]\n    E -- \"No\" --> G[\"SSO hard delete after Day 31\"]\n    G --> H[\"Notify BZB delete API\"]\n    B -- \"No, company offboarding\" --> I[\"FS / Fineday inactivates Workplace\"]\n    I --> J[\"App syncs\"]\n    J --> K[\"Workplace persona disappears\"]\n    K --> L[\"Retail persona remains for shopper use\"]"
+      "mermaid": "flowchart TD\n    A[\"Account lifecycle event\"] --> B{\"User deletes SSO account?\"}\n    B -- \"Yes\" --> C[\"Show delete confirmation\"]\n    C --> D[\"Soft delete 30 days\"]\n    D --> E{\"Reactivated before Day 31?\"}\n    E -- \"Yes\" --> F[\"Restore eligible account/personas\"]\n    E -- \"No\" --> G[\"SSO hard delete after Day 31\"]\n    G --> H[\"Notify BZB delete API\"]\n    B -- \"No, company offboarding\" --> I[\"FS / Fineday inactivates Workplace\"]\n    I --> J[\"App syncs\"]\n    J --> K[\"Workplace persona disappears\"]\n    K --> L[\"Retail persona remains for shopper use\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-026",
@@ -286,7 +436,13 @@
       "sourceFile": "03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    SignUp[\"Current Sign-up / identity creation context\"] --> IAM[\"IAM\"]\n    AddID[\"Add identity create flow\"] --> IAM\n    RemoveID[\"Add / Remove identity flow\\nnot fully detailed in source\"] -. repository traceability .-> IAM\n    IAM --> SSO[\"SSO\\nidentity exists + create identity\"]\n    IAM --> BMS[\"BMS checkMember\\nmember lookup by identifier\"]\n    BMS --> Found{\"Member found\\nand not bound to another account?\"}\n    Found -- No --> Skip[\"Skip fs external identity creation\"]\n    Found -- Yes --> FSID[\"Create external identity\\nType: fs\\nUID: member.uid\\nMeta: member.metadata\"]\n    FSID --> Persona[\"Update default persona\"]\n    Persona --> Cache[\"Clear external identity/profile cache\"]\n    Cache --> Event[\"Publish\\nob-iam.external_identity.created\"]\n    AccountAPI[\"GET /members/by-account-id\"] --> Members[\"Return members by x-account-id\"]"
+      "mermaid": "flowchart LR\n    SignUp[\"Current Sign-up / identity creation context\"] --> IAM[\"IAM\"]\n    AddID[\"Add identity create flow\"] --> IAM\n    RemoveID[\"Add / Remove identity flow\\nnot fully detailed in source\"] -. repository traceability .-> IAM\n    IAM --> SSO[\"SSO\\nidentity exists + create identity\"]\n    IAM --> BMS[\"BMS checkMember\\nmember lookup by identifier\"]\n    BMS --> Found{\"Member found\\nand not bound to another account?\"}\n    Found -- No --> Skip[\"Skip fs external identity creation\"]\n    Found -- Yes --> FSID[\"Create external identity\\nType: fs\\nUID: member.uid\\nMeta: member.metadata\"]\n    FSID --> Persona[\"Update default persona\"]\n    Persona --> Cache[\"Clear external identity/profile cache\"]\n    Cache --> Event[\"Publish\\nob-iam.external_identity.created\"]\n    AccountAPI[\"GET /members/by-account-id\"] --> Members[\"Return members by x-account-id\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "BMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-027",
@@ -297,7 +453,13 @@
       "sourceFile": "03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TB\n    Decision[\"Decision Recorded:\\nOption B non-blocking\"]\n    Decision --> OptionA[\"Option A\\nBMS check only during sign-up\\nand add/remove identity\"]\n    Decision --> OptionB[\"Option B\\nBMS check during login as well\\nSelected as non-blocking\"]\n\n    OptionA --> A1[\"Login remains IAM/SSO/FS/BZB focused\"]\n    OptionA --> A2[\"BMS affects persona activation\\nwhen identity is created/updated\"]\n    OptionA --> A3[\"Lower login runtime dependency\"]\n\n    OptionB --> B1[\"Login adds BMS runtime dependency\\nbut must not block app entry\"]\n    OptionB --> B2[\"Potentially refreshes fs external identity earlier\"]\n    OptionB --> B3[\"Higher latency/failure surface during sign-in\"]"
+      "mermaid": "flowchart TB\n    Decision[\"Decision Recorded:\\nOption B non-blocking\"]\n    Decision --> OptionA[\"Option A\\nBMS check only during sign-up\\nand add/remove identity\"]\n    Decision --> OptionB[\"Option B\\nBMS check during login as well\\nSelected as non-blocking\"]\n\n    OptionA --> A1[\"Login remains IAM/SSO/FS/BZB focused\"]\n    OptionA --> A2[\"BMS affects persona activation\\nwhen identity is created/updated\"]\n    OptionA --> A3[\"Lower login runtime dependency\"]\n\n    OptionB --> B1[\"Login adds BMS runtime dependency\\nbut must not block app entry\"]\n    OptionB --> B2[\"Potentially refreshes fs external identity earlier\"]\n    OptionB --> B3[\"Higher latency/failure surface during sign-in\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "BMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-028",
@@ -308,7 +470,13 @@
       "sourceFile": "03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    Current[\"Current confirmed BMS use\\nSign-up + Add/Remove identity\"] --> OptionA[\"Option A\\nKeep BMS out of login\"]\n    Current --> OptionB[\"Option B\\nAdd BMS to login\"]\n\n    OptionA --> AGood[\"Lower login risk\"]\n    OptionA --> ABad[\"Persona freshness depends on identity update/sync\"]\n\n    OptionB --> BGood[\"Fresher persona at login\"]\n    OptionB --> BBad[\"Higher latency + availability + QA scope\"]\n\n    BBad --> Decision[\"Decision recorded:\\nOption B non-blocking\"]\n    ABad --> Decision"
+      "mermaid": "flowchart LR\n    Current[\"Current confirmed BMS use\\nSign-up + Add/Remove identity\"] --> OptionA[\"Option A\\nKeep BMS out of login\"]\n    Current --> OptionB[\"Option B\\nAdd BMS to login\"]\n\n    OptionA --> AGood[\"Lower login risk\"]\n    OptionA --> ABad[\"Persona freshness depends on identity update/sync\"]\n\n    OptionB --> BGood[\"Fresher persona at login\"]\n    OptionB --> BBad[\"Higher latency + availability + QA scope\"]\n\n    BBad --> Decision[\"Decision recorded:\\nOption B non-blocking\"]\n    ABad --> Decision",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "BMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-029",
@@ -319,7 +487,13 @@
       "sourceFile": "03_Architecture/PARQ_Data_API_Context_Boundary_Vendor_Matrix.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> App[\"One Bangkok Mobile App\"]\n    Admin[\"CMS Admin / Operations\"] --> CMS[\"OBK CMS\"]\n    Support[\"Support / Concierge\"] --> CMS\n\n    App --> IAM[\"IAM\\nProfile + Persona Entitlement\"]\n    IAM <--> SSO[\"SSO\\nAuthentication + Orchestration\"]\n    IAM <--> BZB[\"Buzzee Bee / BZB CRM\\nRetail Identity + Privileges\"]\n    IAM <--> Backend[\"OBK Backend\\nQR, Payment, Visitor, Integration Logic\"]\n\n    Backend <--> FS[\"Forward System / Iviva\\nWorkplace, Parking, Visitor, Access\"]\n    IAM <--> FS\n    CMS <--> Backend\n    CMS <--> IAM\n\n    Backend <--> Argento[\"Argento\\nPromptPay + Refund Processing\"]\n    Argento --> Backend\n\n    Backend --> Notify[\"OBK Notification Infrastructure\"]\n    IAM --> Kafka[\"Kafka / Event Bus\"]\n    Kafka --> Notify\n    Kafka --> BMS[\"BMS Service\"]\n\n    FS <--> Gate[\"Turnstile System\"]\n    FS <--> Lift[\"Elevator System\"]\n\n    App --> Backend\n    App --> Notify\n\n    Backend -. Phase 1.5 .-> OCR[\"TCCT OCR\"]\n    Backend -. Phase 1.5 .-> FS\n    CMS -. Phase 1.5 config .-> Backend"
+      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> App[\"One Bangkok Mobile App\"]\n    Admin[\"CMS Admin / Operations\"] --> CMS[\"OBK CMS\"]\n    Support[\"Support / Concierge\"] --> CMS\n\n    App --> IAM[\"IAM\\nProfile + Persona Entitlement\"]\n    IAM <--> SSO[\"SSO\\nAuthentication + Orchestration\"]\n    IAM <--> BZB[\"Buzzee Bee / BZB CRM\\nRetail Identity + Privileges\"]\n    IAM <--> Backend[\"OBK Backend\\nQR, Payment, Visitor, Integration Logic\"]\n\n    Backend <--> FS[\"Forward System / Iviva\\nWorkplace, Parking, Visitor, Access\"]\n    IAM <--> FS\n    CMS <--> Backend\n    CMS <--> IAM\n\n    Backend <--> Argento[\"Argento\\nPromptPay + Refund Processing\"]\n    Argento --> Backend\n\n    Backend --> Notify[\"OBK Notification Infrastructure\"]\n    IAM --> Kafka[\"Kafka / Event Bus\"]\n    Kafka --> Notify\n    Kafka --> BMS[\"BMS Service\"]\n\n    FS <--> Gate[\"Turnstile System\"]\n    FS <--> Lift[\"Elevator System\"]\n\n    App --> Backend\n    App --> Notify\n\n    Backend -. Phase 1.5 .-> OCR[\"TCCT OCR\"]\n    Backend -. Phase 1.5 .-> FS\n    CMS -. Phase 1.5 config .-> Backend",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-030",
@@ -330,7 +504,13 @@
       "sourceFile": "03_Architecture/PARQ_Data_API_Context_Boundary_Vendor_Matrix.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TB\n    subgraph Client[\"Client Boundary\"]\n        App[\"One Bangkok Mobile App\"]\n    end\n\n    subgraph OBK[\"One Bangkok Controlled Boundary\"]\n        IAM[\"IAM\\nLocal profile + persona entitlement\"]\n        Backend[\"OBK Backend\\nIntegration orchestration, QR, visitor, payment records\"]\n        CMS[\"OBK CMS\\nAdmin visibility / operational tooling\"]\n        Notify[\"Notification Infrastructure\"]\n        Kafka[\"Kafka / Event Bus\"]\n        BMS[\"BMS Service\"]\n    end\n\n    subgraph Identity[\"Identity / Authentication Boundary\"]\n        SSO[\"SSO\\nAuthentication + credential validation\"]\n    end\n\n    subgraph Vendor[\"External Vendor / Partner Boundary\"]\n        FS[\"Forward System / Iviva\\nAccess, Parking, Visitor, Elevator, Turnstile policy\"]\n        BZB[\"Buzzee Bee / BZB CRM\\nRetail identity + loyalty\"]\n        Argento[\"Argento\\nPayment gateway + refund execution\"]\n        OCR[\"TCCT OCR\\nPhase 1.5 ticket recognition\"]\n    end\n\n    subgraph SiteHardware[\"Site Hardware Boundary\"]\n        Gate[\"Turnstile\"]\n        Lift[\"Elevator\"]\n    end\n\n    App --> IAM\n    App --> Backend\n    IAM <--> SSO\n    IAM <--> BZB\n    IAM <--> FS\n    Backend <--> FS\n    Backend <--> Argento\n    Backend --> Notify\n    CMS <--> Backend\n    CMS <--> IAM\n    IAM --> Kafka\n    Kafka --> Notify\n    Kafka --> BMS\n    FS <--> Gate\n    FS <--> Lift\n    Backend -. Phase 1.5 .-> OCR"
+      "mermaid": "flowchart TB\n    subgraph Client[\"Client Boundary\"]\n        App[\"One Bangkok Mobile App\"]\n    end\n\n    subgraph OBK[\"One Bangkok Controlled Boundary\"]\n        IAM[\"IAM\\nLocal profile + persona entitlement\"]\n        Backend[\"OBK Backend\\nIntegration orchestration, QR, visitor, payment records\"]\n        CMS[\"OBK CMS\\nAdmin visibility / operational tooling\"]\n        Notify[\"Notification Infrastructure\"]\n        Kafka[\"Kafka / Event Bus\"]\n        BMS[\"BMS Service\"]\n    end\n\n    subgraph Identity[\"Identity / Authentication Boundary\"]\n        SSO[\"SSO\\nAuthentication + credential validation\"]\n    end\n\n    subgraph Vendor[\"External Vendor / Partner Boundary\"]\n        FS[\"Forward System / Iviva\\nAccess, Parking, Visitor, Elevator, Turnstile policy\"]\n        BZB[\"Buzzee Bee / BZB CRM\\nRetail identity + loyalty\"]\n        Argento[\"Argento\\nPayment gateway + refund execution\"]\n        OCR[\"TCCT OCR\\nPhase 1.5 ticket recognition\"]\n    end\n\n    subgraph SiteHardware[\"Site Hardware Boundary\"]\n        Gate[\"Turnstile\"]\n        Lift[\"Elevator\"]\n    end\n\n    App --> IAM\n    App --> Backend\n    IAM <--> SSO\n    IAM <--> BZB\n    IAM <--> FS\n    Backend <--> FS\n    Backend <--> Argento\n    Backend --> Notify\n    CMS <--> Backend\n    CMS <--> IAM\n    IAM --> Kafka\n    Kafka --> Notify\n    Kafka --> BMS\n    FS <--> Gate\n    FS <--> Lift\n    Backend -. Phase 1.5 .-> OCR",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-031",
@@ -341,7 +521,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / OB_IAM_SDK\n    participant SSO as SSO / SSOClient\n    participant BMS as BMS\n    participant FS as FS\n    participant BZB as Buzzee Bee\n\n    U->>App: Start sign-in\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Identity exists / not exists\n    App->>IAM: POST /auth/login\n    IAM->>SSO: POST /oauth/token with credentials\n    alt Credential validation failed\n        SSO-->>IAM: Auth error\n        IAM-->>App: Login failed\n        App-->>U: Show sign-in failure\n    else Credential validation successful\n        SSO-->>IAM: Token + Public SSO ID\n        IAM->>IAM: Resolve Account ID and local profile\n        IAM->>BMS: Non-blocking member check / Workplace refresh\n        alt BMS unavailable or timeout\n            BMS-->>IAM: No refresh result\n            IAM->>IAM: Continue login; use existing Workplace permission if detectable\n        else Member found and eligible\n            BMS-->>IAM: Member data / fs identity metadata candidate\n            IAM->>IAM: Create/update fs external identity and persona if allowed\n        else No member or rare bound-to-other-account\n            BMS-->>IAM: No member / conflict-like state\n            IAM->>IAM: Continue login; mark support/audit path if conflict-like\n        end\n        IAM->>FS: Resolve external identity type fs + metadata\n        alt FS metadata missing\n            FS-->>IAM: No valid workplace entitlement\n            IAM-->>App: Login allowed only if non-workplace persona exists / otherwise blocked\n        else FS metadata valid\n            FS-->>IAM: Company, tower, floors, FS member UID\n            IAM->>BZB: Lookup retail identity by verified email/phone\n            alt BZB conflict\n                BZB-->>IAM: Conflict / different Account ID\n                IAM-->>App: Conflict resolution required\n            else BZB matched or no match\n                BZB-->>IAM: Retail match result\n                IAM-->>App: Auth response with Account ID and persona entitlements\n                App-->>U: Continue authenticated session\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / OB_IAM_SDK\n    participant SSO as SSO / SSOClient\n    participant BMS as BMS\n    participant FS as FS\n    participant BZB as Buzzee Bee\n\n    U->>App: Start sign-in\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Identity exists / not exists\n    App->>IAM: POST /auth/login\n    IAM->>SSO: POST /oauth/token with credentials\n    alt Credential validation failed\n        SSO-->>IAM: Auth error\n        IAM-->>App: Login failed\n        App-->>U: Show sign-in failure\n    else Credential validation successful\n        SSO-->>IAM: Token + Public SSO ID\n        IAM->>IAM: Resolve Account ID and local profile\n        IAM->>BMS: Non-blocking member check / Workplace refresh\n        alt BMS unavailable or timeout\n            BMS-->>IAM: No refresh result\n            IAM->>IAM: Continue login; use existing Workplace permission if detectable\n        else Member found and eligible\n            BMS-->>IAM: Member data / fs identity metadata candidate\n            IAM->>IAM: Create/update fs external identity and persona if allowed\n        else No member or rare bound-to-other-account\n            BMS-->>IAM: No member / conflict-like state\n            IAM->>IAM: Continue login; mark support/audit path if conflict-like\n        end\n        IAM->>FS: Resolve external identity type fs + metadata\n        alt FS metadata missing\n            FS-->>IAM: No valid workplace entitlement\n            IAM-->>App: Login allowed only if non-workplace persona exists / otherwise blocked\n        else FS metadata valid\n            FS-->>IAM: Company, tower, floors, FS member UID\n            IAM->>BZB: Lookup retail identity by verified email/phone\n            alt BZB conflict\n                BZB-->>IAM: Conflict / different Account ID\n                IAM-->>App: Conflict resolution required\n            else BZB matched or no match\n                BZB-->>IAM: Retail match result\n                IAM-->>App: Auth response with Account ID and persona entitlements\n                App-->>U: Continue authenticated session\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, BMS, FS, BZB",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-032",
@@ -352,7 +538,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / Account Merge\n    participant SSO as SSO\n    participant BZB as Buzzee Bee\n    participant FS as FS\n\n    App->>IAM: Request account matching / merge evaluation\n    IAM->>SSO: POST /oauth/token with throwOnConflict: true\n    SSO-->>IAM: Conflict state or token result\n    IAM->>BZB: Match by verified email/phone\n    alt Matches point to different Account IDs\n        BZB-->>IAM: Conflicting identity result\n        IAM-->>App: Conflict error; user must resolve to proceed\n        App-->>U: Show warning / merge resolution screen\n    else Matches share same Account ID\n        BZB-->>IAM: Matching BZB identity\n        IAM-->>App: Merge prompt / informational screen\n        U->>App: Proceed with merge path\n        App->>IAM: Confirm merge path\n        IAM->>FS: Migrate/sync workplace permissions to surviving account\n        IAM->>BZB: Sync surviving Account ID / retail linkage\n        IAM->>IAM: Persist surviving Account ID and persona entitlements\n        alt Merge persistence failed\n            IAM-->>App: Merge failed / support required\n        else Merge complete\n            IAM-->>App: Updated Account ID and personas\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / Account Merge\n    participant SSO as SSO\n    participant BZB as Buzzee Bee\n    participant FS as FS\n\n    App->>IAM: Request account matching / merge evaluation\n    IAM->>SSO: POST /oauth/token with throwOnConflict: true\n    SSO-->>IAM: Conflict state or token result\n    IAM->>BZB: Match by verified email/phone\n    alt Matches point to different Account IDs\n        BZB-->>IAM: Conflicting identity result\n        IAM-->>App: Conflict error; user must resolve to proceed\n        App-->>U: Show warning / merge resolution screen\n    else Matches share same Account ID\n        BZB-->>IAM: Matching BZB identity\n        IAM-->>App: Merge prompt / informational screen\n        U->>App: Proceed with merge path\n        App->>IAM: Confirm merge path\n        IAM->>FS: Migrate/sync workplace permissions to surviving account\n        IAM->>BZB: Sync surviving Account ID / retail linkage\n        IAM->>IAM: Persist surviving Account ID and persona entitlements\n        alt Merge persistence failed\n            IAM-->>App: Merge failed / support required\n        else Merge complete\n            IAM-->>App: Updated Account ID and personas\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, BZB, FS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-033",
@@ -363,7 +555,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / OB_IAM_SDK\n    participant SSO as SSO / SSOClient\n    participant FS as FS\n    participant BZB as Buzzee Bee\n\n    U->>App: Start registration\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Existing / new identity result\n    App->>IAM: Submit registration profile and credentials\n    IAM->>SSO: Register / validate credential flow\n    alt SSO registration or validation failed\n        SSO-->>IAM: Registration error\n        IAM-->>App: Registration failed\n    else SSO accepted\n        SSO-->>IAM: Public SSO ID / token context\n        IAM->>FS: Validate workplace eligibility and external identity metadata\n        alt FS rejects eligibility\n            FS-->>IAM: No workplace authorization\n            IAM-->>App: Onboarding blocked / cleanup required\n        else FS authorizes\n            FS-->>IAM: FS member UID, tower, authorized floors\n            IAM->>BZB: Match by verified email/phone\n            alt BZB conflict\n                BZB-->>IAM: Different Account IDs / conflict\n                IAM-->>App: Merge/conflict resolution required\n            else BZB matched or no match\n                BZB-->>IAM: Match result\n                IAM->>IAM: Create/update Account ID, profile, persona entitlements\n                IAM-->>App: Onboarding result\n                App-->>U: Continue\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM / OB_IAM_SDK\n    participant SSO as SSO / SSOClient\n    participant FS as FS\n    participant BZB as Buzzee Bee\n\n    U->>App: Start registration\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Existing / new identity result\n    App->>IAM: Submit registration profile and credentials\n    IAM->>SSO: Register / validate credential flow\n    alt SSO registration or validation failed\n        SSO-->>IAM: Registration error\n        IAM-->>App: Registration failed\n    else SSO accepted\n        SSO-->>IAM: Public SSO ID / token context\n        IAM->>FS: Validate workplace eligibility and external identity metadata\n        alt FS rejects eligibility\n            FS-->>IAM: No workplace authorization\n            IAM-->>App: Onboarding blocked / cleanup required\n        else FS authorizes\n            FS-->>IAM: FS member UID, tower, authorized floors\n            IAM->>BZB: Match by verified email/phone\n            alt BZB conflict\n                BZB-->>IAM: Different Account IDs / conflict\n                IAM-->>App: Merge/conflict resolution required\n            else BZB matched or no match\n                BZB-->>IAM: Match result\n                IAM->>IAM: Create/update Account ID, profile, persona entitlements\n                IAM-->>App: Onboarding result\n                App-->>U: Continue\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, FS, BZB",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-034",
@@ -374,7 +572,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend / Payment Handler\n    participant FS as FS / Iviva Parking\n    participant Pay as Argento\n\n    U->>App: Open parking ticket/payment\n    App->>IAM: Validate Account ID and session\n    IAM-->>App: Valid identity context\n    App->>BE: Request parking ticket/payment context\n    BE->>FS: Retrieve ticket and payable amount\n    alt Ticket not found or not payable\n        FS-->>BE: Ticket error\n        BE-->>App: Ticket/payment unavailable\n    else Ticket payable\n        FS-->>BE: Ticket ID, amount, exit status context\n        BE->>BE: Create car_park_payments record\n        BE->>Pay: Initiate PromptPay payment\n        alt Argento initiation failed\n            Pay-->>BE: Payment initiation error\n            BE-->>App: Payment unavailable\n        else Payment initiated\n            Pay-->>BE: QR/payment reference\n            BE-->>App: Payment QR/reference\n            App-->>U: Display PromptPay QR\n            Pay-->>BE: Payment callback/status\n            BE->>BE: Validate callback + idempotency; update car_park_payments\n            BE->>FS: Sync paid status to FS/Iviva\n            BE->>BE: Write car_park_payment_fs_logs\n            alt FS sync failed\n                FS-->>BE: Sync error\n                BE->>BE: Queue retry/reconciliation\n                BE-->>App: Payment pending FS synchronization\n            else FS sync successful\n                FS-->>BE: Ticket/exit status updated\n                BE-->>App: Payment completed\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend / Payment Handler\n    participant FS as FS / Iviva Parking\n    participant Pay as Argento\n\n    U->>App: Open parking ticket/payment\n    App->>IAM: Validate Account ID and session\n    IAM-->>App: Valid identity context\n    App->>BE: Request parking ticket/payment context\n    BE->>FS: Retrieve ticket and payable amount\n    alt Ticket not found or not payable\n        FS-->>BE: Ticket error\n        BE-->>App: Ticket/payment unavailable\n    else Ticket payable\n        FS-->>BE: Ticket ID, amount, exit status context\n        BE->>BE: Create car_park_payments record\n        BE->>Pay: Initiate PromptPay payment\n        alt Argento initiation failed\n            Pay-->>BE: Payment initiation error\n            BE-->>App: Payment unavailable\n        else Payment initiated\n            Pay-->>BE: QR/payment reference\n            BE-->>App: Payment QR/reference\n            App-->>U: Display PromptPay QR\n            Pay-->>BE: Payment callback/status\n            BE->>BE: Validate callback + idempotency; update car_park_payments\n            BE->>FS: Sync paid status to FS/Iviva\n            BE->>BE: Write car_park_payment_fs_logs\n            alt FS sync failed\n                FS-->>BE: Sync error\n                BE->>BE: Queue retry/reconciliation\n                BE-->>App: Payment pending FS synchronization\n            else FS sync successful\n                FS-->>BE: Ticket/exit status updated\n                BE-->>App: Payment completed\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Pay",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-035",
@@ -385,7 +589,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant Host as Host User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Visitor Platform\n    participant HW as Turnstile / Elevator\n    participant CMS as CMS\n\n    Host->>App: Manage visitor pass\n    App->>IAM: Validate host Account ID and workplace persona\n    IAM-->>App: Host context\n    App->>BE: Create/delete/reactivate visitor pass\n    BE->>BE: Persist visitor_passes record\n    BE->>FS: POST /visitors or status update\n    alt FS registration failed\n        FS-->>BE: Registration/sync error\n        BE-->>App: Visitor pass pending/failed\n    else FS registration successful\n        FS-->>BE: FS visitor authorization and validity window\n        BE->>BE: Generate visitor QR\n        BE-->>App: Visitor pass status + QR\n        opt CMS visibility\n            CMS->>BE: View visitor pass/admin data\n            BE-->>CMS: Visitor pass record/status\n        end\n        Host-->>App: Share/display visitor pass\n        HW->>FS: Validate QR online during access\n        FS-->>HW: Permit/deny based on validity and authorization\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant Host as Host User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Visitor Platform\n    participant HW as Turnstile / Elevator\n    participant CMS as CMS\n\n    Host->>App: Manage visitor pass\n    App->>IAM: Validate host Account ID and workplace persona\n    IAM-->>App: Host context\n    App->>BE: Create/delete/reactivate visitor pass\n    BE->>BE: Persist visitor_passes record\n    BE->>FS: POST /visitors or status update\n    alt FS registration failed\n        FS-->>BE: Registration/sync error\n        BE-->>App: Visitor pass pending/failed\n    else FS registration successful\n        FS-->>BE: FS visitor authorization and validity window\n        BE->>BE: Generate visitor QR\n        BE-->>App: Visitor pass status + QR\n        opt CMS visibility\n            CMS->>BE: View visitor pass/admin data\n            BE-->>CMS: Visitor pass record/status\n        end\n        Host-->>App: Share/display visitor pass\n        HW->>FS: Validate QR online during access\n        FS-->>HW: Permit/deny based on validity and authorization\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Host, App, IAM, BE, FS, HW, CMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-036",
@@ -396,7 +606,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Elevator Authorization\n    participant Lift as Elevator System\n\n    U->>App: Request elevator action\n    App->>IAM: Validate session, Account ID, persona, tower context\n    IAM-->>App: Identity/persona context\n    App->>BE: Submit elevator request\n    BE->>FS: Validate floor/tower authorization and call elevator\n    alt Unauthorized floor/tower\n        FS-->>BE: Denied\n        BE-->>App: Access denied\n    else Authorized\n        FS->>Lift: Execute elevator command\n        alt Elevator timeout/failure\n            Lift--xFS: Timeout/error\n            FS-->>BE: Command failed\n            BE-->>App: Elevator unavailable / fallback\n        else Elevator command accepted\n            Lift-->>FS: Assignment/status\n            FS-->>BE: Success/status\n            BE-->>App: Elevator status\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Elevator Authorization\n    participant Lift as Elevator System\n\n    U->>App: Request elevator action\n    App->>IAM: Validate session, Account ID, persona, tower context\n    IAM-->>App: Identity/persona context\n    App->>BE: Submit elevator request\n    BE->>FS: Validate floor/tower authorization and call elevator\n    alt Unauthorized floor/tower\n        FS-->>BE: Denied\n        BE-->>App: Access denied\n    else Authorized\n        FS->>Lift: Execute elevator command\n        alt Elevator timeout/failure\n            Lift--xFS: Timeout/error\n            FS-->>BE: Command failed\n            BE-->>App: Elevator unavailable / fallback\n        else Elevator command accepted\n            Lift-->>FS: Assignment/status\n            FS-->>BE: Success/status\n            BE-->>App: Elevator status\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Lift",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-037",
@@ -407,7 +623,13 @@
       "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App / My QR\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Access Control\n    participant Gate as Turnstile\n\n    U->>App: Open My QR\n    App->>IAM: Validate Account ID, session, persona\n    IAM-->>App: Identity/persona context\n    App->>BE: Request QR for workplace/visitor identity\n    BE->>FS: Confirm current access scope and validity\n    alt Not authorized\n        FS-->>BE: Access not permitted\n        BE-->>App: QR unavailable / access denied\n    else Authorized\n        FS-->>BE: Access scope and validity window\n        BE->>BE: Generate QR\n        BE-->>App: QR\n        App-->>U: Display QR\n        U->>Gate: Present QR\n        Gate->>FS: Validate QR online\n        alt FS unavailable\n            FS--xGate: Timeout/no response\n            Gate-->>U: Apply outage policy\n        else Access denied\n            FS-->>Gate: Deny + reason\n            Gate-->>U: Deny access\n            FS->>FS: Record denied access audit\n        else Access approved\n            FS-->>Gate: Approve access\n            Gate-->>U: Open turnstile\n            FS->>FS: Record approved access audit\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App / My QR\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS Access Control\n    participant Gate as Turnstile\n\n    U->>App: Open My QR\n    App->>IAM: Validate Account ID, session, persona\n    IAM-->>App: Identity/persona context\n    App->>BE: Request QR for workplace/visitor identity\n    BE->>FS: Confirm current access scope and validity\n    alt Not authorized\n        FS-->>BE: Access not permitted\n        BE-->>App: QR unavailable / access denied\n    else Authorized\n        FS-->>BE: Access scope and validity window\n        BE->>BE: Generate QR\n        BE-->>App: QR\n        App-->>U: Display QR\n        U->>Gate: Present QR\n        Gate->>FS: Validate QR online\n        alt FS unavailable\n            FS--xGate: Timeout/no response\n            Gate-->>U: Apply outage policy\n        else Access denied\n            FS-->>Gate: Deny + reason\n            Gate-->>U: Deny access\n            FS->>FS: Record denied access audit\n        else Access approved\n            FS-->>Gate: Approve access\n            Gate-->>U: Open turnstile\n            FS->>FS: Record approved access audit\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Gate",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-038",
@@ -418,7 +640,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    SOT[\"User Flow Index\\nSource of truth\"] --> ARCH1[\"PARQ User Flow\\nIntegration Architecture\"]\n    ARCH1 --> VIS[\"Visual Architecture\\nand Flow Pack\"]\n    DATA[\"Data/API/Boundary/\\nVendor Matrix\"] --> VIS\n    CTRL[\"Technical Dependency\\nControl Pack\"] --> VIS\n    REVIEW[\"Discovery Architecture\\nReview\"] --> VIS\n    CLAR[\"Clarification Decision Log\\nTraceability shell\"] --> VIS\n    BMS1[\"BMS member API\\nSource reference\"] --> VIS\n    BMS2[\"Add Identity flow\\nBMS checkMember\"] --> VIS\n    MISSING[\"Missing proposal PDF\\nPARQ-MISSING-001\"] -. open source gap .-> VIS"
+      "mermaid": "flowchart LR\n    SOT[\"User Flow Index\\nSource of truth\"] --> ARCH1[\"PARQ User Flow\\nIntegration Architecture\"]\n    ARCH1 --> VIS[\"Visual Architecture\\nand Flow Pack\"]\n    DATA[\"Data/API/Boundary/\\nVendor Matrix\"] --> VIS\n    CTRL[\"Technical Dependency\\nControl Pack\"] --> VIS\n    REVIEW[\"Discovery Architecture\\nReview\"] --> VIS\n    CLAR[\"Clarification Decision Log\\nTraceability shell\"] --> VIS\n    BMS1[\"BMS member API\\nSource reference\"] --> VIS\n    BMS2[\"Add Identity flow\\nBMS checkMember\"] --> VIS\n    MISSING[\"Missing proposal PDF\\nPARQ-MISSING-001\"] -. open source gap .-> VIS",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-039",
@@ -429,7 +657,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> App[\"One Bangkok Mobile App\"]\n    Admin[\"CMS Admin / Operations\"] --> CMS[\"OBK CMS\"]\n\n    App --> IAM[\"IAM\\nLocal profile + persona\"]\n    IAM <--> SSO[\"SSO\\nAuthentication + orchestration\"]\n    IAM <--> BZB[\"BZB / Buzzee Bee\\nRetail identity\"]\n    IAM <--> FS[\"FS / Iviva\\nWorkplace + access authority\"]\n    IAM <--> BMSLookup[\"BMS\\nMember lookup / identity flow\"]\n\n    App --> Backend[\"OBK Backend\\nIntegration logic\"]\n    Backend <--> FS\n    Backend <--> Argento[\"Argento\\nPayment gateway\"]\n    Backend <--> CMS\n    Backend --> Notify[\"Notification Infrastructure\"]\n    IAM --> Kafka[\"Kafka / Event Bus\"]\n    Kafka --> Notify\n    Kafka --> BMSCleanup[\"BMS\\nCleanup consumer\"]\n\n    FS <--> Elevator[\"Elevator\"]\n    FS <--> Turnstile[\"Turnstile\"]\n    Backend -. Phase 1.5 .-> OCR[\"TCCT OCR\"]"
+      "mermaid": "flowchart LR\n    User[\"PARQ / OBK User\"] --> App[\"One Bangkok Mobile App\"]\n    Admin[\"CMS Admin / Operations\"] --> CMS[\"OBK CMS\"]\n\n    App --> IAM[\"IAM\\nLocal profile + persona\"]\n    IAM <--> SSO[\"SSO\\nAuthentication + orchestration\"]\n    IAM <--> BZB[\"BZB / Buzzee Bee\\nRetail identity\"]\n    IAM <--> FS[\"FS / Iviva\\nWorkplace + access authority\"]\n    IAM <--> BMSLookup[\"BMS\\nMember lookup / identity flow\"]\n\n    App --> Backend[\"OBK Backend\\nIntegration logic\"]\n    Backend <--> FS\n    Backend <--> Argento[\"Argento\\nPayment gateway\"]\n    Backend <--> CMS\n    Backend --> Notify[\"Notification Infrastructure\"]\n    IAM --> Kafka[\"Kafka / Event Bus\"]\n    Kafka --> Notify\n    Kafka --> BMSCleanup[\"BMS\\nCleanup consumer\"]\n\n    FS <--> Elevator[\"Elevator\"]\n    FS <--> Turnstile[\"Turnstile\"]\n    Backend -. Phase 1.5 .-> OCR[\"TCCT OCR\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-040",
@@ -440,7 +674,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TB\n    subgraph Client[\"Client Boundary\"]\n        App[\"Mobile App\"]\n    end\n\n    subgraph OBK[\"One Bangkok Controlled Boundary\"]\n        Backend[\"OBK Backend\\nQR, payment, visitor, integration\"]\n        IAM[\"IAM\\nAccount ID, profile, persona\"]\n        CMS[\"CMS\\nAdmin visibility\"]\n        Notify[\"Notification\"]\n        Kafka[\"Kafka / Event Bus\"]\n        BMS[\"BMS\"]\n    end\n\n    subgraph Identity[\"Identity Boundary\"]\n        SSO[\"SSO\\nCredential validation\"]\n    end\n\n    subgraph Vendor[\"External Vendor / Partner Boundary\"]\n        FS[\"FS / Iviva\\nWorkplace, parking, visitor, access\"]\n        BZB[\"BZB\\nRetail identity\"]\n        Argento[\"Argento\\nPayment + refund\"]\n        OCR[\"TCCT OCR\\nPhase 1.5\"]\n    end\n\n    subgraph Hardware[\"Site Hardware Boundary\"]\n        Elevator[\"Elevator\"]\n        Turnstile[\"Turnstile\"]\n    end\n\n    App --> IAM\n    App --> Backend\n    IAM <--> SSO\n    IAM <--> BZB\n    IAM <--> BMS\n    IAM <--> FS\n    Backend <--> FS\n    Backend <--> Argento\n    Backend <--> CMS\n    Backend --> Notify\n    IAM --> Kafka\n    Kafka --> Notify\n    Kafka --> BMS\n    FS <--> Elevator\n    FS <--> Turnstile\n    Backend -. Phase 1.5 .-> OCR"
+      "mermaid": "flowchart TB\n    subgraph Client[\"Client Boundary\"]\n        App[\"Mobile App\"]\n    end\n\n    subgraph OBK[\"One Bangkok Controlled Boundary\"]\n        Backend[\"OBK Backend\\nQR, payment, visitor, integration\"]\n        IAM[\"IAM\\nAccount ID, profile, persona\"]\n        CMS[\"CMS\\nAdmin visibility\"]\n        Notify[\"Notification\"]\n        Kafka[\"Kafka / Event Bus\"]\n        BMS[\"BMS\"]\n    end\n\n    subgraph Identity[\"Identity Boundary\"]\n        SSO[\"SSO\\nCredential validation\"]\n    end\n\n    subgraph Vendor[\"External Vendor / Partner Boundary\"]\n        FS[\"FS / Iviva\\nWorkplace, parking, visitor, access\"]\n        BZB[\"BZB\\nRetail identity\"]\n        Argento[\"Argento\\nPayment + refund\"]\n        OCR[\"TCCT OCR\\nPhase 1.5\"]\n    end\n\n    subgraph Hardware[\"Site Hardware Boundary\"]\n        Elevator[\"Elevator\"]\n        Turnstile[\"Turnstile\"]\n    end\n\n    App --> IAM\n    App --> Backend\n    IAM <--> SSO\n    IAM <--> BZB\n    IAM <--> BMS\n    IAM <--> FS\n    Backend <--> FS\n    Backend <--> Argento\n    Backend <--> CMS\n    Backend --> Notify\n    IAM --> Kafka\n    Kafka --> Notify\n    Kafka --> BMS\n    FS <--> Elevator\n    FS <--> Turnstile\n    Backend -. Phase 1.5 .-> OCR",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-041",
@@ -451,7 +691,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart TB\n    subgraph Identity[\"Identity\"]\n        ID1[\"Existing sign-in\\nUF-001\"] --> IAM\n        ID2[\"New onboarding\\nUF-003\"] --> IAM\n        ID3[\"Retail matching\\nUF-002\"] --> BZB\n        IAM --> SSO\n        IAM --> BMS[\"BMS\\nNon-blocking login refresh\"]\n        IAM --> FS\n    end\n\n    subgraph Workplace[\"Workplace Access\"]\n        W1[\"Persona UI\\nUF-005\"] --> FS\n        W2[\"Multi-tower\\nUF-006\"] --> FS\n        W3[\"My QR\\nUF-009\"] --> Backend\n        Backend --> FS\n        FS --> Elevator\n        FS --> Turnstile\n    end\n\n    subgraph Parking[\"Parking\"]\n        P1[\"Availability\\nUF-010\"] --> FS\n        P2[\"Traffic\\nUF-011\"] --> FS\n        P3[\"Payment + ticket\\nUF-012\"] --> Backend\n        Backend --> Argento\n        Backend --> FS\n        P4[\"E-stamp OCR\\nUF-1.5-001\"] -. deferred .-> OCR\n    end\n\n    subgraph Visitor[\"Visitor\"]\n        V1[\"Visitor pass\\nUF-013\"] --> Backend\n        Backend --> FS\n        FS --> Turnstile\n        FS --> Elevator\n        CMS -. visibility .-> Backend\n    end\n\n    subgraph NotifyDomain[\"Notification\"]\n        N1[\"PARQ notification\\nUF-014\"] --> Notify\n        IAM --> Notify\n    end\n\n    subgraph Compliance[\"Compliance\"]\n        C1[\"Security + compliance\\nUF-017\"] --> IAM\n        C1 --> Kafka\n        Kafka --> Notify\n        Kafka --> BMS\n    end\n\n    subgraph Testing[\"Testing\"]\n        T1[\"Testing + deployment\\nUF-018\"] --> SSO\n        T1 --> FS\n        T1 --> BZB\n        T1 --> Argento\n        T1 --> CMS\n        T1 --> Elevator\n        T1 --> Turnstile\n    end"
+      "mermaid": "flowchart TB\n    subgraph Identity[\"Identity\"]\n        ID1[\"Existing sign-in\\nUF-001\"] --> IAM\n        ID2[\"New onboarding\\nUF-003\"] --> IAM\n        ID3[\"Retail matching\\nUF-002\"] --> BZB\n        IAM --> SSO\n        IAM --> BMS[\"BMS\\nNon-blocking login refresh\"]\n        IAM --> FS\n    end\n\n    subgraph Workplace[\"Workplace Access\"]\n        W1[\"Persona UI\\nUF-005\"] --> FS\n        W2[\"Multi-tower\\nUF-006\"] --> FS\n        W3[\"My QR\\nUF-009\"] --> Backend\n        Backend --> FS\n        FS --> Elevator\n        FS --> Turnstile\n    end\n\n    subgraph Parking[\"Parking\"]\n        P1[\"Availability\\nUF-010\"] --> FS\n        P2[\"Traffic\\nUF-011\"] --> FS\n        P3[\"Payment + ticket\\nUF-012\"] --> Backend\n        Backend --> Argento\n        Backend --> FS\n        P4[\"E-stamp OCR\\nUF-1.5-001\"] -. deferred .-> OCR\n    end\n\n    subgraph Visitor[\"Visitor\"]\n        V1[\"Visitor pass\\nUF-013\"] --> Backend\n        Backend --> FS\n        FS --> Turnstile\n        FS --> Elevator\n        CMS -. visibility .-> Backend\n    end\n\n    subgraph NotifyDomain[\"Notification\"]\n        N1[\"PARQ notification\\nUF-014\"] --> Notify\n        IAM --> Notify\n    end\n\n    subgraph Compliance[\"Compliance\"]\n        C1[\"Security + compliance\\nUF-017\"] --> IAM\n        C1 --> Kafka\n        Kafka --> Notify\n        Kafka --> BMS\n    end\n\n    subgraph Testing[\"Testing\"]\n        T1[\"Testing + deployment\\nUF-018\"] --> SSO\n        T1 --> FS\n        T1 --> BZB\n        T1 --> Argento\n        T1 --> CMS\n        T1 --> Elevator\n        T1 --> Turnstile\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-042",
@@ -462,7 +708,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    Credential[\"Credential\\nSSO owns\"] --> PublicID[\"Public SSO ID\"]\n    PublicID --> Account[\"Account ID\\nIAM owns\"]\n    Account --> Profile[\"Local profile\\nIAM owns\"]\n    Account --> Persona[\"Persona entitlement\\nIAM owns\"]\n    Account --> BMSMember[\"BMS member lookup\\nBMS owns\"]\n    BMSMember --> Persona\n\n    FSID[\"FS external identity\\nFS owns\"] --> Persona\n    FSID --> Workplace[\"Workplace persona\"]\n    FSID --> Floors[\"Tower + floor authorization\"]\n    FSID --> Access[\"Access policy\\nElevator + turnstile\"]\n\n    BZBID[\"BZB member ID\\nBZB owns\"] --> Retail[\"Retail persona\"]\n    Retail --> Persona\n\n    Account --> BackendData[\"OBK Backend data\\npayment + visitor + QR\"]\n    BackendData --> Payment[\"Payment records\\nOBK owns\"]\n    Payment --> ArgentoData[\"Financial processing\\nArgento owns\"]\n    Payment --> FSTicket[\"Ticket + exit status\\nFS/Iviva owns\"]\n\n    BackendData --> Visitor[\"Visitor pass workflow\\nOBK owns\"]\n    Visitor --> FSVisitor[\"Visitor access validity\\nFS owns\"]\n\n    Account --> NotifyData[\"Notification segment + inbox\\nNotification owns\"]\n    Account --> DeleteEvent[\"Permanent delete event\\nKafka/Event Bus\"]\n    DeleteEvent --> NotifyData\n    DeleteEvent --> BMSData[\"BMS cleanup\"]"
+      "mermaid": "flowchart LR\n    Credential[\"Credential\\nSSO owns\"] --> PublicID[\"Public SSO ID\"]\n    PublicID --> Account[\"Account ID\\nIAM owns\"]\n    Account --> Profile[\"Local profile\\nIAM owns\"]\n    Account --> Persona[\"Persona entitlement\\nIAM owns\"]\n    Account --> BMSMember[\"BMS member lookup\\nBMS owns\"]\n    BMSMember --> Persona\n\n    FSID[\"FS external identity\\nFS owns\"] --> Persona\n    FSID --> Workplace[\"Workplace persona\"]\n    FSID --> Floors[\"Tower + floor authorization\"]\n    FSID --> Access[\"Access policy\\nElevator + turnstile\"]\n\n    BZBID[\"BZB member ID\\nBZB owns\"] --> Retail[\"Retail persona\"]\n    Retail --> Persona\n\n    Account --> BackendData[\"OBK Backend data\\npayment + visitor + QR\"]\n    BackendData --> Payment[\"Payment records\\nOBK owns\"]\n    Payment --> ArgentoData[\"Financial processing\\nArgento owns\"]\n    Payment --> FSTicket[\"Ticket + exit status\\nFS/Iviva owns\"]\n\n    BackendData --> Visitor[\"Visitor pass workflow\\nOBK owns\"]\n    Visitor --> FSVisitor[\"Visitor access validity\\nFS owns\"]\n\n    Account --> NotifyData[\"Notification segment + inbox\\nNotification owns\"]\n    Account --> DeleteEvent[\"Permanent delete event\\nKafka/Event Bus\"]\n    DeleteEvent --> NotifyData\n    DeleteEvent --> BMSData[\"BMS cleanup\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-043",
@@ -473,7 +725,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant BMS as BMS\n    participant FS as FS/Iviva\n    participant BZB as BZB\n\n    U->>App: Start sign-in\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Identity result\n    App->>IAM: POST /auth/login\n    IAM->>SSO: POST /oauth/token\n    alt Credential invalid\n        SSO-->>IAM: Auth error\n        IAM-->>App: Login failed\n    else Credential valid\n        SSO-->>IAM: Token + Public SSO ID\n        IAM->>IAM: Resolve Account ID + persona\n        IAM->>BMS: Non-blocking member check / Workplace refresh\n        alt BMS unavailable or timeout\n            BMS-->>IAM: No refresh result\n            IAM->>IAM: Continue login; use existing Workplace permission if detectable\n        else Member found and eligible\n            BMS-->>IAM: Member data / fs identity candidate\n            IAM->>IAM: Create/update fs external identity and persona if allowed\n        else No member or rare bound-to-other-account\n            BMS-->>IAM: No member / conflict-like state\n            IAM->>IAM: Continue login; mark support/audit path if conflict-like\n        end\n        IAM->>FS: Resolve fs external identity metadata\n        alt FS metadata missing\n            FS-->>IAM: No workplace entitlement\n            IAM-->>App: Workplace unavailable / support path\n        else FS metadata valid\n            FS-->>IAM: Tower, floor, FS member UID\n            IAM->>BZB: Lookup retail identity\n            alt BZB conflict\n                BZB-->>IAM: Different Account ID conflict\n                IAM-->>App: Conflict resolution required\n            else Match or no match\n                BZB-->>IAM: Retail match result\n                IAM-->>App: Account ID + persona entitlements\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant BMS as BMS\n    participant FS as FS/Iviva\n    participant BZB as BZB\n\n    U->>App: Start sign-in\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Identity result\n    App->>IAM: POST /auth/login\n    IAM->>SSO: POST /oauth/token\n    alt Credential invalid\n        SSO-->>IAM: Auth error\n        IAM-->>App: Login failed\n    else Credential valid\n        SSO-->>IAM: Token + Public SSO ID\n        IAM->>IAM: Resolve Account ID + persona\n        IAM->>BMS: Non-blocking member check / Workplace refresh\n        alt BMS unavailable or timeout\n            BMS-->>IAM: No refresh result\n            IAM->>IAM: Continue login; use existing Workplace permission if detectable\n        else Member found and eligible\n            BMS-->>IAM: Member data / fs identity candidate\n            IAM->>IAM: Create/update fs external identity and persona if allowed\n        else No member or rare bound-to-other-account\n            BMS-->>IAM: No member / conflict-like state\n            IAM->>IAM: Continue login; mark support/audit path if conflict-like\n        end\n        IAM->>FS: Resolve fs external identity metadata\n        alt FS metadata missing\n            FS-->>IAM: No workplace entitlement\n            IAM-->>App: Workplace unavailable / support path\n        else FS metadata valid\n            FS-->>IAM: Tower, floor, FS member UID\n            IAM->>BZB: Lookup retail identity\n            alt BZB conflict\n                BZB-->>IAM: Different Account ID conflict\n                IAM-->>App: Conflict resolution required\n            else Match or no match\n                BZB-->>IAM: Retail match result\n                IAM-->>App: Account ID + persona entitlements\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, BMS, FS, BZB",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-044",
@@ -484,7 +742,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant FS as FS/Iviva\n    participant BZB as BZB\n\n    U->>App: Start registration\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Existing/new identity result\n    App->>IAM: Submit registration profile\n    IAM->>SSO: Register / validate credential flow\n    alt SSO fails\n        SSO-->>IAM: Registration error\n        IAM-->>App: Registration failed\n    else SSO accepted\n        SSO-->>IAM: Public SSO ID / token context\n        IAM->>FS: Validate workplace eligibility\n        alt FS rejects\n            FS-->>IAM: No workplace authorization\n            IAM-->>App: Onboarding blocked / cleanup required\n        else FS authorizes\n            FS-->>IAM: FS member UID + tower + floors\n            IAM->>BZB: Match retail identity\n            alt BZB conflict\n                BZB-->>IAM: Conflict\n                IAM-->>App: Merge/conflict resolution required\n            else Match or no match\n                BZB-->>IAM: Match result\n                IAM->>IAM: Create/update Account ID + profile + persona\n                IAM-->>App: Onboarding result\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant FS as FS/Iviva\n    participant BZB as BZB\n\n    U->>App: Start registration\n    App->>IAM: GET /identity/validate\n    IAM->>SSO: POST /user/exists\n    SSO-->>IAM: Existing/new identity result\n    App->>IAM: Submit registration profile\n    IAM->>SSO: Register / validate credential flow\n    alt SSO fails\n        SSO-->>IAM: Registration error\n        IAM-->>App: Registration failed\n    else SSO accepted\n        SSO-->>IAM: Public SSO ID / token context\n        IAM->>FS: Validate workplace eligibility\n        alt FS rejects\n            FS-->>IAM: No workplace authorization\n            IAM-->>App: Onboarding blocked / cleanup required\n        else FS authorizes\n            FS-->>IAM: FS member UID + tower + floors\n            IAM->>BZB: Match retail identity\n            alt BZB conflict\n                BZB-->>IAM: Conflict\n                IAM-->>App: Merge/conflict resolution required\n            else Match or no match\n                BZB-->>IAM: Match result\n                IAM->>IAM: Create/update Account ID + profile + persona\n                IAM-->>App: Onboarding result\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, FS, BZB",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-045",
@@ -495,7 +759,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant BZB as BZB\n    participant FS as FS/Iviva\n\n    App->>IAM: Request account matching\n    IAM->>SSO: POST /oauth/token with throwOnConflict: true\n    SSO-->>IAM: Conflict state or token result\n    IAM->>BZB: Match email/phone\n    alt Different Account IDs found\n        BZB-->>IAM: Conflict\n        IAM-->>App: User must resolve conflict\n    else Same Account ID\n        BZB-->>IAM: Matching identity\n        IAM-->>App: Merge prompt / information\n        App->>IAM: Proceed with merge path\n        IAM->>FS: Sync workplace permissions to surviving account\n        IAM->>BZB: Sync surviving Account ID\n        IAM->>IAM: Persist persona entitlements\n        alt Merge persistence failed\n            IAM-->>App: Support required\n        else Merge complete\n            IAM-->>App: Updated Account ID + personas\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant BZB as BZB\n    participant FS as FS/Iviva\n\n    App->>IAM: Request account matching\n    IAM->>SSO: POST /oauth/token with throwOnConflict: true\n    SSO-->>IAM: Conflict state or token result\n    IAM->>BZB: Match email/phone\n    alt Different Account IDs found\n        BZB-->>IAM: Conflict\n        IAM-->>App: User must resolve conflict\n    else Same Account ID\n        BZB-->>IAM: Matching identity\n        IAM-->>App: Merge prompt / information\n        App->>IAM: Proceed with merge path\n        IAM->>FS: Sync workplace permissions to surviving account\n        IAM->>BZB: Sync surviving Account ID\n        IAM->>IAM: Persist persona entitlements\n        alt Merge persistence failed\n            IAM-->>App: Support required\n        else Merge complete\n            IAM-->>App: Updated Account ID + personas\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "App, IAM, SSO, BZB, FS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-046",
@@ -506,7 +776,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Pay as Argento\n\n    U->>App: Open parking payment\n    App->>IAM: Validate Account ID/session\n    IAM-->>App: Valid identity\n    App->>BE: Request ticket/payment context\n    BE->>FS: Retrieve ticket + payable amount\n    alt Ticket not payable\n        FS-->>BE: Ticket error\n        BE-->>App: Payment unavailable\n    else Ticket payable\n        FS-->>BE: Ticket ID + amount\n        BE->>BE: Create payment record\n        BE->>Pay: Initiate PromptPay\n        alt Payment initiation failed\n            Pay-->>BE: Error\n            BE-->>App: Payment unavailable\n        else Payment initiated\n            Pay-->>BE: QR/payment reference\n            BE-->>App: Payment QR\n            Pay-->>BE: Payment callback\n            BE->>BE: Validate callback + update payment record\n            BE->>FS: Sync paid status\n            alt FS sync failed\n                FS-->>BE: Sync error\n                BE->>BE: Queue reconciliation\n                BE-->>App: Payment pending FS sync\n            else FS sync successful\n                FS-->>BE: Ticket/exit status updated\n                BE-->>App: Payment completed\n            end\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Pay as Argento\n\n    U->>App: Open parking payment\n    App->>IAM: Validate Account ID/session\n    IAM-->>App: Valid identity\n    App->>BE: Request ticket/payment context\n    BE->>FS: Retrieve ticket + payable amount\n    alt Ticket not payable\n        FS-->>BE: Ticket error\n        BE-->>App: Payment unavailable\n    else Ticket payable\n        FS-->>BE: Ticket ID + amount\n        BE->>BE: Create payment record\n        BE->>Pay: Initiate PromptPay\n        alt Payment initiation failed\n            Pay-->>BE: Error\n            BE-->>App: Payment unavailable\n        else Payment initiated\n            Pay-->>BE: QR/payment reference\n            BE-->>App: Payment QR\n            Pay-->>BE: Payment callback\n            BE->>BE: Validate callback + update payment record\n            BE->>FS: Sync paid status\n            alt FS sync failed\n                FS-->>BE: Sync error\n                BE->>BE: Queue reconciliation\n                BE-->>App: Payment pending FS sync\n            else FS sync successful\n                FS-->>BE: Ticket/exit status updated\n                BE-->>App: Payment completed\n            end\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Pay",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-047",
@@ -517,7 +793,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant Host as Host User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant HW as Turnstile/Elevator\n    participant CMS as CMS\n\n    Host->>App: Manage visitor pass\n    App->>IAM: Validate host Account ID + persona\n    IAM-->>App: Host context\n    App->>BE: Create/delete/reactivate visitor pass\n    BE->>BE: Persist visitor pass record\n    BE->>FS: Register/update visitor\n    alt FS registration failed\n        FS-->>BE: Error\n        BE-->>App: Visitor pass pending/failed\n    else FS registration successful\n        FS-->>BE: Access validity window\n        BE->>BE: Generate visitor QR\n        BE-->>App: Visitor pass + QR\n        CMS-.->BE: Optional visibility\n        HW->>FS: Validate QR online\n        FS-->>HW: Permit or deny\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant Host as Host User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant HW as Turnstile/Elevator\n    participant CMS as CMS\n\n    Host->>App: Manage visitor pass\n    App->>IAM: Validate host Account ID + persona\n    IAM-->>App: Host context\n    App->>BE: Create/delete/reactivate visitor pass\n    BE->>BE: Persist visitor pass record\n    BE->>FS: Register/update visitor\n    alt FS registration failed\n        FS-->>BE: Error\n        BE-->>App: Visitor pass pending/failed\n    else FS registration successful\n        FS-->>BE: Access validity window\n        BE->>BE: Generate visitor QR\n        BE-->>App: Visitor pass + QR\n        CMS-.->BE: Optional visibility\n        HW->>FS: Validate QR online\n        FS-->>HW: Permit or deny\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Host, App, IAM, BE, FS, HW, CMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-048",
@@ -528,7 +810,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Lift as Elevator\n\n    U->>App: Request elevator\n    App->>IAM: Validate session + persona + tower\n    IAM-->>App: Identity context\n    App->>BE: Submit elevator request\n    BE->>FS: Validate floor/tower and call elevator\n    alt Unauthorized\n        FS-->>BE: Denied\n        BE-->>App: Access denied\n    else Authorized\n        FS->>Lift: Execute elevator command\n        alt Timeout or hardware error\n            Lift--xFS: No response / error\n            FS-->>BE: Command failed\n            BE-->>App: Elevator unavailable\n        else Command accepted\n            Lift-->>FS: Assignment/status\n            FS-->>BE: Success/status\n            BE-->>App: Elevator status\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Lift as Elevator\n\n    U->>App: Request elevator\n    App->>IAM: Validate session + persona + tower\n    IAM-->>App: Identity context\n    App->>BE: Submit elevator request\n    BE->>FS: Validate floor/tower and call elevator\n    alt Unauthorized\n        FS-->>BE: Denied\n        BE-->>App: Access denied\n    else Authorized\n        FS->>Lift: Execute elevator command\n        alt Timeout or hardware error\n            Lift--xFS: No response / error\n            FS-->>BE: Command failed\n            BE-->>App: Elevator unavailable\n        else Command accepted\n            Lift-->>FS: Assignment/status\n            FS-->>BE: Success/status\n            BE-->>App: Elevator status\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Lift",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-049",
@@ -539,7 +827,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Gate as Turnstile\n\n    U->>App: Open My QR\n    App->>IAM: Validate Account ID + persona\n    IAM-->>App: Identity context\n    App->>BE: Request QR\n    BE->>FS: Confirm current access scope\n    alt Not authorized\n        FS-->>BE: Access not permitted\n        BE-->>App: QR unavailable\n    else Authorized\n        FS-->>BE: Validity scope\n        BE->>BE: Generate QR\n        BE-->>App: QR\n        U->>Gate: Present QR\n        Gate->>FS: Validate QR online\n        alt FS unavailable\n            FS--xGate: Timeout\n            Gate-->>U: Apply outage policy\n        else Access denied\n            FS-->>Gate: Deny\n            Gate-->>U: Deny access\n            FS->>FS: Record denied audit\n        else Access approved\n            FS-->>Gate: Approve\n            Gate-->>U: Open gate\n            FS->>FS: Record approved audit\n        end\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant BE as OBK Backend\n    participant FS as FS/Iviva\n    participant Gate as Turnstile\n\n    U->>App: Open My QR\n    App->>IAM: Validate Account ID + persona\n    IAM-->>App: Identity context\n    App->>BE: Request QR\n    BE->>FS: Confirm current access scope\n    alt Not authorized\n        FS-->>BE: Access not permitted\n        BE-->>App: QR unavailable\n    else Authorized\n        FS-->>BE: Validity scope\n        BE->>BE: Generate QR\n        BE-->>App: QR\n        U->>Gate: Present QR\n        Gate->>FS: Validate QR online\n        alt FS unavailable\n            FS--xGate: Timeout\n            Gate-->>U: Apply outage policy\n        else Access denied\n            FS-->>Gate: Deny\n            Gate-->>U: Deny access\n            FS->>FS: Record denied audit\n        else Access approved\n            FS-->>Gate: Approve\n            Gate-->>U: Open gate\n            FS->>FS: Record approved audit\n        end\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, BE, FS, Gate",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-050",
@@ -550,7 +844,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant FS as FS/Iviva\n    participant BZB as BZB\n    participant Kafka as Kafka/Event Bus\n    participant Notify as Notification\n    participant BMS as BMS\n\n    U->>App: Request account deletion\n    App->>IAM: Submit delete request\n    IAM->>SSO: Update authentication/account state\n    IAM->>FS: Sync entitlement/account status\n    IAM->>BZB: Sync retail linkage/status if applicable\n    IAM->>IAM: Apply soft/hard delete state\n    alt Permanent delete reached\n        IAM->>Kafka: Publish ob-iam.account.permanent-deleted\n        Kafka->>Notify: Cleanup tokens/inbox data\n        Kafka->>BMS: Cleanup downstream data\n        alt Consumer failure\n            Notify--xKafka: Failure or no confirmation\n            BMS--xKafka: Failure or no confirmation\n            Kafka->>Kafka: Retry / dead-letter behavior open\n        else Cleanup consumed\n            Notify-->>Kafka: Cleanup result\n            BMS-->>Kafka: Cleanup result\n        end\n    else Soft delete period\n        IAM-->>App: Account deletion state\n    end"
+      "mermaid": "sequenceDiagram\n    autonumber\n    participant U as User\n    participant App as Mobile App\n    participant IAM as IAM\n    participant SSO as SSO\n    participant FS as FS/Iviva\n    participant BZB as BZB\n    participant Kafka as Kafka/Event Bus\n    participant Notify as Notification\n    participant BMS as BMS\n\n    U->>App: Request account deletion\n    App->>IAM: Submit delete request\n    IAM->>SSO: Update authentication/account state\n    IAM->>FS: Sync entitlement/account status\n    IAM->>BZB: Sync retail linkage/status if applicable\n    IAM->>IAM: Apply soft/hard delete state\n    alt Permanent delete reached\n        IAM->>Kafka: Publish ob-iam.account.permanent-deleted\n        Kafka->>Notify: Cleanup tokens/inbox data\n        Kafka->>BMS: Cleanup downstream data\n        alt Consumer failure\n            Notify--xKafka: Failure or no confirmation\n            BMS--xKafka: Failure or no confirmation\n            Kafka->>Kafka: Retry / dead-letter behavior open\n        else Cleanup consumed\n            Notify-->>Kafka: Cleanup result\n            BMS-->>Kafka: Cleanup result\n        end\n    else Soft delete period\n        IAM-->>App: Account deletion state\n    end",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "U, App, IAM, SSO, FS, BZB, Kafka, Notify, BMS",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     },
     {
       "id": "DGM-051",
@@ -561,7 +861,13 @@
       "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
       "lastUpdated": "2026-06-11",
       "confirmationStatus": "Source Mermaid detected; rendered as-is, no content invented.",
-      "mermaid": "flowchart LR\n    R1[\"Missing named owners\"] --> Impact[\"Dependency tracking risk\"]\n    R2[\"Missing API error catalogs\"] --> Impact2[\"Inconsistent fallback/support\"]\n    R3[\"Missing environments\"] --> Impact3[\"SIT/UAT/PVT planning blocker\"]\n    R4[\"FS online dependency\"] --> Impact4[\"Physical access outage risk\"]\n    R5[\"PII/consent gaps\"] --> Impact5[\"Compliance risk\"]\n    R6[\"Payment reconciliation open\"] --> Impact6[\"Paid-but-unsynced parking risk\"]\n    R7[\"CMS seed account risk\"] --> Impact7[\"Data isolation risk\"]\n    R8[\"Missing proposal source\"] --> Impact8[\"Traceability risk\"]"
+      "mermaid": "flowchart LR\n    R1[\"Missing named owners\"] --> Impact[\"Dependency tracking risk\"]\n    R2[\"Missing API error catalogs\"] --> Impact2[\"Inconsistent fallback/support\"]\n    R3[\"Missing environments\"] --> Impact3[\"SIT/UAT/PVT planning blocker\"]\n    R4[\"FS online dependency\"] --> Impact4[\"Physical access outage risk\"]\n    R5[\"PII/consent gaps\"] --> Impact5[\"Compliance risk\"]\n    R6[\"Payment reconciliation open\"] --> Impact6[\"Paid-but-unsynced parking risk\"]\n    R7[\"CMS seed account risk\"] --> Impact7[\"Data isolation risk\"]\n    R8[\"Missing proposal source\"] --> Impact8[\"Traceability risk\"]",
+      "purpose": "Visual reference detected from repository source artifact.",
+      "description": "Diagram context is derived from the source artifact title and detected Mermaid block. No additional business or architecture decision is created by the portal.",
+      "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
+      "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
+      "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
     }
   ]
 }

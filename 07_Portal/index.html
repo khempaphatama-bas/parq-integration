@@ -3,79 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PARQ Integration Portal</title>
+  <title>PARQ Project Hub</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="topbar">
-    <h1>PARQ Integration Portal</h1>
-    <p>Stakeholder-friendly navigation for Product, Business, Vendor, and Management teams.</p>
+    <h1>PARQ Project Hub</h1>
+    <p>Project Command Center for Product, Design, Development, QA, vendors, and management.</p>
   </header>
-  <nav class="nav">
-    <a class="active" href="index.html">Overview</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="deliverables.html">Deliverables</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="open-questions.html">Open Questions</a>
-    <a href="risks.html">Risks</a>
-    <a href="dependencies.html">Dependencies</a>
-  </nav>
+  <nav class="nav"></nav>
   <main>
     <section class="page-meta">
       <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
       <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
     </section>
-    <section class="card">
-      <h2 id="projectName">PARQ Integration to One Bangkok Application</h2>
-      <p id="summary">Loading project summary...</p>
-      <p><strong>Audience:</strong> <span id="audience"></span></p>
+
+    <section class="hero-grid">
+      <article class="hero-panel">
+        <h2 id="projectTitle">PARQ Integration</h2>
+        <p id="projectOverview"></p>
+        <h3>Business Context</h3>
+        <p id="businessContext"></p>
+        <h3>Why This Exists</h3>
+        <p id="projectWhy"></p>
+      </article>
+      <aside class="hero-panel">
+        <h3>Current Readiness</h3>
+        <p id="statusNote"></p>
+        <div id="readinessBadge"></div>
+        <div class="subnav">
+          <a href="project-controls.html">Project Controls</a>
+          <a href="work-by-role.html">Work by Role</a>
+          <a href="architecture-diagrams.html">Diagrams</a>
+        </div>
+      </aside>
     </section>
-    <h2 class="section-title">Status by Area</h2>
-    <section class="grid cards-3" id="areas"></section>
-    <h2 class="section-title">Portal Pages</h2>
-    <section class="grid cards-4">
-      <article class="card"><h3>Dashboard</h3><p>Executive counts and highlights.</p><a href="dashboard.html">Open dashboard</a></article>
-      <article class="card"><h3>Deliverables</h3><p>Artifact status, owners, and source links.</p><a href="deliverables.html">Open deliverables</a></article>
-      <article class="card"><h3>Open Questions</h3><p>Decision and information gaps.</p><a href="open-questions.html">Open questions</a></article>
-      <article class="card"><h3>Dependencies</h3><p>Vendor and system readiness view.</p><a href="dependencies.html">Open dependencies</a></article>
-    </section>
-    <div class="footer">Static portal. Data source: <code>07_Portal/data/project-status.json</code>.</div>
+
+    <section class="timeline-strip" id="timeline"></section>
+
+    <h2 class="section-title">Current Readiness</h2>
+    <section class="grid cards-5" id="readinessCards"></section>
+
+    <h2 class="section-title">Next Actions</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Action</th><th>Owner</th><th>Status</th><th>Related Open Question</th><th>Source</th></tr></thead>
+        <tbody id="nextActions"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Current Blockers</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Blocker</th><th>Owner</th><th>Status</th><th>Related System</th><th>Source</th></tr></thead>
+        <tbody id="blockers"></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Key Documents</h2>
+    <section class="grid cards-4" id="keyDocs"></section>
+
+    <h2 class="section-title">Role-based Quick Access</h2>
+    <section class="grid cards-4" id="roleAccess"></section>
+
+    <div class="footer">Portal v2 is a working layer generated from repository source artifacts. It does not create or approve requirements.</div>
   </main>
   <script src="assets/app.js"></script>
   <script>
-    const statusClass = value => {
-      const v = String(value || '').toLowerCase();
-      if (v.includes('blocked') || v.includes('unavailable') || v.includes('high')) return 'status-blocked';
-      if (v.includes('open') || v.includes('draft') || v.includes('pending') || v.includes('ready')) return 'status-open';
-      if (v.includes('reference')) return 'status-reference';
-      return 'status-current';
-    };
-    const areaClass = area => {
-      const v = String(area || '').toLowerCase();
-      if (v.includes('source')) return 'area-source';
-      if (v.includes('discovery')) return 'area-discovery';
-      if (v.includes('architecture')) return 'area-architecture';
-      if (v.includes('delivery')) return 'area-delivery';
-      if (v.includes('qa')) return 'area-qa';
-      return '';
-    };
-    Portal.loadJson('data/project-status.json')
-      .then(data => {
-        document.getElementById('lastUpdated').textContent = data.lastUpdated;
-        document.getElementById('sourceArtifact').href = data.sourceArtifact;
-        document.getElementById('projectName').textContent = data.projectName;
-        document.getElementById('summary').textContent = data.summary;
-        document.getElementById('audience').textContent = data.audience.join(', ');
-        document.getElementById('areas').innerHTML = data.areas.map(item => `
-          <article class="card ${areaClass(item.area)}">
-            <h3>${item.area}</h3>
-            <p>${Portal.badge(item.status)}</p>
-            <p><strong>Owner:</strong> ${item.owner}</p>
-            <p>${item.notes}</p>
-            <a href="${item.source}">Source artifact</a>
-          </article>
-        `).join('');
-      });
+    Promise.all([
+      Portal.loadJson('data/project-hub.json'),
+      Portal.loadJson('data/project-controls.json')
+    ]).then(([data, controls]) => {
+      Portal.applyMeta(data);
+      const p = data.project;
+      document.getElementById('projectTitle').textContent = p.title;
+      document.getElementById('projectOverview').textContent = p.overview;
+      document.getElementById('businessContext').textContent = p.businessContext;
+      document.getElementById('projectWhy').textContent = p.why;
+      document.getElementById('statusNote').textContent = p.statusNote;
+      document.getElementById('readinessBadge').innerHTML = Portal.badge(p.readiness);
+      document.getElementById('timeline').innerHTML = [
+        ['Current Phase', p.currentPhase],
+        ['Next Phase', p.nextPhase],
+        ['Current Gate', p.currentGate]
+      ].map(([label, value]) => `<article class="timeline-item"><div class="meta-label">${label}</div><strong>${Portal.escapeHtml(value)}</strong></article>`).join('');
+      document.getElementById('readinessCards').innerHTML = data.readinessCards.map(card => `<a class="card card-link" href="${card.href}"><h3>${Portal.escapeHtml(card.label)}</h3>${Portal.badge(card.status)}<p>${Portal.escapeHtml(card.detail)}</p></a>`).join('');
+      document.getElementById('nextActions').innerHTML = data.nextActions.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedOpenQuestion)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
+      const blockers = controls.items.filter(i => i.type === 'Blocker');
+      document.getElementById('blockers').innerHTML = blockers.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedSystem)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
+      document.getElementById('keyDocs').innerHTML = data.keyDocuments.map(doc => `<a class="card card-link" href="${doc.source}"><h3>${Portal.escapeHtml(doc.name)}</h3>${Portal.badge(Portal.standardStatus(doc.status))}<p>${Portal.escapeHtml(doc.notes)}</p><p class="small">Owner: ${Portal.escapeHtml(doc.owner)} · ID: ${Portal.escapeHtml(doc.id)}</p></a>`).join('');
+      document.getElementById('roleAccess').innerHTML = data.roleQuickAccess.map(role => `<a class="card card-link" href="${role.href}"><h3>${Portal.escapeHtml(role.role)}</h3><p>${Portal.escapeHtml(role.summary)}</p></a>`).join('');
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,169 @@
+{
+  "lastUpdated": "2026-06-11",
+  "sourceArtifact": "../MASTER_INDEX.md",
+  "roles": [
+    {
+      "id": "designer",
+      "role": "Designer",
+      "purpose": "Filtered entry point for user flow, business-rule source references, and open questions.",
+      "links": [
+        {
+          "label": "User Flow",
+          "artifact": "PARQ-SOT-001",
+          "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+          "status": "Approved / Source of Truth",
+          "relatedUserFlow": "UF-001 to UF-022",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Not specified"
+        },
+        {
+          "label": "Business Rules",
+          "artifact": "PARQ-UX-001 / PARQ-ARCH-001",
+          "sourceArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+          "status": "Draft",
+          "relatedUserFlow": "Not confirmed",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Confirmation required where rules are not explicit"
+        },
+        {
+          "label": "Open Questions",
+          "artifact": "Project Controls",
+          "sourceArtifact": "project-controls.html?type=Open%20Question",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Multiple"
+        }
+      ]
+    },
+    {
+      "id": "developer",
+      "role": "Developer",
+      "purpose": "Filtered entry point for API inventory, sequence diagrams, data ownership, and technical dependencies.",
+      "links": [
+        {
+          "label": "API Inventory",
+          "artifact": "PARQ-ARCH-004 / PARQ-ARCH-005",
+          "sourceArtifact": "../03_Architecture/PARQ_Data_API_Context_Boundary_Vendor_Matrix.md",
+          "status": "Current Working Baseline",
+          "relatedUserFlow": "UF-001 to UF-018",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "OQ-API-001"
+        },
+        {
+          "label": "Sequence Diagram",
+          "artifact": "Architecture Diagrams",
+          "sourceArtifact": "architecture-diagrams.html?type=Sequence%20Diagram",
+          "status": "Current Working Baseline",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "CONF-002, CONF-004, CONF-005"
+        },
+        {
+          "label": "Data Ownership",
+          "artifact": "PARQ-ARCH-004",
+          "sourceArtifact": "../03_Architecture/PARQ_Data_API_Context_Boundary_Vendor_Matrix.md",
+          "status": "Current Working Baseline",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "OQ-PII-001"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "role": "QA",
+      "purpose": "Filtered entry point for user-story source references, acceptance criteria inputs, SIT, and UAT readiness.",
+      "links": [
+        {
+          "label": "User Story",
+          "artifact": "Source/Discovery references",
+          "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "MOL-001 pending in task board"
+        },
+        {
+          "label": "Acceptance Criteria",
+          "artifact": "Molly output pending",
+          "sourceArtifact": "../TASK_BOARD.md",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "MOL-001"
+        },
+        {
+          "label": "SIT",
+          "artifact": "QA planning input",
+          "sourceArtifact": "../TASK_BOARD.md",
+          "status": "Blocked",
+          "relatedUserFlow": "UF-018",
+          "relatedSystem": "Environment Readiness",
+          "relatedOpenQuestion": "OQ-ENV-001"
+        },
+        {
+          "label": "UAT",
+          "artifact": "QA planning input",
+          "sourceArtifact": "../TASK_BOARD.md",
+          "status": "Blocked",
+          "relatedUserFlow": "UF-018",
+          "relatedSystem": "Environment Readiness",
+          "relatedOpenQuestion": "OQ-ENV-001"
+        }
+      ]
+    },
+    {
+      "id": "product-team",
+      "role": "Product Team",
+      "purpose": "Filtered entry point for overview, risks, dependencies, open questions, and deliverables.",
+      "links": [
+        {
+          "label": "Overview",
+          "artifact": "Project Hub",
+          "sourceArtifact": "project.html",
+          "status": "Current Working Baseline",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Multiple"
+        },
+        {
+          "label": "Risks",
+          "artifact": "Project Controls",
+          "sourceArtifact": "project-controls.html?type=Risk",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Multiple"
+        },
+        {
+          "label": "Dependencies",
+          "artifact": "Project Controls",
+          "sourceArtifact": "project-controls.html?type=Dependency",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "OQ-API-001"
+        },
+        {
+          "label": "Open Questions",
+          "artifact": "Project Controls",
+          "sourceArtifact": "project-controls.html?type=Open%20Question",
+          "status": "Needs Decision",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Multiple"
+        },
+        {
+          "label": "Deliverables",
+          "artifact": "Deliverables data",
+          "sourceArtifact": "deliverables.html",
+          "status": "Current Working Baseline",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "Not specified"
+        }
+      ]
+    }
+  ]
+}

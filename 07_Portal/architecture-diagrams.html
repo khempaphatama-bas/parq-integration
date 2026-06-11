@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header class="topbar"><h1>Architecture Diagrams</h1><p>Mermaid diagrams detected from repository source artifacts and rendered without changing their content.</p></header>
+  <header class="topbar"><h1>Architecture Diagrams</h1><p>Diagram context first, rendered Mermaid second. Source content is preserved.</p></header>
   <nav class="nav"></nav>
   <main>
     <section class="page-meta">
@@ -28,13 +28,18 @@
     function renderDiagramCard(d) {
       return `<article class="card diagram-card" data-category="${Portal.escapeHtml(d.category)}" id="${Portal.escapeHtml(d.id)}">
         <h3>${Portal.escapeHtml(d.title)}</h3>
-        <p>
-          ${Portal.badge(d.category)}
-          ${Portal.badge(d.confirmationStatus)}
-        </p>
-        <p><strong>Related User Flow ID:</strong> ${Portal.relatedLinks({userFlowId: d.relatedUserFlowId}) || Portal.escapeHtml(d.relatedUserFlowId)}</p>
-        <p><strong>Source artifact:</strong> ${Portal.sourceLink(d.sourceArtifact, d.sourceFile)}</p>
-        <p><strong>Last updated:</strong> ${Portal.escapeHtml(d.lastUpdated)}</p>
+        <p>${Portal.badge(d.category)} ${Portal.badge(d.diagramStatus || d.confirmationStatus)}</p>
+        <div class="diagram-context">
+          <div class="meta-item"><div class="meta-label">Purpose</div><div class="meta-value">${Portal.escapeHtml(d.purpose)}</div></div>
+          <div class="meta-item"><div class="meta-label">Description</div><div class="meta-value">${Portal.escapeHtml(d.description)}</div></div>
+          <div class="meta-item"><div class="meta-label">Systems Involved</div><div class="meta-value">${Portal.escapeHtml(d.systemsInvolved)}</div></div>
+          <div class="meta-item"><div class="meta-label">Dependencies</div><div class="meta-value">${Portal.escapeHtml(d.dependencies)}</div></div>
+          <div class="meta-item"><div class="meta-label">Related User Flows</div><div class="meta-value">${Portal.relatedLinks({userFlowId: d.relatedUserFlowId}) || Portal.escapeHtml(d.relatedUserFlowId)}</div></div>
+          <div class="meta-item"><div class="meta-label">Open Questions</div><div class="meta-value">${Portal.escapeHtml(d.openQuestions)}</div></div>
+          <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value">${Portal.sourceLink(d.sourceArtifact, d.sourceFile)}</div></div>
+          <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value">${Portal.escapeHtml(d.lastUpdated)}</div></div>
+          <div class="meta-item"><div class="meta-label">Diagram Status</div><div class="meta-value">${Portal.badge(d.diagramStatus || d.confirmationStatus)}</div></div>
+        </div>
         <div class="diagram-frame">
           <pre class="mermaid">${Portal.escapeHtml(d.mermaid)}</pre>
           <details><summary>View source Mermaid</summary><pre class="code-fallback">${Portal.escapeHtml(d.mermaid)}</pre></details>

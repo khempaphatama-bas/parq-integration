@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARQ Project</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar"><h1>Project</h1><p>Project purpose, timeline gate, source index, and controls entry point.</p></header>
+  <nav class="nav"></nav>
+  <main>
+    <section class="page-meta">
+      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+    </section>
+    <section class="hero-grid">
+      <article class="hero-panel">
+        <h2 id="title"></h2>
+        <p id="overview"></p>
+        <p id="why"></p>
+      </article>
+      <aside class="hero-panel">
+        <h3>Project Controls</h3>
+        <p>Use one place for risks, blockers, dependencies, open questions, and confirmations.</p>
+        <div class="subnav">
+          <a href="project-controls.html">All Controls</a>
+          <a href="project-controls.html?type=Risk">Risks</a>
+          <a href="project-controls.html?type=Blocker">Blockers</a>
+          <a href="project-controls.html?type=Dependency">Dependencies</a>
+          <a href="project-controls.html?type=Open%20Question">Open Questions</a>
+          <a href="project-controls.html?type=Confirmation%20Required">Confirmation Required</a>
+        </div>
+      </aside>
+    </section>
+    <section class="timeline-strip" id="timeline"></section>
+    <h2 class="section-title" id="source">Source Index</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Title</th><th>Owner</th><th>Status</th><th>Source Artifact</th><th>Related User Flow</th><th>Related System</th><th>Last Updated</th></tr></thead>
+        <tbody id="sourceRows"></tbody>
+      </table>
+    </div>
+    <div class="footer">Project page uses `project-hub.json` and `deliverables.json`; source artifacts remain the repository files.</div>
+  </main>
+  <script src="assets/app.js"></script>
+  <script>
+    Promise.all([
+      Portal.loadJson('data/project-hub.json'),
+      Portal.loadJson('data/deliverables.json')
+    ]).then(([hub, docs]) => {
+      Portal.applyMeta(hub);
+      document.getElementById('title').textContent = hub.project.title;
+      document.getElementById('overview').textContent = hub.project.overview;
+      document.getElementById('why').textContent = hub.project.why;
+      document.getElementById('timeline').innerHTML = [
+        ['Current Phase', hub.project.currentPhase],
+        ['Next Phase', hub.project.nextPhase],
+        ['Current Gate', hub.project.currentGate]
+      ].map(([label, value]) => `<article class="timeline-item"><div class="meta-label">${label}</div><strong>${Portal.escapeHtml(value)}</strong></article>`).join('');
+      document.getElementById('sourceRows').innerHTML = docs.items.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.name)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(Portal.standardStatus(item.status))}</td><td>${Portal.sourceLink(item.source, 'Open source')}</td><td>${Portal.escapeHtml(item.relatedUserFlowId || 'Not specified')}</td><td>${Portal.escapeHtml(item.relatedSystem || item.area || 'Not specified')}</td><td>${docs.lastUpdated}</td></tr>`).join('');
+    });
+  </script>
+</body>
+</html>
