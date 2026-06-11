@@ -59,7 +59,6 @@ Open questions:
 flowchart LR
     User["PARQ / OBK User"] --> App["One Bangkok Mobile App"]
     Admin["CMS Admin / Operations"] --> CMS["OBK CMS"]
-
     App --> IAM["IAM\nLocal profile + persona"]
     IAM <--> SSO["SSO\nAuthentication + orchestration"]
     IAM <--> BZB["BZB / Buzzee Bee\nRetail identity"]
@@ -77,7 +76,7 @@ flowchart LR
 
     FS <--> Elevator["Elevator"]
     FS <--> Turnstile["Turnstile"]
-    Backend -. Phase 1.5 .-> OCR["TCCT OCR"]
+    Backend -.->|Phase 1.5| OCR["TCCT OCR"]
 ```
 
 Owner: Simon  
@@ -138,7 +137,7 @@ flowchart TB
     Kafka --> BMS
     FS <--> Elevator
     FS <--> Turnstile
-    Backend -. Phase 1.5 .-> OCR
+    Backend -.->|Phase 1.5| OCR
 ```
 
 Owner: Simon  
