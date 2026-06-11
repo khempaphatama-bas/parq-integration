@@ -89,6 +89,18 @@
       "suggestedOwner": "Bas / PARQ Orchestrator",
       "priority": "High",
       "relatedUserFlowId": "Not specified"
+    },
+    {
+      "id": "CONF-DISC-001",
+      "area": "Discovery",
+      "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "sourceFile": "01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "sectionName": "PARQ User Flow Google Sheet source",
+      "reason": "Discovery page should open the approved Google Sheet / Google Drive source instead of forcing an XLSX download, but no approved Google link is present in repository files.",
+      "questionForBas": "Please provide or confirm the approved Google Sheet / Google Drive URL for the PARQ Phase 1 User Flow Index.",
+      "suggestedOwner": "Bas / Product Team",
+      "priority": "High",
+      "relatedUserFlowId": "UF-001 to UF-022"
     }
   ]
 }

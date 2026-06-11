@@ -17,7 +17,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Current Working Baseline"
+      "diagramStatus": "Current Working Baseline",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-002",
@@ -34,7 +37,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Current Working Baseline"
+      "diagramStatus": "Current Working Baseline",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-003",
@@ -51,7 +57,10 @@
       "systemsInvolved": "U, F, I, S, B, E",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Current Working Baseline"
+      "diagramStatus": "Current Working Baseline",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-004",
@@ -68,7 +77,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-005",
@@ -85,7 +97,10 @@
       "systemsInvolved": "Controller, Service, DB, Client",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Current Working Baseline"
+      "diagramStatus": "Current Working Baseline",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-006",
@@ -102,7 +117,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Context Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-007",
@@ -119,7 +137,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-008",
@@ -136,7 +157,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-009",
@@ -153,7 +177,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-010",
@@ -170,7 +197,10 @@
       "systemsInvolved": "BZB / Buzzee Bee",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-011",
@@ -187,7 +217,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-012",
@@ -204,7 +237,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-013",
@@ -221,7 +257,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-014",
@@ -238,7 +277,10 @@
       "systemsInvolved": "CMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified, Journey diagram preserved as source; not converted"
     },
     {
       "id": "DGM-015",
@@ -255,7 +297,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-016",
@@ -272,7 +317,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-017",
@@ -289,7 +337,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-018",
@@ -306,7 +357,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-019",
@@ -323,7 +377,10 @@
       "systemsInvolved": "Turnstile System",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-020",
@@ -340,7 +397,10 @@
       "systemsInvolved": "Elevator System",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-021",
@@ -357,7 +417,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-022",
@@ -374,7 +437,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-023",
@@ -391,7 +457,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-024",
@@ -408,7 +477,10 @@
       "systemsInvolved": "Notification Infrastructure",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-025",
@@ -425,7 +497,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-026",
@@ -442,7 +517,10 @@
       "systemsInvolved": "BMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Context Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-027",
@@ -459,7 +537,10 @@
       "systemsInvolved": "BMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-028",
@@ -476,7 +557,10 @@
       "systemsInvolved": "BMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-029",
@@ -493,7 +577,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Context Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata"
     },
     {
       "id": "DGM-030",
@@ -510,7 +597,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "System Boundary",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-031",
@@ -527,7 +617,10 @@
       "systemsInvolved": "U, App, IAM, SSO, BMS, FS, BZB",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-032",
@@ -544,7 +637,10 @@
       "systemsInvolved": "U, App, IAM, SSO, BZB, FS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-033",
@@ -561,7 +657,10 @@
       "systemsInvolved": "U, App, IAM, SSO, FS, BZB",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-034",
@@ -578,7 +677,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Pay",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-035",
@@ -595,7 +697,10 @@
       "systemsInvolved": "Host, App, IAM, BE, FS, HW, CMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-036",
@@ -612,7 +717,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Lift",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-037",
@@ -629,7 +737,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Gate",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "No portal-side risk flag"
     },
     {
       "id": "DGM-038",
@@ -646,7 +757,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-039",
@@ -663,7 +777,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Context Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-040",
@@ -680,7 +797,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "System Boundary",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-041",
@@ -697,7 +817,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata"
     },
     {
       "id": "DGM-042",
@@ -714,7 +837,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     },
     {
       "id": "DGM-043",
@@ -731,7 +857,10 @@
       "systemsInvolved": "U, App, IAM, SSO, BMS, FS, BZB",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-044",
@@ -748,7 +877,10 @@
       "systemsInvolved": "U, App, IAM, SSO, FS, BZB",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-045",
@@ -765,7 +897,10 @@
       "systemsInvolved": "App, IAM, SSO, BZB, FS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-046",
@@ -782,7 +917,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Pay",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-047",
@@ -799,7 +937,10 @@
       "systemsInvolved": "Host, App, IAM, BE, FS, HW, CMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-048",
@@ -816,7 +957,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Lift",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-049",
@@ -833,7 +977,10 @@
       "systemsInvolved": "U, App, IAM, BE, FS, Gate",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-050",
@@ -850,7 +997,10 @@
       "systemsInvolved": "U, App, IAM, SSO, FS, BZB, Kafka, Notify, BMS",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Sequence Diagram",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Related user flow not specified"
     },
     {
       "id": "DGM-051",
@@ -867,7 +1017,10 @@
       "systemsInvolved": "Not confirmed in source metadata; see confirmation requests if context is unclear.",
       "dependencies": "Refer to Project Controls and source artifact for confirmed dependency details.",
       "openQuestions": "See Project Controls for related open questions; diagram-specific gaps are tracked in Confirmation Required.",
-      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented."
+      "diagramStatus": "Source Mermaid detected; rendered as-is, no content invented.",
+      "diagramType": "Data Flow",
+      "validationStatus": "Portal syntax normalized / runtime validated in browser",
+      "riskFlags": "Systems not confirmed in metadata, Related user flow not specified"
     }
   ]
 }

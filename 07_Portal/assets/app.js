@@ -116,6 +116,11 @@ const Portal = (() => {
     if (source && data.sourceArtifact) source.outerHTML = sourceLink(data.sourceArtifact, "Open Source");
   }
 
+  function compactMeta(data) {
+    const source = data.sourceArtifact ? sourceLink(data.sourceArtifact, "Open Source") : "";
+    return `<div class="compact-meta"><span>Last Updated: ${escapeHtml(data.lastUpdated || "Not set")}</span>${source}</div>`;
+  }
+
   function relatedLinks({ feature, system, artifact, userFlowId }) {
     const links = [];
     if (userFlowId && userFlowId !== "Not specified") {
@@ -146,5 +151,5 @@ const Portal = (() => {
 
   document.addEventListener("DOMContentLoaded", renderNav);
 
-  return { badge, escapeHtml, sourceLink, loadJson, applyMeta, relatedLinks, tableRows, filterByQuery, standardStatus };
+  return { badge, escapeHtml, sourceLink, loadJson, applyMeta, compactMeta, relatedLinks, tableRows, filterByQuery, standardStatus };
 })();

@@ -721,6 +721,21 @@
       "lastUpdated": "2026-06-11",
       "detail": "Proposal PDF is logged as unavailable.",
       "action": "Upload/link proposal or formally accept unavailable status."
+    },
+    {
+      "id": "CONF-DISC-001",
+      "type": "Confirmation Required",
+      "title": "Please provide or confirm the approved Google Sheet / Google Drive URL for the PARQ Phase 1 User Flow Index.",
+      "owner": "Bas / Product Team",
+      "status": "Needs Decision",
+      "priority": "High",
+      "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "relatedUserFlow": "UF-001 to UF-022",
+      "relatedSystem": "Discovery",
+      "relatedOpenQuestion": "CONF-DISC-001",
+      "lastUpdated": "2026-06-11",
+      "detail": "Discovery page should open the approved Google Sheet / Google Drive source instead of forcing an XLSX download, but no approved Google link is present in repository files.",
+      "action": "Ask Bas to provide the approved Google Sheet / Drive URL before linking Discovery User Flow directly."
     }
   ]
 }

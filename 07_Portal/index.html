@@ -13,22 +13,15 @@
   </header>
   <nav class="nav"></nav>
   <main>
-    <section class="page-meta">
-      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/blob/main/MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
-    </section>
-
     <section class="hero-grid">
-      <article class="hero-panel">
+      <article class="hero-panel mission-hero">
         <h2 id="projectTitle">PARQ Integration</h2>
         <p id="projectOverview"></p>
-        <h3>Business Context</h3>
+        <h3>Project Overview</h3>
         <p id="businessContext"></p>
-        <h3>Why This Exists</h3>
-        <p id="projectWhy"></p>
       </article>
       <aside class="hero-panel">
-        <h3>Current Readiness</h3>
+        <h3>Current Status</h3>
         <p id="statusNote"></p>
         <div id="readinessBadge"></div>
         <div class="subnav">
@@ -41,7 +34,7 @@
 
     <section class="timeline-strip" id="timeline"></section>
 
-    <h2 class="section-title">Current Readiness</h2>
+    <h2 class="section-title">What Needs Attention</h2>
     <section class="grid cards-5" id="readinessCards"></section>
 
     <h2 class="section-title">Next Actions</h2>
@@ -52,21 +45,17 @@
       </table>
     </div>
 
-    <h2 class="section-title">Current Blockers</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>ID</th><th>Blocker</th><th>Owner</th><th>Status</th><th>Related System</th><th>Source</th></tr></thead>
-        <tbody id="blockers"></tbody>
-      </table>
-    </div>
-
-    <h2 class="section-title">Key Documents</h2>
-    <section class="grid cards-4" id="keyDocs"></section>
-
     <h2 class="section-title">Role-based Quick Access</h2>
     <section class="grid cards-4" id="roleAccess"></section>
 
-    <div class="footer">Portal v2 is a working layer generated from repository source artifacts. It does not create or approve requirements.</div>
+    <h2 class="section-title">Project Knowledge</h2>
+    <section class="grid cards-4" id="keyDocs"></section>
+
+    <section class="callout">
+      <strong>Portal Purpose:</strong> Help Product, Designer, Developer, QA, vendors, and management understand status, blockers, next actions, and relevant source artifacts without changing the repository source of truth.
+    </section>
+
+    <div class="footer">Portal v2.1 is a working layer generated from repository source artifacts. It does not create or approve requirements.<div id="compactMeta"></div></div>
   </main>
   <script src="assets/app.js"></script>
   <script>
@@ -74,24 +63,21 @@
       Portal.loadJson('data/project-hub.json'),
       Portal.loadJson('data/project-controls.json')
     ]).then(([data, controls]) => {
-      Portal.applyMeta(data);
       const p = data.project;
       document.getElementById('projectTitle').textContent = p.title;
       document.getElementById('projectOverview').textContent = p.overview;
       document.getElementById('businessContext').textContent = p.businessContext;
-      document.getElementById('projectWhy').textContent = p.why;
       document.getElementById('statusNote').textContent = p.statusNote;
       document.getElementById('readinessBadge').innerHTML = Portal.badge(p.readiness);
+      document.getElementById('compactMeta').innerHTML = Portal.compactMeta(data);
       document.getElementById('timeline').innerHTML = [
         ['Current Phase', p.currentPhase],
         ['Next Phase', p.nextPhase],
         ['Current Gate', p.currentGate]
       ].map(([label, value]) => `<article class="timeline-item"><div class="meta-label">${label}</div><strong>${Portal.escapeHtml(value)}</strong></article>`).join('');
-      document.getElementById('readinessCards').innerHTML = data.readinessCards.map(card => `<a class="card card-link" href="${card.href}"><h3>${Portal.escapeHtml(card.label)}</h3>${Portal.badge(card.status)}<p>${Portal.escapeHtml(card.detail)}</p></a>`).join('');
+      document.getElementById('readinessCards').innerHTML = data.readinessCards.map(card => `<a class="card card-link attention-card" href="${card.href}"><h3>${Portal.escapeHtml(card.label)}</h3>${Portal.badge(card.status)}<p>${Portal.escapeHtml(card.detail)}</p></a>`).join('');
       document.getElementById('nextActions').innerHTML = data.nextActions.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedOpenQuestion)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
-      const blockers = controls.items.filter(i => i.type === 'Blocker');
-      document.getElementById('blockers').innerHTML = blockers.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedSystem)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
-      document.getElementById('keyDocs').innerHTML = data.keyDocuments.map(doc => `<article class="card"><h3>${Portal.escapeHtml(doc.name)}</h3>${Portal.badge(Portal.standardStatus(doc.status))}<p>${Portal.escapeHtml(doc.notes)}</p><p class="small">Owner: ${Portal.escapeHtml(doc.owner)} · ID: ${Portal.escapeHtml(doc.id)}</p>${Portal.sourceLink(doc.source, 'Open Source')}</article>`).join('');
+      document.getElementById('keyDocs').innerHTML = data.keyDocuments.map(doc => `<article class="card knowledge-card"><h3>${Portal.escapeHtml(doc.name)}</h3>${Portal.badge(Portal.standardStatus(doc.status))}<p>${Portal.escapeHtml(doc.notes)}</p><p class="small">Owner: ${Portal.escapeHtml(doc.owner)} · ID: ${Portal.escapeHtml(doc.id)}</p>${Portal.sourceLink(doc.source, 'Open Source')}</article>`).join('');
       document.getElementById('roleAccess').innerHTML = data.roleQuickAccess.map(role => `<a class="card card-link" href="${role.href}"><h3>${Portal.escapeHtml(role.role)}</h3><p>${Portal.escapeHtml(role.summary)}</p></a>`).join('');
     });
   </script>

@@ -5,6 +5,8 @@
   --panel: #ffffff;
   --bg: #f5f7fa;
   --navy: #203864;
+  --warm: #f7efe2;
+  --warm-line: #e6cfaa;
   --teal: #2f7d7e;
   --green: #4f8f45;
   --amber: #b97916;
@@ -36,9 +38,26 @@ a:hover {
 }
 
 .topbar {
-  background: var(--navy);
+  background: linear-gradient(90deg, #203864, #2f6690);
   color: #fff;
   padding: 18px 28px;
+}
+
+.mission-hero {
+  background: linear-gradient(135deg, #fffaf1, #ffffff);
+  border: 1px solid var(--warm-line);
+}
+
+.attention-card {
+  border-left: 4px solid var(--amber);
+}
+
+.status-card {
+  border-left: 4px solid var(--teal);
+}
+
+.knowledge-card {
+  border-left: 4px solid var(--purple);
 }
 
 .topbar h1 {
@@ -103,6 +122,27 @@ main {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 20px;
+}
+
+.compact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 22px;
+}
+
+.compact-meta .source-artifact {
+  min-width: 0;
+}
+
+.compact-meta .source-path code {
+  display: inline;
 }
 
 .meta-item,

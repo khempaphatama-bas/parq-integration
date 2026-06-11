@@ -39,3 +39,4 @@ yarn-error.log*
 # Generated local exports that should be reviewed before committing
 dist/
 build/
+*.pdf

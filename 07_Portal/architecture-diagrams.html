@@ -31,6 +31,9 @@
         <p>${Portal.badge(d.category)} ${Portal.badge(d.diagramStatus || d.confirmationStatus)}</p>
         <div class="diagram-context">
           <div class="meta-item"><div class="meta-label">Purpose</div><div class="meta-value">${Portal.escapeHtml(d.purpose)}</div></div>
+          <div class="meta-item"><div class="meta-label">Diagram Type</div><div class="meta-value">${Portal.escapeHtml(d.diagramType || d.category)}</div></div>
+          <div class="meta-item"><div class="meta-label">Validation Status</div><div class="meta-value validation-status">${Portal.escapeHtml(d.validationStatus || 'Runtime validation pending')}</div></div>
+          <div class="meta-item"><div class="meta-label">Risk Flags</div><div class="meta-value">${Portal.escapeHtml(d.riskFlags || 'No portal-side risk flag')}</div></div>
           <div class="meta-item"><div class="meta-label">Description</div><div class="meta-value">${Portal.escapeHtml(d.description)}</div></div>
           <div class="meta-item"><div class="meta-label">Systems Involved</div><div class="meta-value">${Portal.escapeHtml(d.systemsInvolved)}</div></div>
           <div class="meta-item"><div class="meta-label">Dependencies</div><div class="meta-value">${Portal.escapeHtml(d.dependencies)}</div></div>
@@ -41,7 +44,7 @@
           <div class="meta-item"><div class="meta-label">Diagram Status</div><div class="meta-value runtime-status">${Portal.badge(d.diagramStatus || d.confirmationStatus)}</div></div>
         </div>
         <div class="diagram-frame">
-          <div class="diagram-error">Diagram could not be rendered. Source Mermaid is shown below.</div>
+          <div class="diagram-error">Diagram could not be rendered. Source Mermaid is shown below.<pre class="code-fallback mermaid-error-text"></pre></div>
           <div class="mermaid-render" data-diagram-id="${Portal.escapeHtml(d.id)}"></div>
           <details class="source-mermaid"><summary>View source Mermaid</summary><pre class="code-fallback">${Portal.escapeHtml(d.mermaid)}</pre></details>
         </div>
@@ -66,9 +69,11 @@
               target.innerHTML = result.svg;
               if (result.bindFunctions) result.bindFunctions(target);
             })
-            .catch(() => {
+            .catch(error => {
               card.classList.add('render-failed');
               card.querySelector('.runtime-status').innerHTML = Portal.badge('Needs Confirmation');
+              card.querySelector('.validation-status').textContent = 'Render failed';
+              card.querySelector('.mermaid-error-text').textContent = error && error.message ? error.message : String(error || 'Unknown Mermaid render error');
               card.querySelector('details.source-mermaid').open = true;
             });
         });
@@ -76,6 +81,8 @@
         document.querySelectorAll('.diagram-card').forEach(card => {
           card.classList.add('render-failed');
           card.querySelector('.runtime-status').innerHTML = Portal.badge('Needs Confirmation');
+          card.querySelector('.validation-status').textContent = 'Mermaid runtime unavailable';
+          card.querySelector('.mermaid-error-text').textContent = 'Mermaid.js runtime was not available in the browser.';
           card.querySelector('details.source-mermaid').open = true;
         });
       }

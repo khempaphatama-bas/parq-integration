@@ -10,10 +10,6 @@
   <header class="topbar"><h1>Project</h1><p>Project purpose, timeline gate, source index, and controls entry point.</p></header>
   <nav class="nav"></nav>
   <main>
-    <section class="page-meta">
-      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/blob/main/MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
-    </section>
     <section class="hero-grid">
       <article class="hero-panel">
         <h2 id="title"></h2>
@@ -34,6 +30,16 @@
       </aside>
     </section>
     <section class="timeline-strip" id="timeline"></section>
+    <section class="grid cards-2">
+      <article class="card">
+        <h3>Timeline</h3>
+        <p>Not yet defined. Pending Project Planning input.</p>
+      </article>
+      <article class="card">
+        <h3>Roadmap</h3>
+        <p>Not yet defined. Pending Project Planning input.</p>
+      </article>
+    </section>
     <h2 class="section-title" id="source">Source Index</h2>
     <div class="table-wrap">
       <table>
@@ -41,7 +47,7 @@
         <tbody id="sourceRows"></tbody>
       </table>
     </div>
-    <div class="footer">Project page uses `project-hub.json` and `deliverables.json`; source artifacts remain the repository files.</div>
+    <div class="footer">Project page uses `project-hub.json` and `deliverables.json`; source artifacts remain the repository files.<div id="compactMeta"></div></div>
   </main>
   <script src="assets/app.js"></script>
   <script>
@@ -49,7 +55,7 @@
       Portal.loadJson('data/project-hub.json'),
       Portal.loadJson('data/deliverables.json')
     ]).then(([hub, docs]) => {
-      Portal.applyMeta(hub);
+      document.getElementById('compactMeta').innerHTML = Portal.compactMeta(hub);
       document.getElementById('title').textContent = hub.project.title;
       document.getElementById('overview').textContent = hub.project.overview;
       document.getElementById('why').textContent = hub.project.why;
