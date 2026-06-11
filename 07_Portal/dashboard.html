@@ -14,7 +14,7 @@
   <main>
     <section class="page-meta">
       <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/blob/main/MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
     </section>
     <section class="grid cards-4" id="kpis"></section>
     <section class="callout">
@@ -41,11 +41,10 @@
     };
 
     fetch('data/project-status.json').then(r => r.json()).then(data => {
-      document.getElementById('lastUpdated').textContent = data.lastUpdated;
-      document.getElementById('sourceArtifact').href = data.sourceArtifact;
+      Portal.applyMeta(data);
       document.getElementById('kpis').innerHTML = data.kpis.map(k => `<a class="card card-link" href="${kpiLinks[k.label] || 'source-index.html'}"><div class="kpi">${k.value}</div><h3>${k.label}</h3></a>`).join('');
       document.getElementById('highlights').innerHTML = data.highlights.map(h => `<article class="card"><p>${h}</p></article>`).join('');
-      document.getElementById('areas').innerHTML = data.areas.map(a => `<tr><td>${a.area}</td><td>${Portal.badge(a.status)}</td><td>${a.owner}</td><td>${a.notes}</td><td><a href="${a.source}">Source artifact</a></td></tr>`).join('');
+      document.getElementById('areas').innerHTML = data.areas.map(a => `<tr><td>${a.area}</td><td>${Portal.badge(a.status)}</td><td>${a.owner}</td><td>${a.notes}</td><td>${Portal.sourceLink(a.source, 'Open Source')}</td></tr>`).join('');
     });
   </script>
 </body>

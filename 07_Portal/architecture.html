@@ -12,7 +12,7 @@
   <main>
     <section class="page-meta">
       <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/blob/main/MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
     </section>
     <section class="grid cards-3" id="cards"></section>
     <h2 class="section-title">Architecture Deliverables</h2>
@@ -33,10 +33,10 @@
     ];
     fetch('data/deliverables.json').then(r => r.json()).then(data => {
       document.getElementById('lastUpdated').textContent = data.lastUpdated;
-      document.getElementById('sourceArtifact').href = data.sourceArtifact;
+      Portal.applyMeta(data);
       document.getElementById('cards').innerHTML = themes.map(t => `<article class="card area-architecture"><h3>${t[0]}</h3><p>${t[1]}</p><div class="subnav"><a href="architecture-diagrams.html">Diagrams</a><a href="project-controls.html?type=Dependency">Dependencies</a><a href="project-controls.html?type=Open%20Question">Open Questions</a></div></article>`).join('');
       const rows = data.items.filter(i => i.area === 'Architecture');
-      document.getElementById('rows').innerHTML = rows.map(i => `<tr><td>${i.id}</td><td>${i.name}</td><td>${i.owner}</td><td>${Portal.badge(Portal.standardStatus(i.status))}</td><td>${Portal.relatedLinks({ userFlowId: i.relatedUserFlowId }) || 'Not specified'}</td><td>${i.notes}<br><span class="small">Related: <a href="architecture-diagrams.html">Diagrams</a> · <a href="project-controls.html?type=Dependency">Dependency controls</a></span></td><td><a href="${i.source}">Open source</a></td></tr>`).join('');
+      document.getElementById('rows').innerHTML = rows.map(i => `<tr><td>${i.id}</td><td>${i.name}</td><td>${i.owner}</td><td>${Portal.badge(Portal.standardStatus(i.status))}</td><td>${Portal.relatedLinks({ userFlowId: i.relatedUserFlowId }) || 'Not specified'}</td><td>${i.notes}<br><span class="small">Related: <a href="architecture-diagrams.html">Diagrams</a> · <a href="project-controls.html?type=Dependency">Dependency controls</a></span></td><td>${Portal.sourceLink(i.source, 'Open Source')}</td></tr>`).join('');
     });
   </script>
 </body>

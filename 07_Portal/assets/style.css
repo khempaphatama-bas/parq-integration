@@ -185,6 +185,61 @@ main {
   color: var(--muted);
 }
 
+.source-artifact {
+  display: grid;
+  gap: 8px;
+  min-width: 220px;
+}
+
+.source-path code {
+  display: block;
+  white-space: normal;
+  word-break: break-word;
+  margin-top: 3px;
+}
+
+.source-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.source-actions a {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px 8px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.source-actions a:hover {
+  background: #eef4fb;
+  text-decoration: none;
+}
+
+.diagram-error {
+  display: none;
+  color: #7b241c;
+  background: #f9ded9;
+  border: 1px solid #e3aaa1;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.diagram-card.render-failed .diagram-error {
+  display: block;
+}
+
+.diagram-card.render-failed .mermaid-render {
+  display: none;
+}
+
+details.source-mermaid {
+  margin-top: 10px;
+}
+
 .diagram-card {
   margin-bottom: 18px;
 }

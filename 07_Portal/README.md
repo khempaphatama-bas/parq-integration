@@ -63,7 +63,11 @@ Mermaid diagram blocks detected in repository markdown are listed in `data/diagr
 
 If a diagram-like section is described in text but has no Mermaid code, it is not converted into a diagram. It is recorded in `data/confirmation_required.json` for Bas confirmation.
 
+The Netlify deployment publishes `07_Portal/` only. Source artifact actions therefore resolve repository paths to GitHub `blob` or `tree` URLs at runtime.
+
 Mermaid rendering currently references Mermaid.js from a CDN. Because no local Mermaid runtime was found in the repository, `CONF-007` asks Bas to confirm whether CDN usage is acceptable or whether a local approved Mermaid asset should be supplied.
+
+If Mermaid rendering fails for a diagram, the diagram card keeps all metadata visible, marks the runtime diagram status as `Needs Confirmation`, and opens the source Mermaid fallback.
 
 ## Local Viewing
 

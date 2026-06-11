@@ -12,7 +12,7 @@
   <main>
     <section class="page-meta">
       <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../03_Architecture/">Architecture folder</a></div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/tree/main/03_Architecture/">Architecture folder</a></div></div>
     </section>
     <section class="callout">
       Mermaid code is rendered as-is from source files. If Mermaid.js cannot load, the original code remains visible for review.
@@ -38,11 +38,12 @@
           <div class="meta-item"><div class="meta-label">Open Questions</div><div class="meta-value">${Portal.escapeHtml(d.openQuestions)}</div></div>
           <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value">${Portal.sourceLink(d.sourceArtifact, d.sourceFile)}</div></div>
           <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value">${Portal.escapeHtml(d.lastUpdated)}</div></div>
-          <div class="meta-item"><div class="meta-label">Diagram Status</div><div class="meta-value">${Portal.badge(d.diagramStatus || d.confirmationStatus)}</div></div>
+          <div class="meta-item"><div class="meta-label">Diagram Status</div><div class="meta-value runtime-status">${Portal.badge(d.diagramStatus || d.confirmationStatus)}</div></div>
         </div>
         <div class="diagram-frame">
-          <pre class="mermaid">${Portal.escapeHtml(d.mermaid)}</pre>
-          <details><summary>View source Mermaid</summary><pre class="code-fallback">${Portal.escapeHtml(d.mermaid)}</pre></details>
+          <div class="diagram-error">Diagram could not be rendered. Source Mermaid is shown below.</div>
+          <div class="mermaid-render" data-diagram-id="${Portal.escapeHtml(d.id)}"></div>
+          <details class="source-mermaid"><summary>View source Mermaid</summary><pre class="code-fallback">${Portal.escapeHtml(d.mermaid)}</pre></details>
         </div>
       </article>`;
     }
@@ -57,7 +58,26 @@
       `).join('');
       if (window.mermaid) {
         mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'default' });
-        mermaid.run({ querySelector: '.mermaid' });
+        items.forEach((diagram, index) => {
+          const card = document.getElementById(diagram.id);
+          const target = card.querySelector('.mermaid-render');
+          mermaid.render(`portal-diagram-${index}-${diagram.id}`, diagram.mermaid)
+            .then(result => {
+              target.innerHTML = result.svg;
+              if (result.bindFunctions) result.bindFunctions(target);
+            })
+            .catch(() => {
+              card.classList.add('render-failed');
+              card.querySelector('.runtime-status').innerHTML = Portal.badge('Needs Confirmation');
+              card.querySelector('details.source-mermaid').open = true;
+            });
+        });
+      } else {
+        document.querySelectorAll('.diagram-card').forEach(card => {
+          card.classList.add('render-failed');
+          card.querySelector('.runtime-status').innerHTML = Portal.badge('Needs Confirmation');
+          card.querySelector('details.source-mermaid').open = true;
+        });
       }
     });
   </script>

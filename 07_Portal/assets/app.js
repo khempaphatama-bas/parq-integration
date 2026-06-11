@@ -1,4 +1,6 @@
 const Portal = (() => {
+  const repoBase = "https://github.com/khempaphatama-bas/parq-integration";
+
   const navItems = [
     ["index.html", "Home"],
     ["project.html", "Project"],
@@ -62,9 +64,43 @@ const Portal = (() => {
       .replaceAll("'", "&#039;");
   }
 
-  function sourceLink(path, label = "Open source") {
+  function normalizeRepoPath(path) {
     if (!path) return "";
-    return `<a href="${escapeHtml(path)}">${escapeHtml(label)}</a>`;
+    let clean = String(path).split("#")[0];
+    const query = clean.includes("?") ? clean.slice(clean.indexOf("?")) : "";
+    clean = clean.split("?")[0];
+    if (clean.startsWith("http://") || clean.startsWith("https://")) return clean;
+    if (clean.startsWith("../")) clean = clean.slice(3);
+    if (clean.startsWith("./")) clean = clean.slice(2);
+    if (clean.endsWith(".html") && !clean.startsWith("07_Portal/")) clean = `07_Portal/${clean}`;
+    return decodeURIComponent(clean) + query;
+  }
+
+  function githubUrl(path) {
+    const repoPath = normalizeRepoPath(path);
+    if (!repoPath) return "";
+    if (repoPath.startsWith("http://") || repoPath.startsWith("https://")) return repoPath;
+    const clean = repoPath.split("?")[0].replace(/^\/+/, "");
+    const mode = clean.endsWith("/") || !clean.includes(".") ? "tree" : "blob";
+    return `${repoBase}/${mode}/main/${clean.replaceAll(" ", "%20")}`;
+  }
+
+  function sourceLabel(path) {
+    const repoPath = normalizeRepoPath(path);
+    if (!repoPath) return "Not specified";
+    if (repoPath.startsWith(repoBase)) return repoPath.replace(`${repoBase}/blob/main/`, "").replace(`${repoBase}/tree/main/`, "");
+    return repoPath.split("?")[0];
+  }
+
+  function externalLink(url, label) {
+    return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+  }
+
+  function sourceLink(path, label = "Open Source") {
+    if (!path) return "";
+    const url = githubUrl(path);
+    const display = sourceLabel(path);
+    return `<div class="source-artifact"><div class="source-path"><span class="meta-label">Source Artifact</span><code>${escapeHtml(display)}</code></div><div class="source-actions">${externalLink(url, label)} ${externalLink(url, "View on GitHub")}</div></div>`;
   }
 
   async function loadJson(path) {
@@ -77,7 +113,7 @@ const Portal = (() => {
     const last = document.getElementById("lastUpdated");
     const source = document.getElementById("sourceArtifact");
     if (last) last.textContent = data.lastUpdated || "Not set";
-    if (source && data.sourceArtifact) source.href = data.sourceArtifact;
+    if (source && data.sourceArtifact) source.outerHTML = sourceLink(data.sourceArtifact, "Open Source");
   }
 
   function relatedLinks({ feature, system, artifact, userFlowId }) {

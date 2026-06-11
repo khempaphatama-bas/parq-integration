@@ -15,7 +15,7 @@
   <main>
     <section class="page-meta">
       <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
-      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="https://github.com/khempaphatama-bas/parq-integration/blob/main/MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
     </section>
 
     <section class="hero-grid">
@@ -91,7 +91,7 @@
       document.getElementById('nextActions').innerHTML = data.nextActions.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedOpenQuestion)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
       const blockers = controls.items.filter(i => i.type === 'Blocker');
       document.getElementById('blockers').innerHTML = blockers.map(item => `<tr><td>${item.id}</td><td>${Portal.escapeHtml(item.title)}</td><td>${Portal.escapeHtml(item.owner)}</td><td>${Portal.badge(item.status)}</td><td>${Portal.escapeHtml(item.relatedSystem)}</td><td>${Portal.sourceLink(item.sourceArtifact, 'Open source')}</td></tr>`).join('');
-      document.getElementById('keyDocs').innerHTML = data.keyDocuments.map(doc => `<a class="card card-link" href="${doc.source}"><h3>${Portal.escapeHtml(doc.name)}</h3>${Portal.badge(Portal.standardStatus(doc.status))}<p>${Portal.escapeHtml(doc.notes)}</p><p class="small">Owner: ${Portal.escapeHtml(doc.owner)} · ID: ${Portal.escapeHtml(doc.id)}</p></a>`).join('');
+      document.getElementById('keyDocs').innerHTML = data.keyDocuments.map(doc => `<article class="card"><h3>${Portal.escapeHtml(doc.name)}</h3>${Portal.badge(Portal.standardStatus(doc.status))}<p>${Portal.escapeHtml(doc.notes)}</p><p class="small">Owner: ${Portal.escapeHtml(doc.owner)} · ID: ${Portal.escapeHtml(doc.id)}</p>${Portal.sourceLink(doc.source, 'Open Source')}</article>`).join('');
       document.getElementById('roleAccess').innerHTML = data.roleQuickAccess.map(role => `<a class="card card-link" href="${role.href}"><h3>${Portal.escapeHtml(role.role)}</h3><p>${Portal.escapeHtml(role.summary)}</p></a>`).join('');
     });
   </script>
