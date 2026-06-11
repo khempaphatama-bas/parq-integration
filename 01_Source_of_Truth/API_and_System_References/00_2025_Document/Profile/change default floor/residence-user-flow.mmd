@@ -1,0 +1,38 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+  Start(["START"]) --> S0["Open<br/>Edit Profile"]
+
+  S0 --> C0{"Has Resident persona?"}
+  C0 -->|No| End1(["END"])
+  C0 -->|Yes| S1["Tap Change default residential"]
+
+  S1 --> S2["Open Change Default<br/>Residential Screen"]
+  S2 --> S3["Load residential<br/>properties data"]
+  S3 --> C1{"Load successful?"}
+
+  C1 -->|No| E1["Show error screen<br/>Tap Done"]
+  E1 --> S2
+
+  C1 -->|Yes| S4["Select project"]
+  S4 --> S5["Select unit"]
+  S5 --> S6["Show confirmation modal"]
+
+  S6 --> C2{"Confirm change?"}
+  C2 -->|Cancel| S5
+  C2 -->|Confirm| S7["Update default residential"]
+
+  S7 --> C3{"Update successful?"}
+  C3 -->|No| E1
+  C3 -->|Yes| S8["Show success screen<br/>Tap Done"]
+
+  S8 --> S9["Navigate to Main Page"]
+  S9 --> End2(["END"])
+
+  class Start,End1,End2 startEnd;
+  class S0,S1,S2,S3,S4,S5,S6,S7,S9 process;
+  class C0,C1,C2,C3 decision;
+  class S8 success;
+  class E1 error;

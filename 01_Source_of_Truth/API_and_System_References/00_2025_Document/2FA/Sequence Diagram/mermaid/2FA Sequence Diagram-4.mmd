@@ -1,0 +1,14 @@
+sequenceDiagram
+	title: 4) Confirm enable 2FA
+
+
+	actor U as User
+	participant A as One Bangkok App
+	participant S as IAM Service
+
+	rect rgb(250, 245, 255)
+		U->>A: Confirm enable 2FA
+		A->>S: Enable 2FA
+		S-->>A: 2FA enabled
+		A-->>U: Show success message
+	end

@@ -1,0 +1,150 @@
+{
+  "lastUpdated": "2026-06-11",
+  "sourceArtifact": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+  "items": [
+    {
+      "id": "OQ-CLAR-001",
+      "question": "Where is [Proposal] The PARQ integration.pdf, or who can provide the approved source file/link?",
+      "owner": "TBD",
+      "status": "Open",
+      "theme": "Source traceability",
+      "source": "../MASTER_INDEX.md",
+      "downstream": "Libra, PARQ, Simon",
+      "relatedSystem": "Source Artifact",
+      "relatedArtifact": "../MASTER_INDEX.md",
+      "relatedUserFlowId": "Not specified"
+    },
+    {
+      "id": "OQ-CLAR-002",
+      "question": "Is there an approved clarification note or decision record behind older architecture references?",
+      "owner": "TBD",
+      "status": "Open",
+      "theme": "Source traceability",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "All agents",
+      "relatedSystem": "Clarification",
+      "relatedArtifact": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "relatedUserFlowId": "Not specified"
+    },
+    {
+      "id": "OQ-CLAR-004",
+      "question": "Is PARQ_Integration_Architecture_Review.md historical-only or still an active reference?",
+      "owner": "TBD",
+      "status": "Open",
+      "theme": "Document governance",
+      "source": "../MASTER_INDEX.md",
+      "downstream": "Libra, PARQ, Simon",
+      "relatedSystem": "Discovery",
+      "relatedArtifact": "../02_Discovery/PARQ_Integration_Architecture_Review.md",
+      "relatedUserFlowId": "Not specified"
+    },
+    {
+      "id": "OQ-BMS-001",
+      "question": "What is the exact technical endpoint and payload contract for login-time BMS member check?",
+      "owner": "IAM/BMS owners TBD",
+      "status": "Open",
+      "theme": "BMS Option B",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Simon, Quinn",
+      "relatedSystem": "BMS",
+      "relatedArtifact": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
+      "relatedUserFlowId": "UF-001"
+    },
+    {
+      "id": "OQ-BMS-002",
+      "question": "What timeout, retry, circuit-breaker, audit, and monitoring behavior applies to non-blocking BMS login refresh?",
+      "owner": "IAM/BMS owners TBD",
+      "status": "Open",
+      "theme": "BMS Option B",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Simon, Quinn, PARQ",
+      "relatedSystem": "BMS",
+      "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedUserFlowId": "UF-001"
+    },
+    {
+      "id": "OQ-BMS-003",
+      "question": "If BMS returns member-bound-to-another-account during login, what support message and correction path apply?",
+      "owner": "PARQ/IAM/Support TBD",
+      "status": "Open",
+      "theme": "Support flow",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, Quinn, Simon",
+      "relatedSystem": "BMS",
+      "relatedArtifact": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
+      "relatedUserFlowId": "UF-001"
+    },
+    {
+      "id": "OQ-BMS-004",
+      "question": "What cache/source detects previous Workplace permission while BMS is unavailable, and what freshness limit applies?",
+      "owner": "IAM/FS owners TBD",
+      "status": "Open",
+      "theme": "Fallback behavior",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Simon, Quinn",
+      "relatedSystem": "BMS",
+      "relatedArtifact": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
+      "relatedUserFlowId": "UF-001"
+    },
+    {
+      "id": "OQ-OWN-001",
+      "question": "Who are the named owners for each indexed folder and document?",
+      "owner": "Project leads",
+      "status": "Open",
+      "theme": "Ownership",
+      "source": "../MASTER_INDEX.md",
+      "downstream": "Libra, PARQ",
+      "relatedSystem": "Ownership",
+      "relatedArtifact": "../MASTER_INDEX.md",
+      "relatedUserFlowId": "Not specified"
+    },
+    {
+      "id": "OQ-API-001",
+      "question": "Who owns SSO, IAM, FS, BZB, Argento, CMS, Kafka/Event Bus, BMS, Notification, Elevator, Turnstile APIs?",
+      "owner": "PARQ / system owners",
+      "status": "Open",
+      "theme": "Dependency ownership",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Simon, Quinn, PARQ",
+      "relatedSystem": "Vendor/API",
+      "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedUserFlowId": "UF-018"
+    },
+    {
+      "id": "OQ-PII-001",
+      "question": "What are field-level PII, consent, retention, and deletion rules per system/API?",
+      "owner": "Security/privacy owner TBD",
+      "status": "Open",
+      "theme": "Compliance",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Simon, Quinn, Management",
+      "relatedSystem": "Security/Compliance",
+      "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedUserFlowId": "UF-017"
+    },
+    {
+      "id": "OQ-ENV-001",
+      "question": "What SIT/UAT/PVT endpoints, credentials, data sets, hardware paths, and readiness dates are available?",
+      "owner": "PARQ / Quinn / vendors",
+      "status": "Open",
+      "theme": "Environment readiness",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Quinn, PARQ, Vendor team",
+      "relatedSystem": "Environment Readiness",
+      "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedUserFlowId": "UF-018"
+    },
+    {
+      "id": "OQ-PAY-001",
+      "question": "What idempotency, reconciliation schedule, refund flow, and support path apply to Argento/FS/OBK parking payment?",
+      "owner": "OBK Backend / Argento / FS TBD",
+      "status": "Open",
+      "theme": "Payments",
+      "source": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "downstream": "Simon, Quinn, Vendor team",
+      "relatedSystem": "Argento / FS / OBK Backend",
+      "relatedArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "relatedUserFlowId": "UF-012"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+sequenceDiagram
+	title: 2) Add missing contact and request OTP
+
+	actor U as User
+	participant A as One Bangkok App
+	participant S as IAM Service
+
+	rect rgb(247, 255, 247)
+
+		alt Missing email
+			U->>A: Input new email
+			A->>A: Validate email format
+
+			alt Email is valid
+				A->>S: Save email and send OTP
+				S-->>A: OTP sent
+				A-->>U: Navigate to OTPVerifyScreen
+			else Email is invalid
+				A-->>U: Show validation error
+				A-->>U: Ask user to input email again
+			end
+
+		else Missing phone
+			U->>A: Input new phone number
+			A->>A: Validate phone number format
+
+			alt Phone is valid
+				A->>S: Save phone and send OTP
+				S-->>A: OTP sent
+				A-->>U: Navigate to OTPVerifyScreen
+			else Phone is invalid
+				A-->>U: Show validation error
+				A-->>U: Ask user to input phone again
+			end
+		end
+	end
+
+
+	Note over U,S: Continue to Diagram 3

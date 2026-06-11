@@ -1,0 +1,41 @@
+# macOS / desktop metadata
+.DS_Store
+*/.DS_Store
+
+# Local editor and workspace settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+~$*
+
+# Logs
+*.log
+logs/
+
+# Python local/runtime files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Node/runtime files, if portal tooling is added later
+node_modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment files
+.env
+.env.*
+
+# Generated local exports that should be reviewed before committing
+dist/
+build/

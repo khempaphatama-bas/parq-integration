@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARQ Risk Register</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar"><h1>Risk Register</h1><p>Management-readable project and integration risks from repository artifacts.</p></header>
+  <nav class="nav">
+    <a href="index.html">Overview</a><a href="dashboard.html">Dashboard</a><a href="deliverables.html">Deliverables</a><a href="architecture.html">Architecture</a><a href="open-questions.html">Open Questions</a><a class="active" href="risks.html">Risks</a><a href="dependencies.html">Dependencies</a>
+  </nav>
+  <main>
+    <section class="page-meta">
+      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md">Technical control pack</a></div></div>
+    </section>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Risk</th><th>Severity</th><th>Impact</th><th>Mitigation / Required Decision</th><th>Owner</th><th>Status</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="footer">Static portal. Data source: <code>07_Portal/data/risks.json</code>.</div>
+  </main>
+  <script src="assets/app.js"></script>
+  <script>
+    const sev = v => String(v).toLowerCase() === 'high' ? 'status-high' : 'status-medium';
+    fetch('data/risks.json').then(r => r.json()).then(data => {
+      document.getElementById('lastUpdated').textContent = data.lastUpdated;
+      document.getElementById('sourceArtifact').href = data.sourceArtifact;
+      document.getElementById('rows').innerHTML = data.items.map(i => `<tr><td>${i.id}</td><td>${i.risk}<br><span class="small">${Portal.relatedLinks({system: i.relatedSystem, artifact: i.relatedArtifact, userFlowId: i.relatedUserFlowId})}</span></td><td><span class="badge ${sev(i.severity)}">${i.severity}</span></td><td>${i.impact}</td><td>${i.mitigation}</td><td>${i.owner}</td><td>${Portal.badge(i.status)}</td></tr>`).join('');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+sequenceDiagram
+	title: 1) Check Contact Information
+
+	actor U as User
+	participant A as One Bangkok App
+	participant S as IAM Service
+
+	U->>A: Select Enable 2FA
+
+	rect rgb(245, 250, 255)
+		A->>S: Get user Identity (email / phone)
+		S-->>A: Return Identity (email / phone)
+    U->>A: Click Enable 2FA
+    A->>A: Check missing Identity
+
+		alt Missing email
+			A-->>U: Navigate to AddEmailScreen
+		else Missing phone
+			A-->>U: Navigate to AddPhoneScreen
+		end
+	end
+
+	Note over U,S: Continue to Diagram 2 or Diagram 4

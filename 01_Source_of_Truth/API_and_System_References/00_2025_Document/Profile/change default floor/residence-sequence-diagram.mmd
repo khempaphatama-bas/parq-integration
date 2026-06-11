@@ -1,0 +1,43 @@
+sequenceDiagram
+  autonumber
+
+  actor U as User
+  participant APP as App
+  participant SM as Residence API<br/>ServiceMind
+
+  U->>APP: Open Edit Profile
+  APP-->>U: Show Change default residential<br/>if Resident persona
+
+  U->>APP: Tap Change default residential
+  APP-->>U: Open ChangeUnitDefaultResidentialScreen
+
+  APP->>SM: GET /obk/api/v1/resident/tenant/{tenantId}/properties
+  SM-->>APP: Return properties list
+
+  alt Load failed
+    APP-->>U: Show error announcement
+  else Load success
+    APP-->>U: Show Step 1<br/>Select Residence Project
+
+    U->>APP: Select project and tap Select
+    APP-->>U: Show Step 2<br/>Select Unit
+
+    U->>APP: Select unit and tap Select
+    APP-->>U: Show confirm modal
+
+    alt User cancels
+      U->>APP: Cancel
+      APP-->>U: Back to Select Unit
+    else User confirms
+      U->>APP: Confirm
+      APP->>SM: POST /obk/api/v1/resident/update-default-property<br/>{ tenantId, propertyUnitId }
+
+      alt Update failed
+        SM-->>APP: Return error
+        APP-->>U: Show error announcement
+      else Update success
+        SM-->>APP: Return success
+        APP-->>U: Show success announcement
+      end
+    end
+  end

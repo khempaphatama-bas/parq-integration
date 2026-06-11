@@ -1,0 +1,41 @@
+sequenceDiagram
+  autonumber
+
+  actor U as User
+  participant APP as App
+  participant BMS as BMS
+
+  U->>APP: Open My Profile
+  APP-->>U: Show Change default floor<br/>if is_fs_member = true
+
+  U->>APP: Tap Change default floor
+
+  APP->>BMS: GET /members/{memberId}?location_id={currentLocationId}
+  BMS-->>APP: Return towers, defaultFloor, passes
+
+  Note over APP: Read local locations.json<br/>Map locationId ↔ floorId
+
+  APP-->>U: Show floor list<br/>with current default selected
+
+  U->>APP: Select new floor
+  APP-->>U: Show Continue button
+
+  U->>APP: Tap Continue
+  APP-->>U: Show confirmation modal
+
+  alt User cancels
+    U->>APP: Cancel
+    APP-->>U: Back to floor selection
+  else User confirms
+    U->>APP: Confirm
+    APP->>BMS: PUT /members/{memberId}<br/>{ default_floor: floorId }
+
+    alt Update failed
+      BMS-->>APP: Error / result = false
+      APP-->>U: Show error announcement
+    else Update success
+      BMS-->>APP: result = true
+      Note over APP: Update local default_floor<br/>floorId → locationId
+      APP-->>U: Show success announcement
+    end
+  end

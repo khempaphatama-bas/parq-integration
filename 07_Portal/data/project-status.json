@@ -1,0 +1,73 @@
+{
+  "lastUpdated": "2026-06-11",
+  "sourceArtifact": "../MASTER_INDEX.md",
+  "projectName": "PARQ Integration to One Bangkok Application",
+  "summary": "Stakeholder portal generated from repository source artifacts. No new requirements are created here.",
+  "audience": [
+    "Product Team",
+    "Business Team",
+    "Vendor Team",
+    "Management"
+  ],
+  "areas": [
+    {
+      "area": "Source of Truth",
+      "status": "Current with open owner gaps",
+      "owner": "Libra / source artifact owners",
+      "source": "../01_Source_of_Truth/",
+      "notes": "Core user-flow, clarification, BMS, domain, and system reference artifacts are filed. Named owners remain partly TBD."
+    },
+    {
+      "area": "Discovery",
+      "status": "Reference / Draft",
+      "owner": "Libra / Molly / discovery owners",
+      "source": "../02_Discovery/",
+      "notes": "Architecture review remains reference; UX stakeholder flow pack is draft with open questions."
+    },
+    {
+      "area": "Architecture",
+      "status": "Current / Draft with open technical controls",
+      "owner": "Simon / technical owners",
+      "source": "../03_Architecture/",
+      "notes": "Architecture, dependency, visual flow, and BMS impact artifacts are available. Some API, environment, timeout, audit, and owner details remain open."
+    },
+    {
+      "area": "Delivery",
+      "status": "No standalone delivery artifact currently identified",
+      "owner": "Delivery/project owners TBD",
+      "source": "../04_Delivery/",
+      "notes": "Delivery folder exists for accepted delivery references."
+    },
+    {
+      "area": "QA",
+      "status": "Blocked on dependency readiness",
+      "owner": "Quinn",
+      "source": "../05_QA/",
+      "notes": "QA matrix task is blocked until dependency and environment readiness inputs are available."
+    }
+  ],
+  "kpis": [
+    {
+      "label": "Tracked deliverables",
+      "value": "14"
+    },
+    {
+      "label": "Open questions",
+      "value": 12
+    },
+    {
+      "label": "Open risks",
+      "value": 15
+    },
+    {
+      "label": "Tracked dependencies",
+      "value": 12
+    }
+  ],
+  "highlights": [
+    "BMS Option B non-blocking login refresh decision is recorded.",
+    "Proposal PDF is still missing from the repository.",
+    "Named artifact and vendor owners remain partly unconfirmed.",
+    "SIT/UAT/PVT readiness depends on vendor endpoints, data, and hardware paths."
+  ]
+}

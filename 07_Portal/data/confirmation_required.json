@@ -1,0 +1,83 @@
+{
+  "lastUpdated": "2026-06-11",
+  "sourceArtifact": "../MASTER_INDEX.md",
+  "items": [
+    {
+      "id": "CONF-001",
+      "area": "Source of Truth",
+      "sourceArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/2FA/Sequence Diagram/README.md",
+      "sourceFile": "01_Source_of_Truth/API_and_System_References/00_2025_Document/2FA/Sequence Diagram/README.md",
+      "sectionName": "2FA Sequence Diagram",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"2FA Sequence Diagram\" in README.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Libra",
+      "priority": "Medium"
+    },
+    {
+      "id": "CONF-002",
+      "area": "Discovery",
+      "sourceArtifact": "../02_Discovery/PARQ_Integration_Architecture_Review.md",
+      "sourceFile": "02_Discovery/PARQ_Integration_Architecture_Review.md",
+      "sectionName": "4. Sequence Diagram Candidate List",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"4. Sequence Diagram Candidate List\" in PARQ_Integration_Architecture_Review.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Simon",
+      "priority": "High"
+    },
+    {
+      "id": "CONF-003",
+      "area": "Discovery",
+      "sourceArtifact": "../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "sourceFile": "02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md",
+      "sectionName": "2. UX Flow Diagrams",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"2. UX Flow Diagrams\" in PARQ_UX_Stakeholder_User_Flow_Pack.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Libra",
+      "priority": "Medium"
+    },
+    {
+      "id": "CONF-004",
+      "area": "Architecture",
+      "sourceArtifact": "../03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
+      "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
+      "sectionName": "2. Sequence Diagram Candidate List",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"2. Sequence Diagram Candidate List\" in PARQ_User_Flow_Integration_Architecture.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Simon",
+      "priority": "High"
+    },
+    {
+      "id": "CONF-005",
+      "area": "Architecture",
+      "sourceArtifact": "../03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
+      "sourceFile": "03_Architecture/PARQ_User_Flow_Integration_Architecture.md",
+      "sectionName": "3. Mermaid Sequence Diagrams",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"3. Mermaid Sequence Diagrams\" in PARQ_User_Flow_Integration_Architecture.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Simon",
+      "priority": "Medium"
+    },
+    {
+      "id": "CONF-006",
+      "area": "Architecture",
+      "sourceArtifact": "../03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
+      "sourceFile": "03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md",
+      "sectionName": "5. Priority Sequence Diagrams",
+      "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
+      "questionForBas": "Bas, should the section \"5. Priority Sequence Diagrams\" in PARQ_Visual_Architecture_and_Flow_Pack.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
+      "suggestedOwner": "Bas / Simon",
+      "priority": "Medium"
+    },
+    {
+      "id": "CONF-007",
+      "area": "Portal",
+      "sourceArtifact": "../07_Portal/architecture-diagrams.html",
+      "sourceFile": "07_Portal/architecture-diagrams.html",
+      "sectionName": "Mermaid.js runtime",
+      "reason": "No local Mermaid.js package was found in the repository. The portal page is configured to load Mermaid.js from CDN for rendering.",
+      "questionForBas": "Bas, is CDN loading of Mermaid.js acceptable for this stakeholder portal, or should a locally approved Mermaid.js asset be provided under 07_Portal/assets/?",
+      "suggestedOwner": "Bas / Libra",
+      "priority": "Medium"
+    }
+  ]
+}

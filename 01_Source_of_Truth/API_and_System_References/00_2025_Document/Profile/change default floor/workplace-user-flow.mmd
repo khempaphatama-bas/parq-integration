@@ -1,0 +1,33 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    Start(["START"]) --> S0["Open<br/>Edit Profile"]
+    S0 --> C0{"isFsMember = true?"}
+    C0 -- No --> End1(["END"])
+    C0 -- Yes --> S1["Tap Change default floor"]
+    S1 --> S2["Open ChangeDefaultFloorScreen"]
+    S2 --> S3["Load member + floor data"]
+    S3 --> S4["Load local<br>locations"]
+    S4 --> S5["Set<br/>current default floor"]
+    S5 --> S6["User selects floor"]
+    S6 --> C1{"Floor<br/>changed?"}
+    C1 -- No --> S6
+    C1 -- Yes --> S7["Show Continue button"]
+    S7 --> S8["Tap<br>Continue"]
+    S8 --> C2{"Confirm change?"}
+    C2 -- Cancel --> S6
+    C2 -- Confirm --> S9["Update default floor API"]
+    S9 --> C3{"Success?"}
+    C3 -- No --> S10["Show error Screen"]
+    S10 --> S2
+    C3 -- Yes --> S11["Update<br>local state"]
+    S11 --> S12["Show<br>success Screen"]
+    S12 --> End2(["END"])
+
+class Start,End1,End2 startEnd;
+  class S0,S1,S2,S3,S4,S5,S6,S7,S8,S9,S11,S12 process;
+  class C0,C1,C2,C3 decision;
+  class S12 success;
+  class S10 error;

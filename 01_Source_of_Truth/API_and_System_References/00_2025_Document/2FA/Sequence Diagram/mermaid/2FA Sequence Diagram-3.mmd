@@ -1,0 +1,22 @@
+sequenceDiagram
+	title: 3) Verify OTP
+
+	actor U as User
+	participant A as One Bangkok App
+	participant S as IAM Service
+
+	rect rgb(255, 249, 245)
+
+		U->>A: Input OTP
+		A->>S: Verify OTP
+		S-->>A: Verification result
+
+		alt OTP is correct
+			A-->>U: Navigate to Enable2FAScreen
+		else OTP is incorrect
+			A-->>U: Show OTP validation error
+			A-->>U: Ask user to input OTP again
+		end
+	end
+
+	Note over U,S: Continue to Diagram 4

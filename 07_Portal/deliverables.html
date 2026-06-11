@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARQ Deliverables</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar"><h1>Deliverables Tracker</h1><p>Artifact inventory with owner, status, source, and downstream consumer.</p></header>
+  <nav class="nav">
+    <a href="index.html">Overview</a><a href="dashboard.html">Dashboard</a><a class="active" href="deliverables.html">Deliverables</a><a href="architecture.html">Architecture</a><a href="open-questions.html">Open Questions</a><a href="risks.html">Risks</a><a href="dependencies.html">Dependencies</a>
+  </nav>
+  <main>
+    <section class="page-meta">
+      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+    </section>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Deliverable</th><th>Area</th><th>Owner</th><th>Status</th><th>Downstream Consumer</th><th>Notes</th><th>Source</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="footer">Static portal. Data source: <code>07_Portal/data/deliverables.json</code>.</div>
+  </main>
+  <script src="assets/app.js"></script>
+  <script>
+    const cls = v => String(v || '').toLowerCase().includes('unavailable') ? 'status-blocked' : (String(v || '').toLowerCase().includes('draft') || String(v || '').toLowerCase().includes('open') ? 'status-open' : 'status-current');
+    fetch('data/deliverables.json').then(r => r.json()).then(data => {
+      document.getElementById('lastUpdated').textContent = data.lastUpdated;
+      document.getElementById('sourceArtifact').href = data.sourceArtifact;
+      document.getElementById('rows').innerHTML = data.items.map(i => `<tr><td>${i.id}</td><td>${i.name}<br><span class="small">${i.type}</span></td><td>${i.area}</td><td>${i.owner}</td><td><span class="badge ${cls(i.status)}">${i.status}</span></td><td>${i.downstream}</td><td>${i.notes}</td><td><a href="${i.source}">Open source</a></td></tr>`).join('');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARQ Confirmation Required</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar"><h1>Confirmation Required</h1><p>Items that need Bas confirmation because the repository does not provide enough source detail.</p></header>
+  <nav class="nav"></nav>
+  <main>
+    <section class="page-meta">
+      <div class="meta-item"><div class="meta-label">Last Updated</div><div class="meta-value" id="lastUpdated">Loading...</div></div>
+      <div class="meta-item"><div class="meta-label">Source Artifact</div><div class="meta-value"><a id="sourceArtifact" href="../MASTER_INDEX.md">MASTER_INDEX.md</a></div></div>
+    </section>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Area</th><th>Section</th><th>Reason</th><th>Question for Bas</th><th>Suggested Owner</th><th>Priority</th><th>Source</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="footer">Static portal. Data source: <code>07_Portal/data/confirmation_required.json</code>.</div>
+  </main>
+  <script src="assets/app.js"></script>
+  <script>
+    Portal.loadJson('data/confirmation_required.json').then(data => {
+      Portal.applyMeta(data);
+      document.getElementById('rows').innerHTML = data.items.map(i => `<tr>
+        <td>${Portal.escapeHtml(i.id)}</td>
+        <td>${Portal.escapeHtml(i.area)}</td>
+        <td>${Portal.escapeHtml(i.sectionName)}</td>
+        <td>${Portal.escapeHtml(i.reason)}</td>
+        <td>${Portal.escapeHtml(i.questionForBas)}</td>
+        <td>${Portal.escapeHtml(i.suggestedOwner)}</td>
+        <td>${Portal.badge(i.priority)}</td>
+        <td>${Portal.sourceLink(i.sourceArtifact, i.sourceFile)}</td>
+      </tr>`).join('');
+    });
+  </script>
+</body>
+</html>
