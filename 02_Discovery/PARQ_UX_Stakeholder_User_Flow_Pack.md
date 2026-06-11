@@ -8,6 +8,8 @@ Input files:
 - `TASK_BOARD.md`
 - `HANDOFF_LOG.md`
 - `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`
+- `01_Source_of_Truth/API_and_System_References/00_2025_Document/User Flow_20260608.pdf`
+- `01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png`
 - `03_Architecture/PARQ_User_Flow_Integration_Architecture.md`
 - `03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md`
 - `03_Architecture/PARQ_Technical_Dependency_Control_Pack.md`
@@ -31,7 +33,7 @@ Rules applied:
 
 ## Source Traceability Note
 
-`MASTER_INDEX.md` records `[Proposal] The PARQ integration.pdf` as missing from the repository. The local workbook is available at `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`, and the architecture packs contain later derived decisions and open questions. This pack uses the repository artifacts listed above and does not invent missing decisions.
+`MASTER_INDEX.md` records `[Proposal] The PARQ integration.pdf` as missing from the repository. The local workbook is available at `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`, and the architecture packs contain later derived decisions and open questions. Bas confirmed on 2026-06-11 that `User Flow_20260608.pdf` is a PARQ to-be flowboard created before AI refinement, and `Offboarding_User_Flow.png` clarifies the account lifecycle split. This pack uses the repository artifacts listed above and does not invent missing decisions.
 
 ```mermaid
 flowchart LR
@@ -636,36 +638,64 @@ Open UX/business questions:
 - Campaign owner.
 - Final notification types.
 
-### 2.11 Account Deletion / Reactivation
+### 2.11 Account Lifecycle: Offboarding, Delete, Hard Delete, Reactivation
 
-User goal: delete/reactivate account, or remain Retail-only after company offboarding.
+User goal: keep the right persona state after company offboarding, delete an account when requested, and reactivate within the allowed period.
 
 Entry point: Account Settings for deletion; FS/Fineday for company offboarding.
 
 ```mermaid
 flowchart TD
-    A["Account lifecycle event"] --> B{"User deletes SSO account?"}
-    B -- "Yes" --> C["Show delete confirmation"]
-    C --> D["Soft delete 30 days"]
-    D --> E{"Reactivated before Day 31?"}
-    E -- "Yes" --> F["Restore eligible account/personas"]
-    E -- "No" --> G["SSO hard delete after Day 31"]
-    G --> H["Notify BZB delete API"]
-    B -- "No, company offboarding" --> I["FS / Fineday inactivates Workplace"]
-    I --> J["App syncs"]
-    J --> K["Workplace persona disappears"]
-    K --> L["Retail persona remains for shopper use"]
+    subgraph OFF["Company Offboarding / Workplace Persona Removal"]
+        A1["Employee resigns from company"] --> A2["Forward system marks FS inactive"]
+        A3["User opens app"] --> A4["App syncs FS"]
+        A2 --> A4
+        A4 --> A5{"Detect FS type?"}
+        A5 -- "No" --> A6["Display account persona without Workplace"]
+        A5 -- "Yes" --> A7["Display persona card with Workplace"]
+    end
+
+    subgraph DEL["User Delete Account"]
+        B1["User selects Delete Account"] --> B2["User confirms delete"]
+        B2 --> B3["System marks account as Suspens"]
+        B3 --> B4["Display delete successful"]
+    end
+
+    subgraph HARD["System Hard Delete"]
+        C1["Suspens status with timestamp"] --> C2["Daily cronjob checks account"]
+        C2 --> C3{"Deleted over 30 days?"}
+        C3 -- "Yes" --> C4["Hard delete user account"]
+        C3 -- "No" --> C5["Keep stored in DB"]
+        C5 --> C2
+    end
+
+    subgraph REACT["User Reactivate Account"]
+        D1["User logs in"] --> D2{"Account marked Suspens?"}
+        D2 -- "No" --> D7["Go to login process"]
+        D2 -- "Yes" --> D3{"Deleted over 30 days?"}
+        D3 -- "Yes" --> D4["Display cannot found account"]
+        D3 -- "No" --> D5["Display option to reactivate account"]
+        D5 --> D6{"Confirm reactivation?"}
+        D6 -- "Yes" --> D8["System clears Suspens status"]
+        D8 --> D7
+        D6 -- "No" --> D1
+    end
 ```
 
 UX screen/state candidates:
+- Account persona without Workplace
+- Persona card with Workplace
 - Delete account confirmation
-- Soft-delete/reactivation state
-- Account hard-deleted state
-- Workplace removed after Fineday state
-- Retail-only remaining state
+- Delete successful
+- Suspended account / reactivation option
+- Cannot find account after over 30 days
+- Hard-deleted account state
+- Workplace removed after FS/Fineday offboarding state
 
 Open UX/business questions:
-- Sync timing/SLA for Fineday and SSO hard-delete job.
+- Confirm exact system status naming and user-facing copy for `Suspens`.
+- Confirm whether "deleted over 30 days" should be shown as Day 31, after 30 full days, or another exact timestamp rule.
+- Confirm sync timing/SLA for FS/Fineday offboarding and daily hard-delete job.
 
 ## 3. UX Flow to Feature / User Flow Mapping
 
@@ -685,7 +715,7 @@ Open UX/business questions:
 | Parking ticket and payment | 5.3 | UF-012 | Parking user | FS ticket lookup, Argento payment failure, receipt |
 | Visitor pass creation and usage | 6.1 | UF-013 | Visitor host and visitor | FS visitor authorization, pass validity, access denial |
 | Notification receiving | 7.1 | UF-014 | PARQ workplace user | Audience segmentation, permission off, deep link |
-| Account deletion / reactivation | 1.4 | UF-004 | Retail + Workplace user | SSO deletion, BZB delete API, FS/Fineday offboarding |
+| Account lifecycle: company offboarding, delete, hard delete, reactivation | 1.4 | UF-004 | Retail + Workplace user | FS/Fineday offboarding, Suspens status, daily hard-delete job, SSO/BZB cleanup |
 
 ## 4. Consolidated Screen-State Needs
 
@@ -706,7 +736,9 @@ Open UX/business questions:
 | Concierge-assisted redemption | Parking payment | Avoid Phase 1 vs Phase 1.5 confusion | Exact handoff message |
 | Visitor pass denied/expired/deleted | Visitor | Host and visitor need clear next step | Pass delivery and status copy |
 | Notification permission off | Notification | User may not receive push | Existing OBK behavior confirmation |
-| Account soft delete/reactivate | Account lifecycle | User must understand deletion and recovery window | Day 31 timing/SLA |
+| Company offboarding / Workplace removal | Account lifecycle | User may keep account but lose Workplace persona after FS/Fineday offboarding | FS sync timing and fallback copy |
+| Account delete / Suspens state | Account lifecycle | User must understand deletion request and temporary suspended state | Confirm exact status naming and user-facing copy |
+| Account reactivation | Account lifecycle | User can recover only within the allowed window | Confirm over-30-days timing wording |
 
 ## 5. Open UX / Business Questions
 
@@ -733,7 +765,9 @@ These questions are intentionally separated from confirmed flows.
 | Notification | What are PARQ audience source, inbox requirement, campaign owner, and notification types? | Wrong audience risk. |
 | Elevator | What is exact elevator UX, floor selection rule, response code set, and hardware UAT schedule? | Hardware path cannot be finalized. |
 | Turnstile | What is QR timeout/fallback behavior and access log requirement? | Security and site operations need alignment. |
-| Lifecycle | What is the SLA for Fineday sync and SSO Day 31 hard delete? | Deletion/offboarding expectations unclear. |
+| Lifecycle | What exact system status value and user-facing wording should be used for `Suspens`? | Implementation, UX copy, and UAT expected results need the same term. |
+| Lifecycle | Should "deleted over 30 days" be described as Day 31, after 30 full days, or another exact timestamp rule? | Reactivation and hard-delete expectations need precise timing. |
+| Lifecycle | What is the SLA for FS/Fineday sync and the daily hard-delete job? | Offboarding/deletion expectations and support handling need timing. |
 
 ## 6. Stakeholder Review Guide
 
@@ -755,6 +789,8 @@ Input files:
 - `TASK_BOARD.md`
 - `HANDOFF_LOG.md`
 - `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`
+- `01_Source_of_Truth/API_and_System_References/00_2025_Document/User Flow_20260608.pdf`
+- `01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png`
 - `03_Architecture/PARQ_User_Flow_Integration_Architecture.md`
 - `03_Architecture/PARQ_Visual_Architecture_and_Flow_Pack.md`
 - `03_Architecture/PARQ_Technical_Dependency_Control_Pack.md`

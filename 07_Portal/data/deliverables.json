@@ -7,22 +7,33 @@
       "name": "PARQ Phase 1 User Flow Index",
       "area": "Source of Truth",
       "owner": "TBD",
-      "status": "Current",
+      "status": "Approved / Source of Truth",
       "type": "User-flow index",
-      "source": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "source": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
       "downstream": "Architecture, QA, Product",
-      "notes": "Primary feature and user-flow source."
+      "notes": "Primary feature and user-flow source. Bas confirmed public Google Sheet as approved source link; repository XLSX remains a local reference copy."
     },
     {
       "id": "PARQ-SOT-002",
       "name": "PARQ Clarification Decision Log",
       "area": "Source of Truth",
       "owner": "Libra",
-      "status": "BMS Decision Recorded / Open Questions",
+      "status": "BMS Decision Recorded / Proposal Resolved / Open Questions",
       "type": "Decision log",
       "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
       "downstream": "All agents",
-      "notes": "Records BMS Option B; proposal and owner questions remain open."
+      "notes": "Records BMS Option B and Bas confirmations. Proposal source is now available; other clarification and owner questions remain open."
+    },
+    {
+      "id": "PARQ-SOT-005",
+      "name": "Proposal: The PARQ integration.pdf",
+      "area": "Source of Truth",
+      "owner": "Bas / PARQ",
+      "status": "Approved / Source of Truth",
+      "type": "Proposal source artifact",
+      "source": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
+      "downstream": "Libra, Simon, Molly, Quinn, PARQ",
+      "notes": "Bas confirmed proposal PDF is available locally under API and system references; closes PARQ-MISSING-001 and OQ-CLAR-001."
     },
     {
       "id": "PARQ-ARCH-001",
@@ -144,11 +155,11 @@
       "name": "Proposal: The PARQ integration.pdf",
       "area": "Source of Truth",
       "owner": "TBD",
-      "status": "Unavailable",
+      "status": "Superseded / Resolved",
       "type": "Missing source artifact",
-      "source": "../MASTER_INDEX.md",
+      "source": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "downstream": "Libra, Simon, PARQ",
-      "notes": "Must be uploaded/linked or formally accepted as unavailable."
+      "notes": "Resolved by PARQ-SOT-005; proposal PDF is now available in Source of Truth system references."
     },
     {
       "id": "PARQ-PORTAL-001",

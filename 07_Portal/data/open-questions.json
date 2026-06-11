@@ -87,6 +87,30 @@
       "relatedUserFlowId": "UF-001"
     },
     {
+      "id": "OQ-LIFE-001",
+      "question": "What is the exact system status value and user-facing wording for Suspens: Suspens, Suspended, or Suspense Status?",
+      "owner": "IAM / Product owner TBD",
+      "status": "Open",
+      "theme": "Account lifecycle",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, Simon, Quinn",
+      "relatedSystem": "SSO/IAM",
+      "relatedArtifact": "../01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png",
+      "relatedUserFlowId": "UF-004"
+    },
+    {
+      "id": "OQ-LIFE-002",
+      "question": "Should hard delete after over 30 days be described to users as Day 31, after 30 full days, or another exact timestamp rule?",
+      "owner": "IAM / Product owner TBD",
+      "status": "Open",
+      "theme": "Account lifecycle",
+      "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
+      "downstream": "Molly, Quinn, Support",
+      "relatedSystem": "SSO/IAM",
+      "relatedArtifact": "../01_Source_of_Truth/PARQ_User_Flow/Offboarding_User_Flow.png",
+      "relatedUserFlowId": "UF-004"
+    },
+    {
       "id": "OQ-OWN-001",
       "question": "Who are the named owners for each indexed folder and document?",
       "owner": "Project leads",

@@ -88,7 +88,9 @@
       "questionForBas": "Please confirm the approved Current Gate label for the Project Hub homepage. Proposed working wording: Named ownership, data/API dependency controls, and remaining BMS technical controls need confirmation before next-owner handoff.",
       "suggestedOwner": "Bas / PARQ Orchestrator",
       "priority": "High",
-      "relatedUserFlowId": "Not specified"
+      "relatedUserFlowId": "Not specified",
+      "status": "Resolved",
+      "resolution": "Bas confirmed Current Gate wording: Key Decisions Required."
     },
     {
       "id": "CONF-DISC-001",
@@ -100,7 +102,10 @@
       "questionForBas": "Please provide or confirm the approved Google Sheet / Google Drive URL for the PARQ Phase 1 User Flow Index.",
       "suggestedOwner": "Bas / Product Team",
       "priority": "High",
-      "relatedUserFlowId": "UF-001 to UF-022"
+      "relatedUserFlowId": "UF-001 to UF-022",
+      "status": "Resolved",
+      "resolution": "Bas confirmed approved Google Sheet source URL.",
+      "approvedSourceUrl": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing"
     }
   ]
 }

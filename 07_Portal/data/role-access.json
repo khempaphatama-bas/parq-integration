@@ -10,7 +10,7 @@
         {
           "label": "User Flow",
           "artifact": "PARQ-SOT-001",
-          "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+          "sourceArtifact": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
           "status": "Approved / Source of Truth",
           "relatedUserFlow": "UF-001 to UF-022",
           "relatedSystem": "Multiple",
@@ -78,8 +78,8 @@
         {
           "label": "User Story",
           "artifact": "Source/Discovery references",
-          "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
-          "status": "Needs Decision",
+          "sourceArtifact": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
+          "status": "Approved / Source of Truth",
           "relatedUserFlow": "Multiple",
           "relatedSystem": "Multiple",
           "relatedOpenQuestion": "MOL-001 pending in task board"

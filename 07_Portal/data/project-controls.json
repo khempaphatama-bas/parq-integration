@@ -20,17 +20,17 @@
     {
       "id": "R-002",
       "type": "Risk",
-      "title": "Proposal PDF is missing from repository.",
+      "title": "Proposal PDF source traceability gap resolved.",
       "owner": "PARQ / Libra",
-      "status": "Needs Decision",
+      "status": "Superseded",
       "priority": "Medium",
-      "sourceArtifact": "../MASTER_INDEX.md",
+      "sourceArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "relatedUserFlow": "Not specified",
       "relatedSystem": "Source Artifact",
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
-      "detail": "Source traceability gap for proposal-derived assumptions.",
-      "action": "Upload/link approved proposal or accept existing review as sufficient reference."
+      "detail": "Proposal PDF is now available locally and registered as PARQ-SOT-005.",
+      "action": "Keep proposal indexed; no missing-source action remains."
     },
     {
       "id": "R-003",
@@ -232,15 +232,15 @@
       "type": "Open Question",
       "title": "Where is [Proposal] The PARQ integration.pdf, or who can provide the approved source file/link?",
       "owner": "TBD",
-      "status": "Needs Decision",
+      "status": "Superseded",
       "priority": "Medium",
-      "sourceArtifact": "../MASTER_INDEX.md",
+      "sourceArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "relatedUserFlow": "Not specified",
       "relatedSystem": "Source Artifact",
       "relatedOpenQuestion": "OQ-CLAR-001",
       "lastUpdated": "2026-06-11",
-      "detail": "Source traceability",
-      "action": "Confirm answer with named owner; do not assume."
+      "detail": "Resolved by registered proposal artifact PARQ-SOT-005.",
+      "action": "No action required unless proposal version changes."
     },
     {
       "id": "OQ-CLAR-002",
@@ -350,17 +350,17 @@
     {
       "id": "OQ-API-001",
       "type": "Open Question",
-      "title": "Who owns SSO, IAM, FS, BZB, Argento, CMS, Kafka/Event Bus, BMS, Notification, Elevator, Turnstile APIs?",
+      "title": "Platform/service ownership confirmed; named SIT/UAT escalation contacts still required.",
       "owner": "PARQ / system owners",
-      "status": "Needs Decision",
+      "status": "Current Working Baseline",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "UF-018",
       "relatedSystem": "Vendor/API",
       "relatedOpenQuestion": "OQ-API-001",
       "lastUpdated": "2026-06-11",
-      "detail": "Dependency ownership",
-      "action": "Confirm answer with named owner; do not assume."
+      "detail": "Bas confirmed platform/service ownership for key systems. Human contact persons are still needed for SIT/UAT escalation.",
+      "action": "Collect named escalation contacts per platform/service before SIT/UAT."
     },
     {
       "id": "OQ-PII-001",
@@ -411,7 +411,7 @@
       "id": "DEP-SSO",
       "type": "Dependency",
       "title": "SSO",
-      "owner": "TBD",
+      "owner": "SSO ownership not confirmed in Bas ownership list; confirm named/platform owner for escalation",
       "status": "Needs Decision",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
@@ -426,8 +426,8 @@
       "id": "DEP-IAM",
       "type": "Dependency",
       "title": "IAM",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "OBK Backend / OB_IAM_SDK / IAM Service",
+      "status": "Current Working Baseline",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -435,14 +435,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Local member profile and persona entitlement",
-      "action": "Profile overwrite policy, deletion orchestration, BMS mutation rules"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-BMS",
       "type": "Dependency",
       "title": "BMS",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "ob-bms service",
+      "status": "Current Working Baseline",
       "priority": "Medium/High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -450,14 +450,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Member lookup, non-blocking login refresh, cleanup consumer",
-      "action": "Endpoint/payload, timeout, previous-permission source, audit, PII"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-FS-IVIVA",
       "type": "Dependency",
       "title": "FS / Iviva",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Frasers Property / Iviva platform",
+      "status": "Current Working Baseline",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -465,14 +465,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Workplace, parking, visitor, elevator, turnstile, traffic authority",
-      "action": "Split service owners, SLAs, error catalog, hardware readiness"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-BZB-BUZZEE-BEE",
       "type": "Dependency",
       "title": "BZB / Buzzee Bee",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Buzzebee external CRM vendor",
+      "status": "Current Working Baseline",
       "priority": "High for merge",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -480,14 +480,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Retail identity and privilege source",
-      "action": "Duplicate handling, wrong-merge correction, deferrable behavior"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-ARGENTO",
       "type": "Dependency",
       "title": "Argento",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Argento external payment gateway vendor",
+      "status": "Current Working Baseline",
       "priority": "High for parking payment",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -495,14 +495,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Payment gateway and refund execution",
-      "action": "Callback security, idempotency, reconciliation, refund process"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-CMS",
       "type": "Dependency",
       "title": "CMS",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Existing One Bangkok CMS API",
+      "status": "Current Working Baseline",
       "priority": "Medium / Phase 1.5 High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -510,14 +510,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Admin visibility and operational tooling",
-      "action": "Seed admin scope, RBAC/org filtering, compensating controls"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-KAFKA-EVENT-BUS",
       "type": "Dependency",
       "title": "Kafka / Event Bus",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Internal event infrastructure used by IAM for async events",
+      "status": "Current Working Baseline",
       "priority": "Compliance-critical",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -525,14 +525,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Async cleanup/event distribution",
-      "action": "Schema, producer/consumer SLA, retry, DLQ, replay"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-NOTIFICATION-INFRASTRUCTURE",
       "type": "Dependency",
       "title": "Notification Infrastructure",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Existing OBK Notification infrastructure",
+      "status": "Current Working Baseline",
       "priority": "Medium",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -540,14 +540,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "PARQ targeting and device/inbox cleanup",
-      "action": "Segment owner, token cleanup, validation"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-ELEVATOR-SYSTEM",
       "type": "Dependency",
       "title": "Elevator System",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Authorization owned by FS",
+      "status": "Current Working Baseline",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -555,14 +555,14 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Physical access hardware",
-      "action": "Hardware test environment, floor mapping, timeout/fallback"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-TURNSTILE-SYSTEM",
       "type": "Dependency",
       "title": "Turnstile System",
-      "owner": "TBD",
-      "status": "Needs Decision",
+      "owner": "Validation and entry authorization owned by FS",
+      "status": "Current Working Baseline",
       "priority": "High",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedUserFlow": "Not specified",
@@ -570,7 +570,7 @@
       "relatedOpenQuestion": "Not specified",
       "lastUpdated": "2026-06-11",
       "detail": "Physical access hardware",
-      "action": "Outage policy, latency threshold, audit retention"
+      "action": "Named human contact persons still required for SIT/UAT escalation; technical details remain tracked separately."
     },
     {
       "id": "DEP-TCCT-OCR",
@@ -712,30 +712,30 @@
       "type": "Blocker",
       "title": "Missing proposal source prevents full source traceability",
       "owner": "PARQ / Libra",
-      "status": "Blocked",
+      "status": "Superseded",
       "priority": "Medium",
-      "sourceArtifact": "../MASTER_INDEX.md",
+      "sourceArtifact": "../01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf",
       "relatedUserFlow": "Not specified",
       "relatedSystem": "Source Artifact",
       "relatedOpenQuestion": "OQ-CLAR-001",
       "lastUpdated": "2026-06-11",
-      "detail": "Proposal PDF is logged as unavailable.",
-      "action": "Upload/link proposal or formally accept unavailable status."
+      "detail": "Resolved by registered proposal artifact PARQ-SOT-005.",
+      "action": "No action required unless proposal version changes."
     },
     {
       "id": "CONF-DISC-001",
       "type": "Confirmation Required",
-      "title": "Please provide or confirm the approved Google Sheet / Google Drive URL for the PARQ Phase 1 User Flow Index.",
+      "title": "Resolved: Approved PARQ User Flow Google Sheet source confirmed.",
       "owner": "Bas / Product Team",
-      "status": "Needs Decision",
+      "status": "Current Working Baseline",
       "priority": "High",
-      "sourceArtifact": "../01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx",
+      "sourceArtifact": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
       "relatedUserFlow": "UF-001 to UF-022",
       "relatedSystem": "Discovery",
       "relatedOpenQuestion": "CONF-DISC-001",
       "lastUpdated": "2026-06-11",
       "detail": "Discovery page should open the approved Google Sheet / Google Drive source instead of forcing an XLSX download, but no approved Google link is present in repository files.",
-      "action": "Ask Bas to provide the approved Google Sheet / Drive URL before linking Discovery User Flow directly."
+      "action": "Use approved Google Sheet link for PARQ User Flow source access."
     }
   ]
 }

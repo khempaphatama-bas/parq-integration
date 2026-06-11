@@ -24,15 +24,16 @@
   <script>
     Promise.all([Portal.loadJson('data/deliverables.json'), Portal.loadJson('data/project-controls.json')]).then(([docs, controls]) => {
       document.getElementById('compactMeta').innerHTML = Portal.compactMeta(docs);
+      const userFlowGoogleSheet = 'https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing';
       document.getElementById('cards').innerHTML = [
-        `<article class="card"><h3>User Flow</h3>${Portal.badge('Needs Decision')}<p>Approved Google Sheet / Drive link is pending confirmation.</p><div class="subnav"><a href="project-controls.html?type=Confirmation%20Required">Open confirmation</a></div></article>`,
+        `<article class="card"><h3>User Flow</h3>${Portal.badge('Approved / Source of Truth')}<p>Approved Google Sheet source confirmed by Bas.</p>${Portal.sourceLink(userFlowGoogleSheet, 'Open Google Sheet')}</article>`,
         `<article class="card"><h3>Business Rules</h3>${Portal.badge('Draft')}<p>Source is the UX stakeholder flow pack; no Work by Role redirect.</p>${Portal.sourceLink('../02_Discovery/PARQ_UX_Stakeholder_User_Flow_Pack.md', 'Open Source')}</article>`,
         `<a class="card card-link" href="project-controls.html?type=Open%20Question"><h3>Open Questions</h3>${Portal.badge('Needs Decision')}</a>`
       ].join('');
       const rows = docs.items.filter(i => i.area === 'Discovery' || i.id === 'PARQ-SOT-001');
       document.getElementById('rows').innerHTML = rows.map(i => {
         const sourceCell = i.id === 'PARQ-SOT-001'
-          ? `<span class="small">Approved Google Sheet / Drive link pending confirmation.</span><div class="subnav"><a href="project-controls.html?type=Confirmation%20Required">Open confirmation</a></div>`
+          ? Portal.sourceLink(userFlowGoogleSheet, 'Open Google Sheet')
           : Portal.sourceLink(i.source, 'Open source');
         return `<tr><td>${i.id}</td><td>${Portal.escapeHtml(i.name)}</td><td>${Portal.escapeHtml(i.owner)}</td><td>${Portal.badge(Portal.standardStatus(i.status))}</td><td>${sourceCell}</td><td>${Portal.escapeHtml(i.relatedUserFlowId || 'Not specified')}</td><td>${Portal.escapeHtml(controls.items.find(c => c.sourceArtifact === i.source)?.relatedOpenQuestion || 'Not specified')}</td><td>${docs.lastUpdated}</td></tr>`;
       }).join('');

@@ -12,10 +12,10 @@
   "areas": [
     {
       "area": "Source of Truth",
-      "status": "Current with open owner gaps",
+      "status": "Current Working Baseline with Bas confirmations recorded",
       "owner": "Libra / source artifact owners",
       "source": "../01_Source_of_Truth/",
-      "notes": "Core user-flow, clarification, BMS, domain, and system reference artifacts are filed. Named owners remain partly TBD."
+      "notes": "Core user-flow, proposal, clarification, BMS, domain, and system reference artifacts are filed. Platform/service ownership is confirmed for key systems; named human contacts remain needed for SIT/UAT escalation."
     },
     {
       "area": "Discovery",
@@ -29,7 +29,7 @@
       "status": "Current / Draft with open technical controls",
       "owner": "Simon / technical owners",
       "source": "../03_Architecture/",
-      "notes": "Architecture, dependency, visual flow, and BMS impact artifacts are available. Some API, environment, timeout, audit, and owner details remain open."
+      "notes": "Architecture, dependency, visual flow, and BMS impact artifacts are available. Platform/service ownership is confirmed for key systems; detailed API, environment, timeout, audit, and named escalation contacts remain open."
     },
     {
       "area": "Delivery",
@@ -49,7 +49,7 @@
   "kpis": [
     {
       "label": "Tracked deliverables",
-      "value": "14"
+      "value": "15"
     },
     {
       "label": "Open questions",
@@ -66,8 +66,9 @@
   ],
   "highlights": [
     "BMS Option B non-blocking login refresh decision is recorded.",
-    "Proposal PDF is still missing from the repository.",
-    "Named artifact and vendor owners remain partly unconfirmed.",
-    "SIT/UAT/PVT readiness depends on vendor endpoints, data, and hardware paths."
+    "SIT/UAT/PVT readiness depends on vendor endpoints, data, and hardware paths.",
+    "Proposal PDF source is now available and registered.",
+    "Platform/service ownership is confirmed for IAM, BMS, FS/Iviva, BZB, Argento, CMS, Kafka/Event Bus, Notification, Elevator, and Turnstile.",
+    "Named human contact persons are still required for SIT/UAT escalation."
   ]
 }
