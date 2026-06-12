@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
   "items": [
     {
@@ -9,7 +9,8 @@
       "owner": "SSO ownership not confirmed in Bas ownership list; confirm named/platform owner for escalation",
       "interfaces": "POST /user/exists; POST /oauth/token; conflict behavior",
       "impact": "Users cannot login/register if unavailable.",
-      "openItems": "Owner, token/error contract, environment readiness"
+      "openItems": "Owner, token/error contract, environment readiness",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "IAM",
@@ -18,7 +19,9 @@
       "owner": "OBK Backend / OB_IAM_SDK / IAM Service",
       "interfaces": "GET /identity/validate; POST /auth/login; Account Merge; BMS orchestration",
       "impact": "Persona and account lifecycle become unreliable.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "readinessNote": "Platform/service ownership is confirmed, but named human contact, environment/test data, and detailed control readiness remain open for SIT/UAT escalation."
     },
     {
       "system": "BMS",
@@ -27,7 +30,9 @@
       "owner": "ob-bms service",
       "interfaces": "GET /members/by-account-id; checkMember; deletion cleanup",
       "impact": "Persona freshness may degrade; cleanup/compliance risk.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "readinessNote": "Platform/service ownership is confirmed, but named human contact, environment/test data, and detailed control readiness remain open for SIT/UAT escalation."
     },
     {
       "system": "FS / Iviva",
@@ -36,7 +41,8 @@
       "owner": "Frasers Property / Iviva platform",
       "interfaces": "Entitlements, floors, parking, visitor, QR validation, hardware",
       "impact": "Access, parking, visitor, elevator, turnstile can fail.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "BZB / Buzzee Bee",
@@ -45,7 +51,8 @@
       "owner": "Buzzebee external CRM vendor",
       "interfaces": "Email/phone lookup, BZB member ID, linkage sync",
       "impact": "Retail persona merge may fail or mislink.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "Argento",
@@ -54,7 +61,9 @@
       "owner": "Argento external payment gateway vendor",
       "interfaces": "PromptPay initiation, callback, refund",
       "impact": "Parking payment unavailable or unsynced.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "readinessNote": "Platform/service ownership is confirmed, but named human contact, environment/test data, and detailed control readiness remain open for SIT/UAT escalation."
     },
     {
       "system": "CMS",
@@ -63,7 +72,9 @@
       "owner": "Existing One Bangkok CMS API",
       "interfaces": "User view, visitor visibility, notification audience, car park config",
       "impact": "Operational support and data isolation gaps.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "readinessNote": "Platform/service ownership is confirmed, but named human contact, environment/test data, and detailed control readiness remain open for SIT/UAT escalation."
     },
     {
       "system": "Kafka / Event Bus",
@@ -72,7 +83,9 @@
       "owner": "Internal event infrastructure used by IAM for async events",
       "interfaces": "ob-iam.account.permanent-deleted",
       "impact": "Hard-delete cleanup may fail silently.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
+      "readinessNote": "Platform/service ownership is confirmed, but named human contact, environment/test data, and detailed control readiness remain open for SIT/UAT escalation."
     },
     {
       "system": "Notification Infrastructure",
@@ -81,7 +94,8 @@
       "owner": "Existing OBK Notification infrastructure",
       "interfaces": "Segments, device tokens, inbox records",
       "impact": "Wrong audience or stale tokens after delete.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "Elevator System",
@@ -90,7 +104,8 @@
       "owner": "Authorization owned by FS",
       "interfaces": "Elevator command/status through FS",
       "impact": "Authorized access may fail at site.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "Turnstile System",
@@ -99,7 +114,8 @@
       "owner": "Validation and entry authorization owned by FS",
       "interfaces": "QR scan and online FS validation",
       "impact": "Access may be denied/allowed incorrectly.",
-      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts."
+      "openItems": "Named human contact persons still required for SIT/UAT escalation; technical controls remain as tracked in architecture artifacts.",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
     },
     {
       "system": "TCCT OCR",
@@ -108,7 +124,19 @@
       "owner": "TBD - Phase 1.5 owner not confirmed",
       "interfaces": "OCR endpoint, ticket image/token, confidence",
       "impact": "Automated e-stamp cannot launch.",
-      "openItems": "API owner, sample data, image retention, confidence thresholds"
+      "openItems": "API owner, sample data, image retention, confidence thresholds",
+      "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md"
+    },
+    {
+      "system": "QA Readiness Planning",
+      "role": "Cross-system readiness register and dependency gate tracking",
+      "criticality": "High",
+      "owner": "Quinn",
+      "interfaces": "Uses architecture readiness and Molly UX impact assessments",
+      "impact": "Quinn can start dependency/register planning now, but detailed SIT/UAT expected results remain blocked.",
+      "openItems": "Named contacts, endpoint contracts, environments, test data, timeout/fallback rules, audit/reconciliation, hardware access details",
+      "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+      "readinessNote": "70% ready for QA readiness planning; 45% ready for final SIT/UAT execution planning per Simon."
     }
   ]
 }

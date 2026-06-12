@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "items": [
     {
@@ -171,6 +171,30 @@
       "source": "../07_Portal/index.html",
       "downstream": "Product, Business, Vendor, Management, PARQ",
       "notes": "Data-driven static HTML/CSS/JSON portal with cross-links, diagram index, confirmation tracker, and source index."
+    },
+    {
+      "id": "PARQ-ARCH-008",
+      "name": "PARQ Architecture Readiness Reassessment After Owner Confirmation",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Ready for QA Readiness Planning with Blockers",
+      "type": "Architecture readiness reassessment",
+      "source": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+      "downstream": "Quinn, PARQ, Libra, Simon, Molly",
+      "notes": "Confirms QA readiness/environment dependency planning can start at register level. Final SIT/UAT execution planning remains blocked by named contacts, endpoint contracts, environments, test data, timeout/fallback rules, audit/reconciliation, and hardware details.",
+      "relatedUserFlowId": "Multiple / dependency readiness"
+    },
+    {
+      "id": "PARQ-ARCH-009",
+      "name": "PARQ Architecture Impact Assessment From Molly UX Update",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Developer Review Go with Blockers",
+      "type": "Architecture impact assessment",
+      "source": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
+      "downstream": "Developer technical reviewers, Quinn, PARQ, Libra, Molly, Simon",
+      "notes": "Assesses Molly UX update impact across Parking Availability, Parking Ticket/Payment, Notification, Multi-Tower, CMS, Account Lifecycle, and BMS. Developer technical review can start with blockers; BMS Option B remains valid.",
+      "relatedUserFlowId": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001"
     }
   ]
 }

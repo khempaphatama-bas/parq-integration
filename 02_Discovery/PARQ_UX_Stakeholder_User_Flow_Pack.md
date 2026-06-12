@@ -35,7 +35,7 @@ Rules applied:
 
 ## Source Traceability Note
 
-`MASTER_INDEX.md` records `[Proposal] The PARQ integration.pdf` as missing from the repository. The local workbook is available at `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`, and the architecture packs contain later derived decisions and open questions. Bas confirmed on 2026-06-11 that `User Flow_20260608.pdf` is a PARQ to-be flowboard created before AI refinement, and `Offboarding_User_Flow.png` clarifies the account lifecycle split. This pack uses the repository artifacts listed above and does not invent missing decisions.
+`MASTER_INDEX.md` now records `[Proposal] The PARQ integration.pdf` as available at `01_Source_of_Truth/API_and_System_References/00_2025_Document/[Proposal] The PARQ integration.pdf`. Bas confirmed the public Google Sheet as the approved PARQ Phase 1 User Flow Index source, with the local workbook retained as a repository reference copy at `01_Source_of_Truth/PARQ_User_Flow/The_PARQ_Phase_1_User_Flow_Index.xlsx`. Bas confirmed on 2026-06-11 that `User Flow_20260608.pdf` is a PARQ to-be flowboard created before AI refinement, and `Offboarding_User_Flow.png` clarifies the account lifecycle split. This pack uses the repository artifacts listed above and does not invent missing decisions.
 
 ```mermaid
 flowchart LR

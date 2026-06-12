@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "projectName": "PARQ Integration to One Bangkok Application",
-  "summary": "Stakeholder portal generated from repository source artifacts. No new requirements are created here.",
+  "summary": "Stakeholder portal generated from repository source artifacts. Simon readiness and UX-impact assessments are now reflected; no new requirements are created here.",
   "audience": [
     "Product Team",
     "Business Team",
@@ -19,17 +19,17 @@
     },
     {
       "area": "Discovery",
-      "status": "Reference / Draft",
+      "status": "Draft / Open Questions",
       "owner": "Libra / Molly / discovery owners",
       "source": "../02_Discovery/",
-      "notes": "Architecture review remains reference; UX stakeholder flow pack is draft with open questions."
+      "notes": "Architecture review remains reference; Molly UX stakeholder flow pack is the current draft Discovery input with open parking, tower, notification, lifecycle, and traceability questions."
     },
     {
       "area": "Architecture",
-      "status": "Current / Draft with open technical controls",
+      "status": "Current Working Baseline / Review with Blockers",
       "owner": "Simon / technical owners",
       "source": "../03_Architecture/",
-      "notes": "Architecture, dependency, visual flow, and BMS impact artifacts are available. Platform/service ownership is confirmed for key systems; detailed API, environment, timeout, audit, and named escalation contacts remain open."
+      "notes": "Architecture, dependency, visual flow, BMS impact, readiness reassessment, and Molly UX impact assessment artifacts are available. Developer technical review can start with blockers; targeted updates remain for UF-010, UF-012, UF-006, UF-007, UF-014, and UF-004."
     },
     {
       "area": "Delivery",
@@ -40,28 +40,28 @@
     },
     {
       "area": "QA",
-      "status": "Blocked on dependency readiness",
+      "status": "Ready for QA readiness planning with blockers",
       "owner": "Quinn",
       "source": "../05_QA/",
-      "notes": "QA matrix task is blocked until dependency and environment readiness inputs are available."
+      "notes": "Quinn can start environment dependency, contact-request, test-data request, and system readiness registers. Detailed SIT/UAT/negative/regression matrix still waits for contracts, environments, data, named contacts, fallback rules, audit, and reconciliation details."
     }
   ],
   "kpis": [
     {
       "label": "Tracked deliverables",
-      "value": "15"
+      "value": "17"
     },
     {
       "label": "Open questions",
-      "value": 12
+      "value": 33
     },
     {
       "label": "Open risks",
-      "value": 15
+      "value": 14
     },
     {
       "label": "Tracked dependencies",
-      "value": 12
+      "value": 13
     }
   ],
   "highlights": [
@@ -69,6 +69,9 @@
     "SIT/UAT/PVT readiness depends on vendor endpoints, data, and hardware paths.",
     "Proposal PDF source is now available and registered.",
     "Platform/service ownership is confirmed for IAM, BMS, FS/Iviva, BZB, Argento, CMS, Kafka/Event Bus, Notification, Elevator, and Turnstile.",
-    "Named human contact persons are still required for SIT/UAT escalation."
+    "Named human contact persons are still required for SIT/UAT escalation.",
+    "Simon readiness reassessment records 70% readiness for QA readiness planning and 45% readiness for final SIT/UAT execution planning.",
+    "Developer technical review can start with blockers based on the Molly UX impact assessment.",
+    "Quinn is the recommended next owner for QA readiness/environment dependency registers, while Simon owns targeted architecture update follow-up."
   ]
 }

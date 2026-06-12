@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "roles": [
     {
@@ -67,6 +67,15 @@
           "relatedUserFlow": "Multiple",
           "relatedSystem": "Multiple",
           "relatedOpenQuestion": "OQ-PII-001"
+        },
+        {
+          "label": "Molly UX Impact Review",
+          "artifact": "PARQ-ARCH-009",
+          "sourceArtifact": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
+          "status": "Draft / Developer Review Go with Blockers",
+          "relatedUserFlow": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004",
+          "relatedSystem": "Parking / CMS / Notification / IAM / FS/Iviva / BMS",
+          "relatedOpenQuestion": "OQ-ARCH-PARK-001 to OQ-ARCH-BMS-001"
         }
       ]
     },
@@ -110,6 +119,24 @@
           "relatedUserFlow": "UF-018",
           "relatedSystem": "Environment Readiness",
           "relatedOpenQuestion": "OQ-ENV-001"
+        },
+        {
+          "label": "QA Readiness Inputs",
+          "artifact": "PARQ-ARCH-008",
+          "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+          "status": "Ready for Next Owner with Blockers",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "IAM / BMS / FS/Iviva / BZB / Argento / CMS / Kafka / Notification / Elevator / Turnstile",
+          "relatedOpenQuestion": "Named contacts, contracts, environments, test data, fallback, audit, reconciliation"
+        },
+        {
+          "label": "UX Impact QA Inputs",
+          "artifact": "PARQ-ARCH-009",
+          "sourceArtifact": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
+          "status": "Draft / Open Questions",
+          "relatedUserFlow": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001",
+          "relatedSystem": "Parking / CMS / Notification / IAM / FS/Iviva / BMS",
+          "relatedOpenQuestion": "OQ-ARCH-PARK-001 to OQ-ARCH-BMS-001"
         }
       ]
     },
@@ -162,6 +189,15 @@
           "relatedUserFlow": "Multiple",
           "relatedSystem": "Multiple",
           "relatedOpenQuestion": "Not specified"
+        },
+        {
+          "label": "Architecture Readiness",
+          "artifact": "PARQ-ARCH-008",
+          "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+          "status": "Draft / Ready for QA Readiness Planning with Blockers",
+          "relatedUserFlow": "Multiple",
+          "relatedSystem": "All key systems",
+          "relatedOpenQuestion": "Named contacts, environments, endpoint details, fallback, audit, test data"
         }
       ]
     }

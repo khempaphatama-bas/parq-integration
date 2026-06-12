@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "items": [
     {
@@ -11,7 +11,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"2FA Sequence Diagram\" in README.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Libra",
-      "priority": "Medium"
+      "priority": "Medium",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "2FA Sequence Diagram",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-002",
@@ -22,7 +26,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"4. Sequence Diagram Candidate List\" in PARQ_Integration_Architecture_Review.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Simon",
-      "priority": "High"
+      "priority": "High",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "4. Sequence Diagram Candidate List",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-003",
@@ -33,7 +41,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"2. UX Flow Diagrams\" in PARQ_UX_Stakeholder_User_Flow_Pack.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Libra",
-      "priority": "Medium"
+      "priority": "Medium",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "2. UX Flow Diagrams",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-004",
@@ -44,7 +56,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"2. Sequence Diagram Candidate List\" in PARQ_User_Flow_Integration_Architecture.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Simon",
-      "priority": "High"
+      "priority": "High",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "2. Sequence Diagram Candidate List",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-005",
@@ -55,7 +71,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"3. Mermaid Sequence Diagrams\" in PARQ_User_Flow_Integration_Architecture.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Simon",
-      "priority": "Medium"
+      "priority": "Medium",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "3. Mermaid Sequence Diagrams",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-006",
@@ -66,7 +86,11 @@
       "reason": "Section title describes a diagram or diagram candidate, but no Mermaid code block is present in that section.",
       "questionForBas": "Bas, should the section \"5. Priority Sequence Diagrams\" in PARQ_Visual_Architecture_and_Flow_Pack.md be converted into a portal-rendered Mermaid diagram, or remain as a text/table reference?",
       "suggestedOwner": "Bas / Simon",
-      "priority": "Medium"
+      "priority": "Medium",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/project-controls.html?type=Confirmation%20Required",
+      "exactSection": "5. Priority Sequence Diagrams",
+      "reasonConfirmationStillNeeded": "The source section title describes a diagram or diagram candidate, but repository evidence does not contain Mermaid code to render. Libra cannot invent diagram content."
     },
     {
       "id": "CONF-007",
@@ -77,7 +101,11 @@
       "reason": "No local Mermaid.js package was found in the repository. The portal page is configured to load Mermaid.js from CDN for rendering.",
       "questionForBas": "Bas, is CDN loading of Mermaid.js acceptable for this stakeholder portal, or should a locally approved Mermaid.js asset be provided under 07_Portal/assets/?",
       "suggestedOwner": "Bas / Libra",
-      "priority": "Medium"
+      "priority": "Medium",
+      "status": "Needs Decision",
+      "exactPage": "07_Portal/architecture-diagrams.html",
+      "exactSection": "Mermaid.js runtime",
+      "reasonConfirmationStillNeeded": "Portal rendering uses Mermaid.js; repository does not contain an approved local Mermaid runtime asset."
     },
     {
       "id": "CONF-V2-001",
@@ -90,7 +118,10 @@
       "priority": "High",
       "relatedUserFlowId": "Not specified",
       "status": "Resolved",
-      "resolution": "Bas confirmed Current Gate wording: Key Decisions Required."
+      "resolution": "Bas confirmed Current Gate wording: Key Decisions Required.",
+      "exactPage": "Resolved / no active portal page action required",
+      "exactSection": "Current Gate wording",
+      "reasonConfirmationStillNeeded": "None; Bas confirmation is recorded."
     },
     {
       "id": "CONF-DISC-001",
@@ -105,7 +136,10 @@
       "relatedUserFlowId": "UF-001 to UF-022",
       "status": "Resolved",
       "resolution": "Bas confirmed approved Google Sheet source URL.",
-      "approvedSourceUrl": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing"
+      "approvedSourceUrl": "https://docs.google.com/spreadsheets/d/1WSGhrt0xSyVVSa37jANQ6XQKirllygVhVMWqP_xaGVo/edit?usp=sharing",
+      "exactPage": "Resolved / no active portal page action required",
+      "exactSection": "PARQ User Flow Google Sheet source",
+      "reasonConfirmationStillNeeded": "None; Bas confirmation is recorded."
     }
   ]
 }

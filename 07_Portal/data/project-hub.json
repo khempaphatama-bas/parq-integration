@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-06-11",
+  "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "project": {
     "title": "PARQ Integration to One Bangkok Application",
     "overview": "A repository-backed project hub for the PARQ integration workstream. It organizes source-of-truth documents, discovery notes, architecture artifacts, delivery references, QA inputs, open decisions, and stakeholder navigation.",
     "businessContext": "PARQ integration work connects PARQ-related user flows, identity, workplace, visitor, parking, notification, and supporting systems into the One Bangkok application context. The portal summarizes existing repository artifacts only; it does not approve or create requirements.",
     "why": "The hub exists so Product, Design, Development, QA, vendors, and management can quickly understand current status, blockers, next actions, and role-relevant source artifacts without reading every markdown file first.",
-    "currentPhase": "Architecture Definition and Dependency Confirmation",
-    "nextPhase": "Backlog / Test Planning Preparation",
+    "currentPhase": "Architecture Review and QA Readiness Planning",
+    "nextPhase": "Backlog and Test Planning Preparation",
     "currentGate": "Key Decisions Required",
-    "readiness": "Current Working Baseline",
-    "statusNote": "BMS Option B non-blocking login refresh is recorded. Proposal source and platform/service ownership are confirmed; named SIT/UAT escalation contacts and detailed technical controls remain open."
+    "readiness": "Current Working Baseline / Ready for Next Owner with Blockers",
+    "statusNote": "Simon confirms QA readiness/environment dependency planning can start at register level and developer technical review can start with blockers. Final implementation design and detailed SIT/UAT expected results still wait for API contracts, property/tower identifiers, environments, test data, timeout/fallback rules, reconciliation rules, lifecycle timing, RBAC/data isolation decisions, and named escalation contacts."
   },
   "readinessCards": [
     {
@@ -21,14 +21,14 @@
     },
     {
       "label": "Discovery",
-      "status": "Draft",
-      "detail": "Discovery and UX stakeholder flow references exist with open decisions.",
+      "status": "Draft / Open Questions",
+      "detail": "Molly UX stakeholder flow pack is current as a draft input, with parking, tower, notification, lifecycle, and source traceability questions still visible.",
       "href": "discovery.html"
     },
     {
       "label": "Architecture",
-      "status": "Current Working Baseline",
-      "detail": "Architecture artifacts are available; dependency controls still need named owners and technical decisions.",
+      "status": "Current Working Baseline / Review with Blockers",
+      "detail": "Simon readiness and impact assessments are registered. Developer technical review can start, but targeted updates and open decisions remain.",
       "href": "architecture.html"
     },
     {
@@ -39,38 +39,47 @@
     },
     {
       "label": "QA",
-      "status": "Blocked",
-      "detail": "QA planning remains blocked by dependency and environment readiness inputs.",
+      "status": "Ready for Next Owner",
+      "detail": "Quinn can start QA readiness and environment dependency registers. Detailed SIT/UAT/negative/regression expected results remain blocked by missing contracts, environments, data, and contacts.",
       "href": "qa.html"
     }
   ],
   "nextActions": [
     {
       "id": "NA-001",
-      "title": "Confirm named artifact and folder owners",
-      "owner": "Project leads / Libra",
+      "title": "Confirm named artifact, folder, and SIT/UAT escalation owners",
+      "owner": "Project leads / Libra / PARQ",
       "status": "Needs Decision",
       "sourceArtifact": "../MASTER_INDEX.md",
       "relatedOpenQuestion": "OQ-OWN-001",
       "href": "project-controls.html?type=Open%20Question"
     },
     {
+      "id": "NA-002",
+      "title": "Start QA readiness and environment dependency registers",
+      "owner": "Quinn",
+      "status": "Ready for Next Owner",
+      "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+      "relatedOpenQuestion": "OQ-ENV-001",
+      "href": "qa.html"
+    },
+    {
       "id": "NA-003",
-      "title": "Confirm BMS endpoint, timeout, cache, support, PII, and audit controls",
-      "owner": "Simon / IAM / BMS / PARQ",
-      "status": "Needs Decision",
-      "sourceArtifact": "../03_Architecture/PARQ_BMS_Identity_Flow_Impact_Assessment.md",
-      "relatedOpenQuestion": "OQ-BMS-001, OQ-BMS-002, OQ-BMS-003, OQ-BMS-004",
-      "href": "project-controls.html?system=BMS"
+      "title": "Review targeted architecture updates from Molly UX impact",
+      "owner": "Simon / Developer technical reviewers",
+      "status": "Ready for Next Owner with Blockers",
+      "sourceArtifact": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
+      "relatedOpenQuestion": "OQ-ARCH-PARK-001 to OQ-ARCH-BMS-001",
+      "href": "architecture.html"
     },
     {
       "id": "NA-004",
-      "title": "Provide SIT/UAT/PVT environment readiness inputs",
-      "owner": "PARQ / Quinn / vendors",
-      "status": "Blocked",
+      "title": "Confirm API contracts, environments, test data, fallback, audit, and reconciliation details",
+      "owner": "PARQ / Simon / Quinn / vendor owners",
+      "status": "Needs Decision",
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedOpenQuestion": "OQ-ENV-001",
-      "href": "project-controls.html?system=Environment%20Readiness"
+      "href": "project-controls.html?type=Dependency"
     }
   ],
   "keyDocuments": [
@@ -176,6 +185,30 @@
       "source": "../07_Portal/index.html",
       "downstream": "Product, Business, Vendor, Management, PARQ",
       "notes": "Data-driven static HTML/CSS/JSON portal with cross-links, diagram index, confirmation tracker, and source index."
+    },
+    {
+      "id": "PARQ-ARCH-008",
+      "name": "PARQ Architecture Readiness Reassessment After Owner Confirmation",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Ready for QA Readiness Planning with Blockers",
+      "type": "Architecture readiness reassessment",
+      "source": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+      "downstream": "Quinn, PARQ, Libra, Simon, Molly",
+      "notes": "Confirms QA readiness/environment dependency planning can start at register level. Final SIT/UAT execution planning remains blocked by named contacts, endpoint contracts, environments, test data, timeout/fallback rules, audit/reconciliation, and hardware details.",
+      "relatedUserFlowId": "Multiple / dependency readiness"
+    },
+    {
+      "id": "PARQ-ARCH-009",
+      "name": "PARQ Architecture Impact Assessment From Molly UX Update",
+      "area": "Architecture",
+      "owner": "Simon",
+      "status": "Draft / Developer Review Go with Blockers",
+      "type": "Architecture impact assessment",
+      "source": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
+      "downstream": "Developer technical reviewers, Quinn, PARQ, Libra, Molly, Simon",
+      "notes": "Assesses Molly UX update impact across Parking Availability, Parking Ticket/Payment, Notification, Multi-Tower, CMS, Account Lifecycle, and BMS. Developer technical review can start with blockers; BMS Option B remains valid.",
+      "relatedUserFlowId": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001"
     }
   ],
   "roleQuickAccess": [
