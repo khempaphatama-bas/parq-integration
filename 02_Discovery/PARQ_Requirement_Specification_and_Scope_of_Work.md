@@ -2,7 +2,7 @@
 
 Owner: Molly, Assistant Product Owner
 
-Document version: 0.3
+Document version: 0.4
 
 Input files:
 - `AGENTS.md`
@@ -22,7 +22,7 @@ Input files:
 
 Output file: `02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md`
 
-Status: Draft v0.3 / Ready for PARQ and Bas review
+Status: Draft v0.4 / Ready for PARQ and Bas review
 
 Dependencies: PARQ Phase 1 approved user-flow index, PARQ integration proposal, Bas clarification decisions, IAM/SSO as-is technical reference, FS/Iviva, BZB, BMS, Argento, CMS, Notification, Elevator, Turnstile, The PARQ concierge platform.
 
@@ -210,7 +210,7 @@ Related user flow: UF-003 Sign-up and User Onboarding. Source flow reference: `U
 
 | FR ID | Requirement |
 |---|---|
-| FR-SIGNUP-001 | The system shall support phone-first sign-up and onboarding for new users, with Email requested after Phone is verified. |
+| FR-SIGNUP-001 | The system shall support phone-first sign-up and onboarding for new users, with Email entry and Email verification after Phone is verified. |
 | FR-SIGNUP-002 | The system shall request required consent from the start of the sign-up process, including consent needed for automatic Retail profile creation. |
 | FR-SIGNUP-003 | Automatic Retail account creation shall apply only to brand-new registrations. |
 | FR-SIGNUP-004 | Registration can complete even if FS authorization is unavailable during registration. |
@@ -218,32 +218,34 @@ Related user flow: UF-003 Sign-up and User Onboarding. Source flow reference: `U
 | FR-SIGNUP-006 | PARQ invitation links do not need to deep-link directly to the phone gate for Phase 1. |
 | FR-SIGNUP-007 | Social login, guest persona, invitation/service-code paths, and Add New Email/Phone behavior shall work consistently with the existing One Bangkok Application where applicable. |
 | FR-SIGNUP-008 | If a newly added phone or email is found with FS type, the user shall receive Workplace persona rights according to FS sync and authorization. |
+| FR-SIGNUP-009 | If the verified Email already exists, the system shall redirect the user to the login flow. |
 
 User flow summary:
 1. New user starts registration.
 2. User enters phone number.
 3. Phone is verified by OTP.
-4. App asks for Email next, based on Bas's `User Flow_20260608.pdf`.
-5. User enters Email / completes the email-related step required by the source flow.
-6. User reviews and accepts required consent.
-7. App validates whether the identity already exists.
-8. If brand-new, app creates the account and Retail profile.
-9. App checks FS-related data if available.
-10. App completes onboarding and displays available persona cards.
-11. Workplace persona appears later if FS type is detected after onboarding.
+4. User enters Email.
+5. Email verified.
+6. If existing email, redirect to log-in flow.
+7. User reviews and accepts required consent.
+8. User inputs required information.
+9. If brand-new, app creates the account with Retail profile.
+10. App checks FS-related data if available.
+11. App completes onboarding and displays available persona cards.
+12. Workplace persona appears later if FS type is detected after onboarding.
 
 ```mermaid
 flowchart TD
     A["User starts sign-up"] --> B["Enter phone number"]
     B --> C["Phone verified by OTP"]
-    C --> D["App asks for Email next"]
-    D --> E["Enter Email / complete email-related step"]
-    E --> F["Review and accept required consent"]
-    F --> G{"Identity already exists?"}
-    G -- "Yes" --> H["Show existing-account guidance and route to login"]
-    G -- "No" --> I["Create One Bangkok account"]
-    I --> J["Create Retail profile for brand-new user"]
-    J --> K{"FS authorization available?"}
+    C --> D["User enters Email"]
+    D --> E["Email verified"]
+    E --> F{"Existing Email?"}
+    F -- "Yes" --> G["Redirect to log-in flow"]
+    F -- "No" --> H["Review and accept required consent"]
+    H --> I["Input required information"]
+    I --> J["Create account with Retail profile"]
+    J --> K{"FS-related data available?"}
     K -- "Yes" --> L["Prepare eligible Workplace persona"]
     K -- "No" --> M["Complete onboarding with available personas"]
     L --> N["Show account creation success"]
@@ -899,3 +901,4 @@ This SOW baseline can be accepted when:
 | 0.1 | 2026-06-12 | Molly | Created internal Requirement Specification / Scope of Work baseline from approved user-flow index, proposal, Bas decisions, UX flow pack, and architecture references. | Draft / Ready for PARQ and Bas review |
 | 0.2 | 2026-06-12 | Molly | Applied Bas/PARQ review comments: aligned wording closer to SOW/proposal style, added clearer business-readable visual user-flow blocks, corrected Multi-Tower context order, corrected Parking Payment flow, and revised Roles and Responsibilities to company/stakeholder-level roles. | Draft v0.2 / Ready for PARQ and Bas review |
 | 0.3 | 2026-06-12 | Molly | Applied focused Bas/PARQ correction to Sign-up and Onboarding: after Phone is verified, the system asks for Email next, referencing Bas's `User Flow_20260608.pdf`. | Draft v0.3 / Ready for PARQ and Bas review |
+| 0.4 | 2026-06-12 | Molly | Applied focused Bas/PARQ correction to Sign-up and Onboarding: Email verification follows Phone verification, existing Email redirects to login flow, required information input follows consent, and brand-new account creation includes Retail profile. | Draft v0.4 / Ready for PARQ and Bas review |
