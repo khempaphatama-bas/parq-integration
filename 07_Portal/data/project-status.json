@@ -2,7 +2,7 @@
   "lastUpdated": "2026-06-12",
   "sourceArtifact": "../MASTER_INDEX.md",
   "projectName": "PARQ Integration to One Bangkok Application",
-  "summary": "Stakeholder portal generated from repository source artifacts. Simon readiness and UX-impact assessments are now reflected; no new requirements are created here.",
+  "summary": "Stakeholder portal generated from repository source artifacts. PARQ-REQ-001 v0.4 is accepted for internal estimation; Simon is next for technical estimation alignment / TDD gap check.",
   "audience": [
     "Product Team",
     "Business Team",
@@ -19,10 +19,10 @@
     },
     {
       "area": "Discovery",
-      "status": "Draft / Open Questions",
+      "status": "Requirement Baseline Accepted for Internal Estimation",
       "owner": "Libra / Molly / discovery owners",
       "source": "../02_Discovery/",
-      "notes": "Architecture review remains reference; Molly UX stakeholder flow pack is the current draft Discovery input with open parking, tower, notification, lifecycle, and traceability questions."
+      "notes": "PARQ-REQ-001 v0.4 is accepted by Bas/PARQ for internal estimation. Open questions remain visible and the accepted requirement document content was not changed by Libra."
     },
     {
       "area": "Architecture",
@@ -40,16 +40,16 @@
     },
     {
       "area": "QA",
-      "status": "Ready for QA readiness planning with blockers",
+      "status": "Blocked / Waiting explicit PARQ handoff",
       "owner": "Quinn",
       "source": "../05_QA/",
-      "notes": "Quinn can start environment dependency, contact-request, test-data request, and system readiness registers. Detailed SIT/UAT/negative/regression matrix still waits for contracts, environments, data, named contacts, fallback rules, audit, and reconciliation details."
+      "notes": "Acceptance of PARQ-REQ-001 v0.4 does not start detailed QA scenarios. Quinn waits until Simon completes technical estimation alignment / TDD gap check and PARQ explicitly hands off QA readiness work."
     }
   ],
   "kpis": [
     {
       "label": "Tracked deliverables",
-      "value": "17"
+      "value": "18"
     },
     {
       "label": "Open questions",
@@ -65,13 +65,14 @@
     }
   ],
   "highlights": [
+    "Simon is the recommended next owner for technical estimation alignment / TDD gap check before Quinn starts QA readiness.",
+    "PARQ-REQ-001 v0.4 is accepted for internal estimation.",
     "BMS Option B non-blocking login refresh decision is recorded.",
     "SIT/UAT/PVT readiness depends on vendor endpoints, data, and hardware paths.",
     "Proposal PDF source is now available and registered.",
     "Platform/service ownership is confirmed for IAM, BMS, FS/Iviva, BZB, Argento, CMS, Kafka/Event Bus, Notification, Elevator, and Turnstile.",
     "Named human contact persons are still required for SIT/UAT escalation.",
     "Simon readiness reassessment records 70% readiness for QA readiness planning and 45% readiness for final SIT/UAT execution planning.",
-    "Developer technical review can start with blockers based on the Molly UX impact assessment.",
-    "Quinn is the recommended next owner for QA readiness/environment dependency registers, while Simon owns targeted architecture update follow-up."
+    "Developer technical review can start with blockers based on the Molly UX impact assessment."
   ]
 }

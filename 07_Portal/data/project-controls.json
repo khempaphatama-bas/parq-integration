@@ -980,17 +980,32 @@
     {
       "id": "QA-001",
       "type": "Dependency",
-      "title": "QA readiness/environment dependency register can start.",
-      "owner": "Quinn",
-      "status": "Ready for Next Owner",
+      "title": "QA readiness remains blocked until explicit PARQ handoff.",
+      "owner": "Quinn / PARQ",
+      "status": "Blocked",
       "priority": "High",
-      "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
+      "sourceArtifact": "../TASK_BOARD.md",
       "relatedUserFlow": "Multiple",
       "relatedSystem": "IAM / BMS / FS/Iviva / BZB / Argento / CMS / Kafka / Notification / Elevator / Turnstile",
       "relatedOpenQuestion": "OQ-ENV-001 / named contacts / contracts / test data",
       "lastUpdated": "2026-06-12",
-      "detail": "Simon confirms 70% readiness for QA readiness planning, while detailed SIT/UAT execution readiness remains 45%.",
-      "action": "Create registers for environments, contacts, test data, hardware, payment, BMS, Kafka/Notification cleanup, and system readiness."
+      "detail": "PARQ-REQ-001 v0.4 acceptance does not automatically start detailed QA scenarios. Quinn waits for Simon technical estimation alignment / TDD gap check and explicit PARQ handoff.",
+      "action": "Do not start QA scenarios until PARQ explicitly hands off QA readiness work."
+    },
+    {
+      "id": "SIM-009",
+      "type": "Dependency",
+      "title": "Technical estimation alignment / TDD gap check for accepted PARQ-REQ-001 v0.4.",
+      "owner": "Simon",
+      "status": "Ready for Next Owner",
+      "priority": "High",
+      "sourceArtifact": "../02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md",
+      "relatedUserFlow": "Multiple / Phase 1 scope",
+      "relatedSystem": "IAM / SSO / BMS / FS/Iviva / BZB / Argento / CMS / Kafka / Notification / Elevator / Turnstile",
+      "relatedOpenQuestion": "Open questions remain visible in PARQ-REQ-001 and decision log",
+      "lastUpdated": "2026-06-12",
+      "detail": "Bas/PARQ accepted PARQ-REQ-001 v0.4 for internal estimation. Simon should align technical estimation and identify TDD/API/architecture gaps before Quinn starts QA readiness.",
+      "action": "Perform technical estimation alignment / TDD gap check without creating QA scenarios."
     }
   ]
 }

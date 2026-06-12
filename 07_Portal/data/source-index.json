@@ -18,7 +18,7 @@
     },
     {
       "area": "Discovery",
-      "count": 2,
+      "count": 3,
       "status": "Tracked",
       "owner": "Libra",
       "source": "../MASTER_INDEX.md"
@@ -55,11 +55,11 @@
       "name": "PARQ Clarification Decision Log",
       "area": "Source of Truth",
       "owner": "Libra",
-      "status": "BMS Decision Recorded / Proposal Resolved / Open Questions",
+      "status": "Scope and Requirement Acceptance Recorded / Open Questions",
       "type": "Decision log",
       "source": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
       "downstream": "All agents",
-      "notes": "Records BMS Option B and Bas confirmations. Proposal source is now available; other clarification and owner questions remain open."
+      "notes": "Records Bas/PARQ acceptance of PARQ-REQ-001 v0.4, Phase 1 / Phase 1.5 boundaries, BMS decisions, and remaining open questions."
     },
     {
       "id": "PARQ-SOT-005",
@@ -181,11 +181,11 @@
       "name": "Testing Account Preparation Guide",
       "area": "QA",
       "owner": "TBD",
-      "status": "Current",
+      "status": "Blocked / Waiting explicit PARQ handoff",
       "type": "QA setup reference",
       "source": "../05_QA/Testing_Account_Preparation/Guide_%20Account%20Preparation%20for%20One%20Bangkok%20App%20Testing.docx",
       "downstream": "Quinn",
-      "notes": "QA setup artifact."
+      "notes": "QA setup reference remains available, but Quinn should not start QA readiness or detailed scenarios until PARQ explicitly hands off after Simon technical estimation alignment / TDD gap check."
     },
     {
       "id": "PARQ-MISSING-001",
@@ -232,6 +232,18 @@
       "downstream": "Developer technical reviewers, Quinn, PARQ, Libra, Molly, Simon",
       "notes": "Assesses Molly UX update impact across Parking Availability, Parking Ticket/Payment, Notification, Multi-Tower, CMS, Account Lifecycle, and BMS. Developer technical review can start with blockers; BMS Option B remains valid.",
       "relatedUserFlowId": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001"
+    },
+    {
+      "id": "PARQ-REQ-001",
+      "name": "PARQ Requirement Specification and Scope of Work v0.4",
+      "area": "Discovery",
+      "owner": "Molly",
+      "status": "Accepted for Internal Estimation",
+      "type": "Requirement Specification / Scope of Work baseline",
+      "source": "../02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md",
+      "downstream": "Simon, PARQ, internal estimation team, Quinn after explicit handoff",
+      "notes": "Bas/PARQ accepted v0.4 as the internal baseline for estimation preparation. Acceptance does not start detailed QA scenarios automatically; Simon is next for technical estimation alignment / TDD gap check.",
+      "relatedUserFlowId": "Phase 1 scope / multiple flows"
     }
   ]
 }

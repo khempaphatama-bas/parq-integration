@@ -6,11 +6,11 @@
     "overview": "A repository-backed project hub for the PARQ integration workstream. It organizes source-of-truth documents, discovery notes, architecture artifacts, delivery references, QA inputs, open decisions, and stakeholder navigation.",
     "businessContext": "PARQ integration work connects PARQ-related user flows, identity, workplace, visitor, parking, notification, and supporting systems into the One Bangkok application context. The portal summarizes existing repository artifacts only; it does not approve or create requirements.",
     "why": "The hub exists so Product, Design, Development, QA, vendors, and management can quickly understand current status, blockers, next actions, and role-relevant source artifacts without reading every markdown file first.",
-    "currentPhase": "Architecture Review and QA Readiness Planning",
-    "nextPhase": "Backlog and Test Planning Preparation",
+    "currentPhase": "Technical Estimation Alignment",
+    "nextPhase": "QA Readiness Handoff Preparation",
     "currentGate": "Key Decisions Required",
-    "readiness": "Current Working Baseline / Ready for Next Owner with Blockers",
-    "statusNote": "Simon confirms QA readiness/environment dependency planning can start at register level and developer technical review can start with blockers. Final implementation design and detailed SIT/UAT expected results still wait for API contracts, property/tower identifiers, environments, test data, timeout/fallback rules, reconciliation rules, lifecycle timing, RBAC/data isolation decisions, and named escalation contacts."
+    "readiness": "Requirement Baseline Accepted / Simon Next",
+    "statusNote": "PARQ-REQ-001 v0.4 is accepted for internal estimation. Simon is recommended next for technical estimation alignment / TDD gap check. Quinn remains waiting until PARQ explicitly hands off QA readiness work; detailed QA scenarios are not automatically started."
   },
   "readinessCards": [
     {
@@ -21,14 +21,14 @@
     },
     {
       "label": "Discovery",
-      "status": "Draft / Open Questions",
-      "detail": "Molly UX stakeholder flow pack is current as a draft input, with parking, tower, notification, lifecycle, and source traceability questions still visible.",
+      "status": "Accepted for Internal Estimation",
+      "detail": "PARQ-REQ-001 v0.4 is the accepted internal Requirement/SOW baseline for estimation preparation.",
       "href": "discovery.html"
     },
     {
       "label": "Architecture",
       "status": "Current Working Baseline / Review with Blockers",
-      "detail": "Simon readiness and impact assessments are registered. Developer technical review can start, but targeted updates and open decisions remain.",
+      "detail": "Simon is next for technical estimation alignment / TDD gap check against the accepted Requirement/SOW baseline.",
       "href": "architecture.html"
     },
     {
@@ -39,12 +39,21 @@
     },
     {
       "label": "QA",
-      "status": "Ready for Next Owner",
-      "detail": "Quinn can start QA readiness and environment dependency registers. Detailed SIT/UAT/negative/regression expected results remain blocked by missing contracts, environments, data, and contacts.",
+      "status": "Blocked / Waiting explicit handoff",
+      "detail": "Quinn remains waiting until Simon completes technical estimation alignment / TDD gap check and PARQ explicitly hands off QA readiness work.",
       "href": "qa.html"
     }
   ],
   "nextActions": [
+    {
+      "id": "NA-002",
+      "title": "Perform technical estimation alignment / TDD gap check for accepted PARQ-REQ-001 v0.4",
+      "owner": "Simon",
+      "status": "Ready for Next Owner",
+      "sourceArtifact": "../02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md",
+      "relatedOpenQuestion": "Open questions remain visible in PARQ-REQ-001 and decision log",
+      "href": "architecture.html"
+    },
     {
       "id": "NA-001",
       "title": "Confirm named artifact, folder, and SIT/UAT escalation owners",
@@ -53,15 +62,6 @@
       "sourceArtifact": "../MASTER_INDEX.md",
       "relatedOpenQuestion": "OQ-OWN-001",
       "href": "project-controls.html?type=Open%20Question"
-    },
-    {
-      "id": "NA-002",
-      "title": "Start QA readiness and environment dependency registers",
-      "owner": "Quinn",
-      "status": "Ready for Next Owner",
-      "sourceArtifact": "../03_Architecture/PARQ_Architecture_Readiness_Reassessment_After_Owner_Confirmation.md",
-      "relatedOpenQuestion": "OQ-ENV-001",
-      "href": "qa.html"
     },
     {
       "id": "NA-003",
@@ -209,6 +209,18 @@
       "downstream": "Developer technical reviewers, Quinn, PARQ, Libra, Molly, Simon",
       "notes": "Assesses Molly UX update impact across Parking Availability, Parking Ticket/Payment, Notification, Multi-Tower, CMS, Account Lifecycle, and BMS. Developer technical review can start with blockers; BMS Option B remains valid.",
       "relatedUserFlowId": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001"
+    },
+    {
+      "id": "PARQ-REQ-001",
+      "name": "PARQ Requirement Specification and Scope of Work v0.4",
+      "area": "Discovery",
+      "owner": "Molly",
+      "status": "Accepted for Internal Estimation",
+      "type": "Requirement Specification / Scope of Work baseline",
+      "source": "../02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md",
+      "downstream": "Simon, PARQ, internal estimation team, Quinn after explicit handoff",
+      "notes": "Bas/PARQ accepted v0.4 as the internal baseline for estimation preparation. Acceptance does not start detailed QA scenarios automatically; Simon is next for technical estimation alignment / TDD gap check.",
+      "relatedUserFlowId": "Phase 1 scope / multiple flows"
     }
   ],
   "roleQuickAccess": [

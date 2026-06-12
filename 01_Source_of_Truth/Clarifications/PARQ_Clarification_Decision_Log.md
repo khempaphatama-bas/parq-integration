@@ -90,6 +90,8 @@ This artifact does not create requirements, architecture, user stories, or QA sc
 | DEC-SCOPE-005 | The PARQ currently has its own CMS/platform for concierge redemption. | Bas scope decision on 2026-06-12. | Decision recorded without platform-detail assumptions | Molly, Simon, Quinn, PARQ |
 | DEC-SCOPE-006 | The PARQ concierge redemption platform is separate from the One Bangkok concierge platform. | Bas scope decision on 2026-06-12. | Decision recorded without integration assumptions | Molly, Simon, Quinn, PARQ |
 | DEC-SCOPE-007 | Phase 1 should not assume OBK CMS manages The PARQ redemption. | Bas scope decision on 2026-06-12. | Decision recorded | Molly, Simon, Quinn, PARQ |
+| DEC-REQ-001 | Bas/PARQ accepts `PARQ-REQ-001 v0.4` as the internal Requirement Specification / Scope of Work baseline for estimation preparation. | Bas/PARQ acceptance on 2026-06-12; `02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md`. | Accepted for Internal Estimation | Simon, PARQ, Molly, Quinn, Libra |
+| DEC-REQ-002 | Acceptance of `PARQ-REQ-001 v0.4` does not mean detailed QA scenarios may start automatically. Simon is recommended next for technical estimation alignment / TDD gap check before Quinn starts QA readiness. | Bas/PARQ acceptance instruction on 2026-06-12. | Decision recorded | Simon, Quinn, PARQ, Libra |
 
 ## Confirmed Source Facts
 
@@ -111,6 +113,7 @@ This artifact does not create requirements, architecture, user stories, or QA sc
 | SF-SCOPE-001 | Requirement/SOW must show Phase 1.5 as `Deferred / Future Phase`, not as Phase 1 delivery. | Bas scope decision on 2026-06-12. | Confirmed scope-boundary fact |
 | SF-PARK-002 | Phase 1 includes QR PromptPay parking payment and does not include user self-redemption. | Bas scope decision on 2026-06-12. | Confirmed scope-boundary fact |
 | SF-PARK-003 | The PARQ concierge redemption platform exists separately from the One Bangkok concierge platform; Phase 1 should not assume OBK CMS manages The PARQ redemption. | Bas scope decision on 2026-06-12. | Confirmed scope-boundary fact; no platform details invented |
+| SF-REQ-001 | `PARQ-REQ-001 v0.4` is accepted for internal estimation, but the document content was not changed by Libra. | Bas/PARQ acceptance on 2026-06-12; repository file remains `02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md`. | Accepted baseline status recorded |
 
 
 ## Confirmed Platform / Service Ownership
@@ -154,6 +157,7 @@ This artifact does not create requirements, architecture, user stories, or QA sc
 | OQ-HW-001 | Who is the named The PARQ hardware/site key contact, and what is the confirmed site testing window? | PARQ / Site Operations / FS/Iviva | Blocked | Simon, Quinn, PARQ |
 | OQ-CMS-003 | Who owns manual / limited Seed Account governance and audit for the accepted CMS cross-property visibility Phase 1 risk? | PARQ / Security / CMS owner | Open | PARQ, Simon, Quinn |
 | OQ-SCOPE-001 | What are the exact operational owner, access method, audit fields, and support workflow for The PARQ's existing concierge redemption platform? | The PARQ / PARQ / Product owner TBD | Open | Molly, Simon, Quinn, PARQ |
+| OQ-REQ-001 | What explicit PARQ handoff and timing should trigger Quinn's QA readiness work after Simon completes technical estimation alignment / TDD gap check? | PARQ / Bas | Open | Quinn, Simon, PARQ |
 
 ## Owner Confirmation Register
 
@@ -183,3 +187,4 @@ This artifact does not create requirements, architecture, user stories, or QA sc
 | 2026-06-12 | Libra | Registered Bas Google Drive IAM / SSO markdown source folder, classified 19 markdown files, flagged `add_identity_flow.md` overlap, lifecycle timing discrepancy, BMS path discrepancy, CMS accepted-risk governance gap, and hardware/site blockers. | Complete with open confirmations |
 | 2026-06-12 | Libra | Recorded Bas confirmations after Simon SIM-008: `PARQ-SOT-006` is as-is technical reference only, Drive `add_identity_flow.md` is latest existing app flow, Requirement/SOW and UX use `within 30 days / Day 31`, PARQ login-time BMS check uses `GET /members` with `account_id`, Kafka runtime behavior must reference delete-account source only, and Quinn must wait until Requirement/SOW baseline exists. | Complete; Molly recommended next |
 | 2026-06-12 | Libra | Recorded Bas scope decisions for Requirement/SOW preparation: Phase 1.5 is `Deferred / Future Phase`; Phase 1 includes QR PromptPay parking payment and excludes user self-redemption; store whitelist, automated E-stamp, OCR redemption, automated gate sync, Organization Isolation, CMS sub-menu, and rate configuration are Phase 1.5; The PARQ concierge redemption platform is separate from One Bangkok and Phase 1 should not assume OBK CMS manages The PARQ redemption. | Complete; Molly recommended next |
+| 2026-06-12 | Libra | Recorded Bas/PARQ acceptance of `PARQ-REQ-001 v0.4` as Accepted for Internal Estimation, without editing the accepted requirement document. Recorded that Simon is recommended next for technical estimation alignment / TDD gap check and Quinn remains waiting for explicit PARQ QA handoff. | Complete; Simon recommended next |
