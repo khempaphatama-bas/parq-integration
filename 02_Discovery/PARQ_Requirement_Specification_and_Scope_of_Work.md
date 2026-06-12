@@ -2,6 +2,8 @@
 
 Owner: Molly, Assistant Product Owner
 
+Document version: 0.2
+
 Input files:
 - `AGENTS.md`
 - `MASTER_INDEX.md`
@@ -20,11 +22,11 @@ Input files:
 
 Output file: `02_Discovery/PARQ_Requirement_Specification_and_Scope_of_Work.md`
 
-Status: Draft / Ready for PARQ and Bas review
+Status: Draft v0.2 / Ready for PARQ and Bas review
 
 Dependencies: PARQ Phase 1 approved user-flow index, PARQ integration proposal, Bas clarification decisions, IAM/SSO as-is technical reference, FS/Iviva, BZB, BMS, Argento, CMS, Notification, Elevator, Turnstile, The PARQ concierge platform.
 
-Downstream consumer: Business Team, Client BA/PMO/PM, internal estimation team, UX/UI, Developer, Simon, Quinn after PARQ/Bas acceptance, Libra for filing and indexing.
+Downstream consumer: Business Team, Client BA/PMO/PM, internal estimation team, UX/UI, Developer/technical team, architecture owner, QA/UAT stakeholders after PARQ/Bas acceptance, repository librarian for filing and indexing.
 
 Important boundary: This document is a business and semi-technical Requirement Specification / Scope of Work baseline. It does not define detailed architecture, API contracts, TDD, SIT scenarios, UAT scenarios, or final UI designs.
 
@@ -59,7 +61,7 @@ The document is intended to support:
 - UX/UI flow and screen-state planning.
 - Developer estimation preparation.
 - QA readiness planning after PARQ/Bas acceptance.
-- Future traceability by Libra.
+- Future repository traceability and indexing.
 
 This document consolidates the approved PARQ Phase 1 user-flow index, the PARQ integration proposal, Bas clarification decisions, and source/reference architecture inputs. Where information is not confirmed, the item is listed as an open question instead of being assumed.
 
@@ -102,7 +104,7 @@ The project objective is to integrate The PARQ workplace and related user experi
 
 The Phase 1 baseline is successful when:
 - The PARQ users can sign in or register in the One Bangkok Application.
-- The app can display the correct persona experience based on identity, Retail/BZB matching, and FS type detection.
+- The system can display the correct persona experience based on identity, Retail/BZB matching, and FS type detection.
 - Users with relevant permissions can access Workplace, QR, tower context, parking, visitor pass, and notification experiences at Phase 1 scope.
 - Parking payment is supported through QR PromptPay, while self-redemption is not included in Phase 1.
 - The PARQ CMS/concierge redemption boundary is clear and not incorrectly assigned to One Bangkok CMS.
@@ -171,9 +173,9 @@ Related user flows: UF-001 Existing The PARQ User Sign-in, UF-004 Account Lifecy
 
 | FR ID | Requirement |
 |---|---|
-| FR-AUTH-001 | The app shall allow existing The PARQ users to sign in to the One Bangkok Application using supported login methods such as phone, password, and OTP where applicable. |
+| FR-AUTH-001 | The system shall allow existing The PARQ users to sign in to the One Bangkok Application using supported login methods such as phone, password, and OTP where applicable. |
 | FR-AUTH-002 | When a phone and email identity conflict occurs, phone shall be treated as the primary identity matching input. |
-| FR-AUTH-003 | When a user enters an identity already found in the system, the app shall show the smart redirect message: "Found your account please log-in with your password or OTP". |
+| FR-AUTH-003 | When a user enters an identity already found in the system, the system shall show the smart redirect message: "Found your account please log-in with your password or OTP". |
 | FR-AUTH-004 | Existing migrated PARQ users without Retail accounts shall not receive automatic Retail account creation during sign-in. They may activate Retail later after successful login. |
 | FR-AUTH-005 | If FS-related checks fail or are unavailable during sign-in, the user shall still be allowed to enter the One Bangkok Application without Workplace access where the account itself is valid. |
 | FR-AUTH-006 | When FS type is later detected, the Workplace persona shall appear based on eligible FS data and authorization. |
@@ -208,8 +210,8 @@ Related user flow: UF-003 Sign-up and User Onboarding.
 
 | FR ID | Requirement |
 |---|---|
-| FR-SIGNUP-001 | The app shall support phone-first sign-up and onboarding for new users. |
-| FR-SIGNUP-002 | The app shall request required consent from the start of the sign-up process, including consent needed for automatic Retail profile creation. |
+| FR-SIGNUP-001 | The system shall support phone-first sign-up and onboarding for new users. |
+| FR-SIGNUP-002 | The system shall request required consent from the start of the sign-up process, including consent needed for automatic Retail profile creation. |
 | FR-SIGNUP-003 | Automatic Retail account creation shall apply only to brand-new registrations. |
 | FR-SIGNUP-004 | Registration can complete even if FS authorization is unavailable during registration. |
 | FR-SIGNUP-005 | If Retail is created but Workplace is pending, the success screen shall show only general account creation success text. |
@@ -227,15 +229,31 @@ User flow summary:
 7. App completes onboarding and displays available persona cards.
 8. Workplace persona appears later if FS type is detected after onboarding.
 
+```mermaid
+flowchart TD
+    A["User starts sign-up"] --> B["Enter phone number"]
+    B --> C["Verify OTP"]
+    C --> D["Review and accept required consent"]
+    D --> E{"Identity already exists?"}
+    E -- "Yes" --> F["Show existing-account guidance and route to login"]
+    E -- "No" --> G["Create One Bangkok account"]
+    G --> H["Create Retail profile for brand-new user"]
+    H --> I{"FS authorization available?"}
+    I -- "Yes" --> J["Prepare eligible Workplace persona"]
+    I -- "No" --> K["Complete onboarding with available personas"]
+    J --> L["Show account creation success"]
+    K --> L
+```
+
 ### Retail Account Matching and Persona Merge
 
 Related user flow: UF-002 Retail Account Matching and Persona Merge.
 
 | FR ID | Requirement |
 |---|---|
-| FR-MERGE-001 | The app shall check whether a PARQ Workplace user already has a Retail/BZB account during login or identity matching. |
+| FR-MERGE-001 | The system shall check whether a PARQ Workplace user already has a Retail/BZB account during login or identity matching. |
 | FR-MERGE-002 | Matching shall use both phone and email where available, with phone used first because all BZB accounts are expected to have a phone number. |
-| FR-MERGE-003 | When a Retail/BZB account is matched, the app shall show an auto-merge acknowledgement screen. |
+| FR-MERGE-003 | When a Retail/BZB account is matched, the system shall show an auto-merge acknowledgement screen. |
 | FR-MERGE-004 | User consent is not required to deny or approve the merge. The screen is for acknowledgement only. |
 | FR-MERGE-005 | Manual operational identity consolidation remains the fallback for conflict cases that cannot be auto-merged. |
 | FR-MERGE-006 | Automatic Retail creation shall not be applied to migrated PARQ users without Retail account. It applies only to brand-new users. |
@@ -249,15 +267,28 @@ User flow summary:
 6. App displays combined Retail and Workplace persona where eligible.
 7. If conflict cannot be resolved, manual operational consolidation is required.
 
+```mermaid
+flowchart TD
+    A["The PARQ user logs in with phone"] --> B["System checks One Bangkok identity"]
+    B --> C["System checks BZB/Retail identity using phone first"]
+    C --> D{"Retail account matched?"}
+    D -- "Yes" --> E["Display auto-merge acknowledgement"]
+    E --> F["User acknowledges"]
+    F --> G["Display combined eligible personas"]
+    D -- "No" --> H["Continue with available Workplace/Retail state"]
+    C --> I{"Conflict cannot be auto-resolved?"}
+    I -- "Yes" --> J["Route to manual operational consolidation"]
+```
+
 ### Workplace Persona Experience
 
 Related user flows: UF-005 Workplace Persona UI Integration, UF-011 Traffic Monitoring, UF-014 Notification, UF-015 Elevator Integration, UF-016 Turnstile Access.
 
 | FR ID | Requirement |
 |---|---|
-| FR-WP-001 | The app shall show Workplace persona card as soon as FS type is detected. |
+| FR-WP-001 | The system shall show Workplace persona card as soon as FS type is detected. |
 | FR-WP-002 | If FS type is not found, Workplace persona/home shall not be shown. |
-| FR-WP-003 | If FS type is found but company or authorization data is incomplete, the app shall show Workplace card/home with pending information. |
+| FR-WP-003 | If FS type is found but company or authorization data is incomplete, the system shall show Workplace card/home with pending information. |
 | FR-WP-004 | Users with both Retail and Workplace personas shall land on the as-is Retail persona homepage first unless they set a different default persona in settings. |
 | FR-WP-005 | Users shall be able to swipe or switch to Workplace persona home according to the existing persona UX model. |
 | FR-WP-006 | Phase 1 quick actions for The PARQ shall include webview access for Traffic, Map, and Promotion. |
@@ -272,14 +303,29 @@ User flow summary:
 6. Parking opens integrated app flow.
 7. Pending state appears if FS type exists but company/authorization is incomplete.
 
+```mermaid
+flowchart TD
+    A["User enters One Bangkok Application"] --> B["System detects available personas"]
+    B --> C["Retail homepage shown first by default"]
+    C --> D{"FS type detected?"}
+    D -- "No" --> E["Do not show Workplace persona"]
+    D -- "Yes" --> F["Show Workplace persona card"]
+    F --> G{"Company/access data complete?"}
+    G -- "Yes" --> H["User switches to Workplace home"]
+    G -- "No" --> I["Show Workplace pending state"]
+    H --> J["Display Phase 1 quick actions"]
+    J --> K["Traffic, Map, Promotion open as webview"]
+    J --> L["Parking opens integrated app flow"]
+```
+
 ### Multi-Tower / Tower Context
 
 Related user flow: UF-006 Multi-Tower Support.
 
 | FR ID | Requirement |
 |---|---|
-| FR-TOWER-001 | The app shall support users with access to multiple buildings or towers, including One Bangkok towers and The PARQ. |
-| FR-TOWER-002 | The app shall remember the user's last selected tower/building context after logout and login where supported. |
+| FR-TOWER-001 | The system shall support users with access to multiple buildings or towers, including One Bangkok towers and The PARQ. |
+| FR-TOWER-002 | The system shall remember the user's last selected tower/building context after logout and login where supported. |
 | FR-TOWER-003 | Users with multiple building rights, including cases under the same company, shall be able to choose which eligible tower/building context to use. |
 | FR-TOWER-004 | Tower switching shall not be allowed during active hardware journeys where context impacts floor or access permission. |
 | FR-TOWER-005 | If FS returns multiple towers but missing floor data, only authorized data from FS shall be displayed. Empty metadata shall be filtered out to avoid broken UX. |
@@ -287,22 +333,27 @@ Related user flow: UF-006 Multi-Tower Support.
 
 User flow summary:
 1. User opens Workplace persona.
-2. App checks authorized buildings/towers from FS and related profile data.
-3. If one tower/building is available, app uses that context.
-4. If multiple tower/building rights exist, user can select the active context.
-5. App remembers the selected context.
-6. During elevator, turnstile, or other hardware-sensitive journeys, the context is locked until the journey ends.
+2. System loads the last selected building/tower context where available.
+3. App displays the selected building/tower context on the Persona Card.
+4. User can select another eligible context before starting a hardware-related journey.
+5. After the Persona Card context is displayed or selected, the system authorizes permissions for that selected context.
+6. App remembers the selected context for the next login where supported.
+7. During elevator, turnstile, or other hardware-sensitive journeys, switching is blocked and the selected context is logged/used until the journey ends.
 
 ```mermaid
 flowchart TD
-    A["User opens Workplace persona"] --> B["Load authorized building/tower data"]
-    B --> C{"Multiple eligible contexts?"}
-    C -- "No" --> D["Use available context"]
-    C -- "Yes" --> E["User selects One Bangkok tower or The PARQ"]
-    E --> F["Save selected context"]
-    F --> G{"Hardware journey active?"}
-    G -- "Yes" --> H["Lock context during journey"]
-    G -- "No" --> I["Allow context switching"]
+    A["User opens Workplace persona"] --> B["Load last selected building/tower context"]
+    B --> C["Display selected context on Persona Card"]
+    C --> D{"User has multiple eligible contexts?"}
+    D -- "No" --> E["Keep displayed context"]
+    D -- "Yes" --> F["User may switch context before hardware use"]
+    F --> G["Display updated context on Persona Card"]
+    E --> H["Authorize permission for selected context"]
+    G --> H
+    H --> I["Remember selected context"]
+    I --> J{"Hardware-related journey active?"}
+    J -- "Yes" --> K["Block context switching and use selected context"]
+    J -- "No" --> L["Allow context switching before next hardware journey"]
 ```
 
 ### My Profile / Default Floor
@@ -316,7 +367,7 @@ Related user flow: UF-008 User Profile Management.
 | FR-PROFILE-003 | Default floor selection shall be allowed for One Bangkok tower users according to existing logic. |
 | FR-PROFILE-004 | PARQ tower users shall not manually set default floor in Phase 1. PARQ floor data is received from FS only. |
 | FR-PROFILE-005 | If FS returns multiple authorized floors, user may still access authorized floors according to FS authorization, but PARQ default floor remains FS-driven. |
-| FR-PROFILE-006 | If FS type is detected but floor authorization is missing, the app shall show a "something went wrong" state and direct the user to the correct concierge/contact based on the missing floor/property context. |
+| FR-PROFILE-006 | If FS type is detected but floor authorization is missing, the system shall show a "something went wrong" state and direct the user to the correct concierge/contact based on the missing floor/property context. |
 
 User flow summary:
 1. User opens My Profile.
@@ -326,19 +377,31 @@ User flow summary:
 5. If user is in PARQ context, default floor is view-only and sourced from FS.
 6. Missing floor authorization shows error and contact guidance.
 
+```mermaid
+flowchart TD
+    A["User opens My Profile"] --> B["Display account and identity information"]
+    B --> C["Display company and tower metadata where available"]
+    C --> D{"Selected context is One Bangkok?"}
+    D -- "Yes" --> E["Allow default floor selection using existing OBK mechanism"]
+    D -- "No, The PARQ" --> F["Display FS-provided floor as view-only"]
+    C --> G{"Floor authorization missing?"}
+    G -- "Yes" --> H["Show something went wrong state and relevant concierge/contact"]
+    G -- "No" --> I["Continue profile management"]
+```
+
 ### QR Identity and Access
 
 Related user flows: UF-009 My QR, UF-015 Elevator Integration, UF-016 Turnstile Access.
 
 | FR ID | Requirement |
 |---|---|
-| FR-QR-001 | The app shall provide My QR as a user identity QR for eligible users. |
+| FR-QR-001 | The system shall provide My QR as a user identity QR for eligible users. |
 | FR-QR-002 | My QR shall be available before full company/floor authorization is loaded, based on Bas confirmation that pending FS authorization should not block My QR availability. |
 | FR-QR-003 | My QR may be used for turnstile access and parking gate scanning where supported by access systems. |
 | FR-QR-004 | QR should not be property-specific for The PARQ versus One Bangkok unless future technical design requires it. Business expectation is that QR can be based on account identity. |
 | FR-QR-005 | QR validity duration, refresh timer, and auto-refresh behavior remain open for technical confirmation. |
 | FR-QR-006 | Turnstile and elevator access shall validate user access through the appropriate FS/access authorization layer. |
-| FR-QR-007 | If turnstile or elevator access is denied or times out, the app shall show a user-visible denial, retry, or support path according to final hardware error rules. |
+| FR-QR-007 | If turnstile or elevator access is denied or times out, the system shall show a user-visible denial, retry, or support path according to final hardware error rules. |
 
 User flow summary:
 1. User opens My QR.
@@ -347,6 +410,16 @@ User flow summary:
 4. Access system validates identity and authorization.
 5. If approved, user proceeds.
 6. If denied or timed out, user receives error/support state.
+
+```mermaid
+flowchart TD
+    A["User opens My QR"] --> B["System displays user identity QR"]
+    B --> C["User scans QR at supported access point"]
+    C --> D["Access system validates identity and permission"]
+    D --> E{"Access approved?"}
+    E -- "Yes" --> F["User proceeds"]
+    E -- "No" --> G["Show access denied, retry, or support state"]
+```
 
 ### Parking Availability
 
@@ -357,9 +430,9 @@ Related user flow: UF-010 Parking Availability.
 | FR-PARK-001 | Parking Availability shall start with a location selection screen. |
 | FR-PARK-002 | Phase 1 location options shall be One Bangkok and The PARQ. |
 | FR-PARK-003 | The location-selection model shall allow future scaling to additional Frasers Property buildings if approved later. |
-| FR-PARK-004 | After location is selected, the app shall request and display availability data for the selected location only. |
-| FR-PARK-005 | If availability data is available, the app shall display available parking information using the applicable location data. |
-| FR-PARK-006 | If availability data is unavailable, stale, or incomplete, the app shall show an appropriate error or unavailable state and allow retry where applicable. |
+| FR-PARK-004 | After location is selected, the system shall request and display availability data for the selected location only. |
+| FR-PARK-005 | If availability data is available, the system shall display available parking information using the applicable location data. |
+| FR-PARK-006 | If availability data is unavailable, stale, or incomplete, the system shall show an appropriate error or unavailable state and allow retry where applicable. |
 
 User flow summary:
 1. User opens Parking Availability.
@@ -384,14 +457,14 @@ Related user flow: UF-012 Parking Payment and Ticket.
 
 | FR ID | Requirement |
 |---|---|
-| FR-PARK-007 | The app shall allow user to scan a parking ticket. |
+| FR-PARK-007 | The system shall allow user to scan a parking ticket. |
 | FR-PARK-008 | After scan, the system shall determine whether the ticket belongs to One Bangkok or The PARQ. |
-| FR-PARK-009 | If the ticket belongs to One Bangkok, the app shall route the user to the as-is One Bangkok parking flow. |
-| FR-PARK-010 | If the ticket belongs to The PARQ, the app shall route the user to The PARQ parking flow with The PARQ rate and capability rules. |
+| FR-PARK-009 | If the ticket belongs to One Bangkok, the system shall route the user to the as-is One Bangkok parking flow. |
+| FR-PARK-010 | If the ticket belongs to The PARQ, the system shall route the user to The PARQ parking flow with The PARQ rate and capability rules. |
 | FR-PARK-011 | The PARQ parking flow shall hide unsupported One Bangkok-only features, including VIP Parking where not applicable. |
 | FR-PARK-012 | Phase 1 shall support QR PromptPay parking payment so users can pay themselves through QR Code. |
 | FR-PARK-013 | Payment confirmation and payment status shall be supported at business flow level through the applicable parking/payment integration. |
-| FR-PARK-014 | If ticket property cannot be detected, the app shall show scan error and allow the user to scan again. If the issue continues, user shall contact concierge/support. |
+| FR-PARK-014 | If ticket property cannot be detected, the system shall show scan error and allow the user to scan again. If the issue continues, user shall contact concierge/support. |
 | FR-PARK-015 | User self-redemption is not included in Phase 1. Concierge redemption remains on The PARQ separate platform. |
 
 User flow summary:
@@ -401,10 +474,12 @@ User flow summary:
 4. One Bangkok ticket routes to existing One Bangkok flow.
 5. The PARQ ticket routes to PARQ-specific rate/capability flow.
 6. User reviews parking fee.
-7. User pays through QR PromptPay.
-8. App receives or checks payment status.
-9. If successful, app shows payment success/paid state.
-10. If failed, user retries payment or contacts support according to final payment error rules.
+7. User taps Payment.
+8. App routes to Argento QR Payment.
+9. User completes QR PromptPay.
+10. App receives or checks payment status.
+11. If successful, app shows payment success/paid state.
+12. If failed, user retries payment or contacts support according to final payment error rules.
 
 ```mermaid
 flowchart TD
@@ -412,10 +487,13 @@ flowchart TD
     B -- "One Bangkok" --> C["Route to as-is One Bangkok parking flow"]
     B -- "The PARQ" --> D["Apply The PARQ rate and capability flow"]
     B -- "Unknown" --> E["Show scan error and retry"]
-    D --> F["Show fee and QR PromptPay"]
-    F --> G{"Payment successful?"}
-    G -- "Yes" --> H["Show paid/success state"]
-    G -- "No" --> I["Show payment failure and retry/support"]
+    D --> F["Show parking fee"]
+    F --> G["User taps Payment"]
+    G --> H["Route to Argento QR Payment"]
+    H --> I["User completes QR PromptPay"]
+    I --> J{"Payment status successful?"}
+    J -- "Yes" --> K["Show paid/success state"]
+    J -- "No" --> L["Show payment failure and retry/support"]
 ```
 
 ### Visitor Pass Management
@@ -439,6 +517,20 @@ User flow summary:
 6. Visitor scans or presents pass at access point.
 7. Access system validates pass and permits or denies access.
 
+```mermaid
+flowchart TD
+    A["Host opens Visitor Pass"] --> B["Enter visitor and visit details"]
+    B --> C["System validates host eligibility and selected property/tower context"]
+    C --> D{"Eligible to create pass?"}
+    D -- "Yes" --> E["Create visitor pass"]
+    E --> F["Visitor receives or uses pass"]
+    F --> G["Visitor scans or presents pass"]
+    G --> H{"Access valid?"}
+    H -- "Yes" --> I["Permit visitor access"]
+    H -- "No" --> J["Deny access or route to support"]
+    D -- "No" --> K["Show unavailable or support state"]
+```
+
 ### Notification
 
 Related user flow: UF-014 Support OBK Notification for The PARQ User.
@@ -456,6 +548,16 @@ User flow summary:
 2. Existing OBK notification mechanism evaluates eligible notification.
 3. User receives supported basic/account/system/marketing notification where allowed.
 4. The PARQ CMS campaign or building-news notification is not sent through One Bangkok Phase 1 scope.
+
+```mermaid
+flowchart TD
+    A["Notification event or campaign trigger occurs"] --> B["Existing OBK notification mechanism evaluates eligibility"]
+    B --> C{"User eligible under existing OBK rules?"}
+    C -- "Yes" --> D["Send supported basic/account/system/marketing notification"]
+    C -- "No" --> E["Do not send notification"]
+    B --> F{"The PARQ CMS campaign/building news?"}
+    F -- "Yes" --> G["Out of Phase 1: remain in existing The PARQ app/platform"]
+```
 
 ### CMS Multi-Property User Management
 
@@ -476,6 +578,16 @@ User flow summary:
 3. CMS displays user profile and associated persona/property metadata.
 4. Admin uses information for support or operational visibility.
 5. Admin does not edit persona metadata in Phase 1.
+
+```mermaid
+flowchart TD
+    A["CMS admin opens user management"] --> B["Search or filter user records"]
+    B --> C["System displays user profile"]
+    C --> D["Display persona, property, company, tower, and status metadata where available"]
+    D --> E{"Admin attempts metadata edit?"}
+    E -- "Yes" --> F["Editing not available in Phase 1"]
+    E -- "No" --> G["Use view-only data for support/operations"]
+```
 
 ### Account Lifecycle / Delete / Reactivate
 
@@ -557,7 +669,7 @@ flowchart TD
 
 ## 7. Overview System Architecture
 
-This section is a business-readable overview only. Detailed architecture, sequence diagrams, API contracts, technical dependency controls, and implementation decisions remain in Simon-owned architecture artifacts.
+This section is a business-readable overview only. Detailed architecture, sequence diagrams, API contracts, technical dependency controls, and implementation decisions remain in architecture-owned artifacts.
 
 | System / platform | Business-readable role in this scope |
 |---|---|
@@ -597,21 +709,18 @@ This section is a business-readable overview only. Detailed architecture, sequen
 
 | Role / team | Responsibility |
 |---|---|
-| Bas | Business approval, scope confirmation, decision owner for open business questions. |
-| PARQ Orchestrator | Coordination, readiness assessment, handoff management, and return-channel ownership. |
-| Molly | Requirement, scope, business-rule, and user-flow baseline owner. |
-| Simon | Architecture, integration dependency, API inventory, sequence candidates, and technical risk owner. |
-| Libra | Filing, indexing, repository traceability, portal sync, and source classification owner. |
-| Quinn | QA readiness, SIT/UAT planning, regression and quality coverage owner after Requirement/SOW baseline is accepted. |
-| Business Team / Client BA / PMO / PM | Review business scope, phase boundaries, dependencies, and acceptance readiness. |
-| UX/UI Designer | Use user-flow summaries and screen-state candidates to design screens without changing requirements. |
-| Developer / Technical Team | Estimate and design implementation using this SOW plus Simon-owned architecture and technical artifacts. |
-| OBK BMS Service Team via PO | Confirm BMS endpoint details and timeout for PARQ login-time member check. |
-| FS / Iviva owner | Confirm FS type, floor/tower authorization, parking availability/ticket fields, elevator, turnstile, and visitor access readiness. |
-| BZB owner | Confirm Retail matching, merge, and delete handling behavior. |
-| Argento owner | Confirm QR PromptPay payment behavior, status, callback/reconciliation, and support path. |
-| CMS owner | Confirm view-only metadata display, access visibility, and Phase 1 admin support constraints. |
-| The PARQ concierge/platform owner | Confirm The PARQ redemption platform operation, support flow, and boundary from OBK CMS. |
+| Mtel (Thailand) Co., Ltd. | Provide implementation planning, delivery coordination, estimation support, and technical execution support for the agreed scope. |
+| T.C.C. Technology / One Bangkok Application owner | Own the One Bangkok Application platform, app release readiness, existing OBK mechanism reuse, and business acceptance coordination. |
+| Frasers Property / The PARQ / FS-Iviva owner | Own The PARQ business input, FS/Iviva authorization data, Workplace access metadata, parking/access integration readiness, and site coordination. |
+| OBK Backend / IAM / SSO owner | Own account authentication, identity, account lifecycle, delete/reactivate behavior, and related backend service readiness. |
+| OBK BMS Service Team via PO | Confirm BMS member lookup behavior, endpoint details, timeout, and escalation path for login-time checks. |
+| BZB / Buzzebee | Own Retail account/loyalty identity behavior, account matching support, and delete notification handling where required. |
+| Argento Payment Gateway | Own QR PromptPay payment processing, payment status behavior, and payment-related support alignment. |
+| OBK CMS owner | Own Phase 1 CMS user visibility, view-only metadata behavior, and admin access constraints. |
+| OBK Notification owner | Own reuse of existing OBK push notification mechanism and notification configuration. |
+| The PARQ concierge/platform owner | Own The PARQ separate concierge redemption platform, operational support, access control, and redemption boundary from OBK CMS. |
+| QA/UAT stakeholders | Review readiness inputs and prepare validation planning after Requirement/SOW baseline acceptance and approved handoff. |
+| UX/UI stakeholders | Use the agreed functional requirements and user-flow displays to prepare screen and state design without changing approved scope. |
 
 ## 10. Variables, Assumptions and Constraints
 
@@ -641,15 +750,15 @@ This section is a business-readable overview only. Detailed architecture, sequen
 
 - Phase 1 must not include Phase 1.5 deferred items unless scope is explicitly changed.
 - Missing technical contract details must remain open questions.
-- This document must not create architecture decisions outside Molly's role boundary.
+- This document must not create architecture decisions outside the Requirement/SOW boundary.
 - This document must not create QA/UAT scenarios.
-- Implementation estimation should reference this SOW together with Simon-owned technical artifacts.
+- Implementation estimation should reference this SOW together with architecture-owned technical artifacts.
 
 ## 11. Dependencies
 
 | Dependency ID | Dependency | Impact |
 |---|---|---|
-| DEP-001 | Bas/PARQ acceptance of this SOW baseline | Required before Quinn can proceed with QA readiness updates. |
+| DEP-001 | Bas/PARQ acceptance of this SOW baseline | Required before QA/UAT stakeholders can proceed with QA readiness updates. |
 | DEP-002 | OBK BMS Service Team confirmation for `GET /members` with `account_id` and timeout | Impacts login-time Workplace refresh and failure handling. |
 | DEP-003 | FS/Iviva confirmation of FS type, company/tower/floor metadata, and empty metadata filtering | Impacts Workplace persona, tower context, profile, QR access, elevator, and turnstile. |
 | DEP-004 | FS/Iviva confirmation of parking availability and ticket property fields | Impacts Parking Availability and Parking Ticket routing. |
@@ -726,26 +835,26 @@ These are business acceptance metrics for scope readiness and delivery alignment
 | MET-007 | Multi-tower and parking location selection behavior is visible for UX/UI and estimation. |
 | MET-008 | Account lifecycle is clearly split between company offboarding and full account deletion. |
 | MET-009 | Open questions are visible and assigned to likely owner groups instead of being treated as hidden assumptions. |
-| MET-010 | Quinn can use the accepted SOW as input for QA readiness planning after PARQ/Bas acceptance and handoff. |
+| MET-010 | QA/UAT stakeholders can use the accepted SOW as input for QA readiness planning after PARQ/Bas acceptance and handoff. |
 
 ## 16. Open Questions / Decisions Required
 
 | OQ ID | Open question / decision required | Likely owner | Impact |
 |---|---|---|---|
-| OQ-BMS-001 | What timeout, retry, fallback, and support behavior applies to PARQ login-time `GET /members` with `account_id`? | OBK BMS Service Team via PO / Simon | Login-time Workplace refresh and error handling. |
+| OQ-BMS-001 | What timeout, retry, fallback, and support behavior applies to PARQ login-time `GET /members` with `account_id`? | OBK BMS Service Team via PO / architecture owner | Login-time Workplace refresh and error handling. |
 | OQ-BMS-002 | What exact user/support copy should be shown if BMS member data is unavailable or conflicts with current account state? | Product / UX / BMS owner | User-visible sign-in and support state. |
-| OQ-FS-001 | What are the final FS/Iviva values and contract fields for FS type, company, tower, floor, parking availability, and parking ticket property? | FS/Iviva / Simon | Persona, profile, parking, elevator, turnstile, visitor pass. |
+| OQ-FS-001 | What are the final FS/Iviva values and contract fields for FS type, company, tower, floor, parking availability, and parking ticket property? | FS/Iviva / architecture owner | Persona, profile, parking, elevator, turnstile, visitor pass. |
 | OQ-FS-002 | What is the exact handling when FS type exists but company or floor authorization is incomplete? | Product / UX / FS/Iviva | Pending state versus error state consistency. |
 | OQ-QR-001 | What is My QR validity duration and should the app show refresh timer or auto-refresh? | Product / UX / Technical owner | My QR UX and access reliability. |
 | OQ-PARK-001 | What is the authoritative source for The PARQ parking rates and payment fee calculation? | Parking owner / FS/Iviva / Argento | Parking payment accuracy. |
 | OQ-PARK-002 | Which exact One Bangkok-only parking features must be hidden in The PARQ flow besides VIP Parking? | Product / Parking owner | Parking UI scope and estimation. |
 | OQ-PARK-003 | What is the exact support path and screen copy after repeated ticket property detection failure? | Product / UX / Support | Error handling and concierge/support handoff. |
-| OQ-PARK-004 | What payment callback, status check, reconciliation, and refund/support process applies for Argento QR PromptPay? | Argento / Simon / Finance Ops | Payment reliability and operational support. |
+| OQ-PARK-004 | What payment callback, status check, reconciliation, and refund/support process applies for Argento QR PromptPay? | Argento / architecture owner / Finance Ops | Payment reliability and operational support. |
 | OQ-NOTIF-001 | Which basic/account/system/marketing notification categories are enabled for migrated PARQ users, and how does consent apply? | Product / Notification owner | Notification scope and compliance. |
 | OQ-CMS-001 | Which CMS filters are required for Phase 1: property, persona, company, status, tower, or others? | Product / UX / CMS owner | CMS screen design and estimation. |
 | OQ-CMS-002 | Who owns manual/Seed Account governance and audit for accepted Phase 1 CMS cross-property visibility risk? | CMS owner / Security / PARQ | Admin governance and support risk. |
 | OQ-LIFE-001 | What is the exact internal and user-facing wording for the soft-delete/suspended account status where source flow uses `Suspens`? | Product / IAM / UX | Account lifecycle copy and support language. |
-| OQ-LIFE-002 | What exact downstream systems must receive delete or cleanup events, beyond BZB where required by confirmed business flow? | IAM / Simon | Lifecycle completion and compliance. |
+| OQ-LIFE-002 | What exact downstream systems must receive delete or cleanup events, beyond BZB where required by confirmed business flow? | IAM / architecture owner | Lifecycle completion and compliance. |
 | OQ-HW-001 | Who is the named The PARQ hardware/site key contact and what is the test schedule/window for elevator and turnstile? | PARQ / Site Operations / FS/Iviva | Hardware readiness and QA planning. |
 | OQ-CONTACT-001 | Who are named human escalation contacts for IAM, BMS, FS/Iviva, BZB, Argento, CMS, Notification, Elevator, and Turnstile? | PARQ / PMO | SIT/UAT escalation readiness. |
 | OQ-REDEMPTION-001 | What are the operational details, support owner, access control, and audit model for The PARQ separate concierge redemption platform? | The PARQ concierge/platform owner | Payment/redemption boundary and support communication. |
@@ -759,9 +868,9 @@ This SOW baseline can be accepted when:
 - Bas/PARQ confirms that user self-redemption, store whitelist, automated E-stamp, OCR redemption, automated gate sync, Organization Isolation, CMS sub-menu, and rate configuration remain Phase 1.5 Deferred / Future Phase.
 - Bas/PARQ confirms that The PARQ redemption platform is separate from One Bangkok concierge platform and is not managed by OBK CMS in Phase 1.
 - The Business Team, Client BA/PMO/PM, UX/UI, Developer, and QA owners can use the document for preparation without treating open questions as confirmed requirements.
-- Simon can reference this document for architecture alignment without treating it as a technical design contract.
-- Quinn can use this document as input for QA readiness planning after PARQ/Bas acceptance and handoff.
-- Libra can index the artifact and update traceability after PARQ confirms filing.
+- Architecture owner can reference this document for architecture alignment without treating it as a technical design contract.
+- QA/UAT stakeholders can use this document as input for QA readiness planning after PARQ/Bas acceptance and handoff.
+- Repository librarian can index the artifact and update traceability after PARQ confirms filing.
 
 ## 18. Appendix / Source References
 
@@ -776,10 +885,11 @@ This SOW baseline can be accepted when:
 | PARQ-UX-001 | `PARQ_UX_Stakeholder_User_Flow_Pack.md` | UX-friendly flow summaries and latest Bas-reviewed flow updates. |
 | PARQ-ARCH-010 | `PARQ_Architecture_Dependency_Addendum_After_Bas_Confirmations.md` | Architecture reference for latest dependency addendum; used at summary level only. |
 | PARQ-ARCH-011 | `PARQ_Drive_IAM_SSO_Source_Impact_Assessment.md` | IAM/SSO source impact reference; used at summary level only. |
-| AGENTS.md | Project governance and agent role boundaries | Ensured Molly stayed within requirement and user-flow ownership. |
+| AGENTS.md | Project governance and role boundaries | Ensured the document stayed within requirement and user-flow ownership. |
 
 ## 19. Change Log / Version History
 
 | Version | Date | Owner | Change summary | Status |
 |---|---|---|---|---|
 | 0.1 | 2026-06-12 | Molly | Created internal Requirement Specification / Scope of Work baseline from approved user-flow index, proposal, Bas decisions, UX flow pack, and architecture references. | Draft / Ready for PARQ and Bas review |
+| 0.2 | 2026-06-12 | Molly | Applied Bas/PARQ review comments: aligned wording closer to SOW/proposal style, added clearer business-readable visual user-flow blocks, corrected Multi-Tower context order, corrected Parking Payment flow, and revised Roles and Responsibilities to company/stakeholder-level roles. | Draft v0.2 / Ready for PARQ and Bas review |
