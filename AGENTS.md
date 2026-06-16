@@ -428,3 +428,18 @@ When appropriate, agents should provide:
 * Recommended Owner
 
 A smaller set of verified artifacts is preferred over a large set of unverified documents.
+
+-------
+# Default File Scope Policy
+
+Agents must not search the repository by default.
+
+Every task should start with:
+
+- Assigned Files
+- Optional Related Files
+- Forbidden Files
+
+If Assigned Files are sufficient, no additional files may be read.
+
+Repository-wide review requires explicit PARQ authorization.
