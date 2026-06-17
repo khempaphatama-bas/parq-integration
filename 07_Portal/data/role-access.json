@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../MASTER_INDEX.md",
   "roles": [
     {
@@ -76,6 +76,15 @@
           "relatedUserFlow": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004",
           "relatedSystem": "Parking / CMS / Notification / IAM / FS/Iviva / BMS",
           "relatedOpenQuestion": "OQ-ARCH-PARK-001 to OQ-ARCH-BMS-001"
+        },
+        {
+          "label": "Requirement Traceability Matrix",
+          "artifact": "PARQ-REQ-002",
+          "sourceArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+          "status": "Approved",
+          "relatedUserFlow": "UF-001 to UF-016",
+          "relatedSystem": "Multiple; UF-011 Traffic Monitoring remains open for FR granularity",
+          "relatedOpenQuestion": "OQ-RTM-UF011"
         }
       ]
     },
@@ -137,6 +146,15 @@
           "relatedUserFlow": "UF-010, UF-012, UF-006, UF-007, UF-014, UF-004, UF-001",
           "relatedSystem": "Parking / CMS / Notification / IAM / FS/Iviva / BMS",
           "relatedOpenQuestion": "OQ-ARCH-PARK-001 to OQ-ARCH-BMS-001"
+        },
+        {
+          "label": "Requirement Traceability Matrix",
+          "artifact": "PARQ-REQ-002",
+          "sourceArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+          "status": "Approved / QA later after explicit PARQ handoff",
+          "relatedUserFlow": "UF-001 to UF-016",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "OQ-RTM-UF011"
         }
       ]
     },
@@ -198,6 +216,15 @@
           "relatedUserFlow": "Multiple",
           "relatedSystem": "All key systems",
           "relatedOpenQuestion": "Named contacts, environments, endpoint details, fallback, audit, test data"
+        },
+        {
+          "label": "Requirement Traceability Matrix",
+          "artifact": "PARQ-REQ-002",
+          "sourceArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+          "status": "Approved",
+          "relatedUserFlow": "UF-001 to UF-016",
+          "relatedSystem": "Multiple",
+          "relatedOpenQuestion": "OQ-RTM-UF011"
         }
       ]
     }

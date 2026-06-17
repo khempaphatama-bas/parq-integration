@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../MASTER_INDEX.md",
   "project": {
     "title": "PARQ Integration to One Bangkok Application",
@@ -9,8 +9,8 @@
     "currentPhase": "Technical Estimation Alignment",
     "nextPhase": "QA Readiness Handoff Preparation",
     "currentGate": "Key Decisions Required",
-    "readiness": "Requirement Baseline Accepted / Simon Next",
-    "statusNote": "PARQ-REQ-001 v0.4 is accepted for internal estimation. Simon is recommended next for technical estimation alignment / TDD gap check. Quinn remains waiting until PARQ explicitly hands off QA readiness work; detailed QA scenarios are not automatically started."
+    "readiness": "Requirement Baseline and RTM Approved / Simon Next",
+    "statusNote": "PARQ-REQ-001 v0.4 is accepted for internal estimation and PARQ-REQ-002 is approved as the formal RTM. Simon / developer estimation team can use the approved traceability baseline. Quinn remains waiting until PARQ explicitly hands off QA readiness work; detailed QA scenarios are not automatically started."
   },
   "readinessCards": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "label": "Discovery",
-      "status": "Accepted for Internal Estimation",
-      "detail": "PARQ-REQ-001 v0.4 is the accepted internal Requirement/SOW baseline for estimation preparation.",
+      "status": "Accepted + Approved RTM",
+      "detail": "PARQ-REQ-001 v0.4 is accepted for internal estimation and PARQ-REQ-002 is approved as the formal RTM.",
       "href": "discovery.html"
     },
     {
@@ -80,6 +80,15 @@
       "sourceArtifact": "../03_Architecture/PARQ_Technical_Dependency_Control_Pack.md",
       "relatedOpenQuestion": "OQ-ENV-001",
       "href": "project-controls.html?type=Dependency"
+    },
+    {
+      "id": "NA-005",
+      "title": "Use approved PARQ-REQ-002 RTM for estimation traceability",
+      "owner": "Simon / developer estimation team",
+      "status": "Ready for Next Owner",
+      "sourceArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "relatedOpenQuestion": "OQ-RTM-UF011 remains open for UF-011 Traffic Monitoring FR granularity",
+      "href": "deliverables.html"
     }
   ],
   "keyDocuments": [
@@ -221,6 +230,18 @@
       "downstream": "Simon, PARQ, internal estimation team, Quinn after explicit handoff",
       "notes": "Bas/PARQ accepted v0.4 as the internal baseline for estimation preparation. Acceptance does not start detailed QA scenarios automatically; Simon is next for technical estimation alignment / TDD gap check.",
       "relatedUserFlowId": "Phase 1 scope / multiple flows"
+    },
+    {
+      "id": "PARQ-REQ-002",
+      "name": "PARQ Requirement Traceability Matrix",
+      "area": "Discovery",
+      "owner": "Molly",
+      "status": "Approved",
+      "type": "Requirement Traceability Matrix",
+      "source": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "downstream": "Bas, developer estimation team, Simon, Libra, Quinn after explicit PARQ QA readiness handoff",
+      "notes": "Bas/PARQ approved PARQ-REQ-002 as the formal RTM on 2026-06-16. Preserves UF-001 to UF-016 traceability to epics, related FR IDs, source/discovery/architecture references, estimation references, open dependencies, and QA readiness notes. UF-011 Traffic Monitoring remains an open traceability note: accepted as webview / quick-action scope, with no dedicated FR family in PARQ-REQ-001 v0.4; no new FR is created.",
+      "relatedUserFlowId": "UF-001 to UF-016"
     }
   ],
   "roleQuickAccess": [

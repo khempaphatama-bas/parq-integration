@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../MASTER_INDEX.md",
   "items": [
     {
@@ -1006,6 +1006,21 @@
       "lastUpdated": "2026-06-12",
       "detail": "Bas/PARQ accepted PARQ-REQ-001 v0.4 for internal estimation. Simon should align technical estimation and identify TDD/API/architecture gaps before Quinn starts QA readiness.",
       "action": "Perform technical estimation alignment / TDD gap check without creating QA scenarios."
+    },
+    {
+      "id": "OQ-RTM-UF011",
+      "type": "Open Question",
+      "title": "UF-011 Traffic Monitoring FR granularity remains open.",
+      "owner": "PARQ / Molly / Simon",
+      "status": "Needs Decision",
+      "priority": "Medium",
+      "sourceArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "relatedUserFlow": "UF-011",
+      "relatedSystem": "Traffic Monitoring / FS or traffic source",
+      "relatedOpenQuestion": "OQ-RTM-UF011",
+      "lastUpdated": "2026-06-16",
+      "detail": "Approved RTM records UF-011 as accepted webview / quick-action scope, but PARQ-REQ-001 v0.4 has no dedicated Traffic Monitoring FR family. This filing does not create a Traffic Monitoring FR.",
+      "action": "Confirm later whether a dedicated FR or developer estimation row is required; keep FS traffic SLA and fallback open until confirmed."
     }
   ]
 }

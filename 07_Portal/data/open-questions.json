@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../01_Source_of_Truth/Clarifications/PARQ_Clarification_Decision_Log.md",
   "items": [
     {
@@ -424,6 +424,18 @@
       "relatedArtifact": "../03_Architecture/PARQ_Architecture_Impact_Assessment_From_Molly_UX_Update.md",
       "relatedUserFlowId": "UF-001 / UF-004",
       "priority": "Medium"
+    },
+    {
+      "id": "OQ-RTM-UF011",
+      "question": "Does UF-011 Traffic Monitoring need a dedicated FR family or developer estimation row, or should it remain only webview / quick-action scope?",
+      "owner": "PARQ / Molly / Simon",
+      "status": "Open",
+      "theme": "Requirement traceability",
+      "source": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "downstream": "Developer estimation team, Simon, Quinn after explicit PARQ QA readiness handoff",
+      "relatedSystem": "Traffic Monitoring / FS or traffic source",
+      "relatedArtifact": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "relatedUserFlowId": "UF-011"
     }
   ]
 }

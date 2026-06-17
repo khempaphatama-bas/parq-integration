@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../MASTER_INDEX.md",
   "projectName": "PARQ Integration to One Bangkok Application",
-  "summary": "Stakeholder portal generated from repository source artifacts. PARQ-REQ-001 v0.4 is accepted for internal estimation; Simon is next for technical estimation alignment / TDD gap check.",
+  "summary": "Stakeholder portal generated from repository source artifacts. PARQ-REQ-001 v0.4 is accepted for internal estimation and PARQ-REQ-002 is approved as the formal RTM; Simon / developer estimation team can use the approved traceability baseline while Quinn remains gated until explicit PARQ QA handoff.",
   "audience": [
     "Product Team",
     "Business Team",
@@ -19,10 +19,10 @@
     },
     {
       "area": "Discovery",
-      "status": "Requirement Baseline Accepted for Internal Estimation",
+      "status": "Requirement Baseline and RTM Approved for Internal Estimation",
       "owner": "Libra / Molly / discovery owners",
       "source": "../02_Discovery/",
-      "notes": "PARQ-REQ-001 v0.4 is accepted by Bas/PARQ for internal estimation. Open questions remain visible and the accepted requirement document content was not changed by Libra."
+      "notes": "PARQ-REQ-001 v0.4 is accepted by Bas/PARQ for internal estimation, and PARQ-REQ-002 is approved as the formal RTM. UF-011 Traffic Monitoring remains an open traceability note because no dedicated Traffic FR family exists in PARQ-REQ-001 v0.4."
     },
     {
       "area": "Architecture",
@@ -43,17 +43,17 @@
       "status": "Blocked / Waiting explicit PARQ handoff",
       "owner": "Quinn",
       "source": "../05_QA/",
-      "notes": "Acceptance of PARQ-REQ-001 v0.4 does not start detailed QA scenarios. Quinn waits until Simon completes technical estimation alignment / TDD gap check and PARQ explicitly hands off QA readiness work."
+      "notes": "Acceptance of PARQ-REQ-001 v0.4 and approval of PARQ-REQ-002 do not start detailed QA scenarios. Quinn waits until PARQ explicitly hands off QA readiness work."
     }
   ],
   "kpis": [
     {
       "label": "Tracked deliverables",
-      "value": "18"
+      "value": "19"
     },
     {
       "label": "Open questions",
-      "value": 33
+      "value": 34
     },
     {
       "label": "Open risks",
@@ -65,6 +65,8 @@
     }
   ],
   "highlights": [
+    "UF-011 Traffic Monitoring remains open for FR granularity; no Traffic Monitoring FR is invented by the RTM approval filing.",
+    "PARQ-REQ-002 is approved as the formal Requirement Traceability Matrix.",
     "Simon is the recommended next owner for technical estimation alignment / TDD gap check before Quinn starts QA readiness.",
     "PARQ-REQ-001 v0.4 is accepted for internal estimation.",
     "BMS Option B non-blocking login refresh decision is recorded.",

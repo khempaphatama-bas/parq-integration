@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-16",
   "sourceArtifact": "../MASTER_INDEX.md",
   "items": [
     {
@@ -207,6 +207,18 @@
       "downstream": "Simon, PARQ, internal estimation team, Quinn after explicit handoff",
       "notes": "Bas/PARQ accepted v0.4 as the internal baseline for estimation preparation. Acceptance does not start detailed QA scenarios automatically; Simon is next for technical estimation alignment / TDD gap check.",
       "relatedUserFlowId": "Phase 1 scope / multiple flows"
+    },
+    {
+      "id": "PARQ-REQ-002",
+      "name": "PARQ Requirement Traceability Matrix",
+      "area": "Discovery",
+      "owner": "Molly",
+      "status": "Approved",
+      "type": "Requirement Traceability Matrix",
+      "source": "../02_Discovery/PARQ_Requirement_Traceability_Matrix.md",
+      "downstream": "Bas, developer estimation team, Simon, Libra, Quinn after explicit PARQ QA readiness handoff",
+      "notes": "Bas/PARQ approved PARQ-REQ-002 as the formal RTM on 2026-06-16. Preserves UF-001 to UF-016 traceability to epics, related FR IDs, source/discovery/architecture references, estimation references, open dependencies, and QA readiness notes. UF-011 Traffic Monitoring remains an open traceability note: accepted as webview / quick-action scope, with no dedicated FR family in PARQ-REQ-001 v0.4; no new FR is created.",
+      "relatedUserFlowId": "UF-001 to UF-016"
     }
   ]
 }

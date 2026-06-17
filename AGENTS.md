@@ -263,6 +263,84 @@ Agents must not use collaboration to bypass PARQ or Bas approval.
 
 ---
 
+# Joint Investigation Workflow
+
+PARQ may authorize a joint investigation when a topic crosses agent ownership boundaries, such as requirement impact plus architecture feasibility, architecture plus QA testability, or repository evidence plus delivery risk.
+
+Joint investigation is for analysis only.
+
+It must not create:
+
+* New requirements
+* Architecture decisions
+* User stories
+* Acceptance criteria
+* QA / UAT scenarios
+* API / TDD contracts
+* Repository edits
+
+unless Bas explicitly approves that output as a separate task.
+
+## When To Use Joint Investigation
+
+Use joint investigation only when separate agent reports would likely duplicate effort or miss cross-functional impact.
+
+Examples:
+
+* A stakeholder request may change approved scope and technical design.
+* A requirement depends on API, RBAC, data ownership, or vendor behavior.
+* A technical constraint may change the user flow or business rule.
+* A QA readiness concern depends on unresolved architecture or requirement scope.
+
+For simple questions, use a single-owner handoff instead.
+
+## Token-Efficient Collaboration Rules
+
+To reduce repeated reading and token waste:
+
+1. PARQ must provide one Minimal Context Package for the joint investigation.
+2. The package should include only the specific source files, artifact IDs, decisions, and questions needed.
+3. Agents should not re-read the full repository unless the task requires repository audit.
+4. Agents should quote or summarize only the relevant baseline wording.
+5. Each agent should answer only inside their ownership boundary.
+6. Each agent may ask at most two focused clarification questions to another agent before returning to PARQ.
+7. Long back-and-forth discussion is discouraged; unresolved disagreement should be returned to PARQ as an open decision.
+8. One agent may be nominated as Synthesis Owner to combine findings, but final decision still belongs to PARQ / Bas.
+
+## Joint Investigation Package
+
+PARQ must include:
+
+* Topic
+* Participants
+* Synthesis Owner, if any
+* Return Channel
+* Exact decision or question to investigate
+* Known baseline status
+* Relevant input files only
+* Out-of-scope items
+* Expected output format
+* Maximum collaboration depth, usually one round of questions
+
+## Joint Investigation Return
+
+The joint return must include:
+
+* Participants
+* Source inputs used
+* Shared findings
+* Agent-specific findings, if different
+* Conflicts or disagreements
+* Risks
+* Documents affected
+* Approval required
+* Recommended next owner
+* Minimal Context for next agent
+
+If no agreement is reached, the return report must say so clearly and list decision options for PARQ / Bas.
+
+---
+
 # Reviewer Matrix
 
 Default reviewers:
